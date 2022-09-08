@@ -1,0 +1,96 @@
+/* Book Now */
+
+#book-now-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Fira Sans", sans-serif;
+  padding: 2rem;
+}
+
+#book-now-section img {
+  width: 80vw;
+  height: 32rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0 7px gray;
+}
+
+#book-now-section h1 {
+  position: absolute;
+  color: whitesmoke;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px black;
+  font-size: 6rem;
+  margin-bottom: 10rem;
+  opacity: 0.9;
+}
+
+#book-now-section a {
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.button {
+  appearance: button;
+  padding: 1rem 6rem;
+  position: absolute;
+  background-color: rgb(95, 38, 31);
+  font-size: 1.5rem;
+  border: transparent;
+  margin-top: 8rem;
+  border-radius: 8px;
+  transition: 0.2s linear;
+}
+
+.button:hover {
+  background-color: rgb(170, 87, 76);
+  box-shadow: 0 0 10px gray;
+  cursor: pointer;
+}
+
+/* Welcome info section */
+
+#welcome-info-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fira Sans", sans-serif;
+}
+
+#welcome-info-section h1,
+#welcome-info-section p {
+  text-align: justify;
+  width: 60vw;
+  text-shadow: 0 0 2px gray;
+}
+
+#welcome-info-section h1 {
+  text-align: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+#welcome-info-section p {
+    font-size: 1.25rem;
+}
+
+#welcome-info-section a {
+  color: whitesmoke;
+  font-weight: normal;
+}
+
+#welcome-info-section .button {
+  position: static;
+  font-size: 1.25rem;
+  margin: 1rem;
+  padding: 0.75rem 2rem;
+}
+
+@media (max-width: 72rem) {
+  #book-now-section h1 {
+    font-size: 3rem;
+  }
+}

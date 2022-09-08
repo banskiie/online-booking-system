@@ -1,0 +1,97 @@
+#login-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fira Sans", sans-serif;
+}
+
+#login-section img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(40%) grayscale(50%);
+}
+
+#login-section a {
+  text-align: center;
+  color: rgb(53, 18, 13);
+}
+
+#login-section a:hover {
+  color: rgb(170, 87, 76);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: whitesmoke;
+  padding: 0 5rem 4rem 5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 25px black;
+}
+
+h1 {
+  color: rgb(56, 22, 18);
+  text-align: center;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: 0 0 2px gray;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: rgb(56, 22, 18);
+  font-size: 1.5rem;
+  text-shadow: 0 0 2px gray;
+}
+
+input {
+  width: 25rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem;
+  font-family: "Fira Sans", sans-serif;
+}
+
+button {
+  margin: 1rem 3rem;
+  padding: 1rem;
+  background-color: rgb(95, 38, 31);
+  font-size: 1.25rem;
+  color: whitesmoke;
+  border: transparent;
+  border-radius: 8px;
+  transition: 0.2s linear;
+  font-family: "Fira Sans", sans-serif;
+}
+
+button:hover {
+  background-color: rgb(170, 87, 76);
+  box-shadow: 0 0 10px gray;
+  cursor: pointer;
+}
+
+footer {
+  margin: 0;
+}
+
+#register-form {
+  display: flex;
+  flex-direction: row;
+}
+
+#register-form div {
+  padding: 0 0.5rem;
+}
+
+p {
+  text-align: center;
+  color: blue;
+  font-size: 2rem;
+  text-transform: uppercase;
+}

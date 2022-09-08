@@ -1,0 +1,83 @@
+body {
+  font-family: "Fira Sans", sans-serif;
+  margin: 0;
+  background-color: whitesmoke;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+hr {
+  width: 80vw;
+}
+
+/* Header */
+
+nav {
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px darkgrey;
+  text-shadow: 0 0 3px gray;
+  box-shadow: 0 0 5px gray;
+}
+
+nav img {
+  height: 4rem;
+  filter: drop-shadow(0px 0px 2px black);
+}
+
+nav ul {
+  display: flex;
+  padding: 0 6rem;
+  align-items: center;
+}
+
+nav a {
+  color: rgb(95, 38, 31);
+}
+
+nav li {
+  padding: 0 1.5rem;
+  transition: 0.2s linear;
+}
+
+nav a:hover {
+  color: rgb(170, 87, 76);
+}
+
+nav li:hover {
+  text-shadow: 0 0 3px gray;
+  transform: scale(1.05);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem;
+  background-color: rgb(95, 38, 31);
+  margin-top: 4rem;
+}
+
+footer span {
+  color: whitesmoke;
+  text-transform: uppercase;
+}
+
+#backdrop {
+  z-index: 50;
+  position: fixed;
+  background-color: black;
+}
+
+@media (max-width: 72rem) {
+  nav ul {
+    padding: 0 2rem;
+  }
+}
