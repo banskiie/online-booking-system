@@ -1,4 +1,8 @@
-/* admin-bookings.php */
+/* table page */
+
+.btn {
+  width: 2.5rem;
+}
 
 #view {
   padding: 0.5rem;
@@ -7,15 +11,16 @@
   border-radius: 4px;
   color: whitesmoke;
   transition: 0.2s linear;
+  margin-right: 2rem;
 }
 
 #view:hover {
   background-color: rgb(0, 217, 0);
 }
 
-/* admin-bookings-view.php */
+/* view page */
 
-#view-booking {
+#view-window {
   border: solid 1px gray;
   width: 65vw;
   margin: 1rem auto;

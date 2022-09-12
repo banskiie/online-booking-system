@@ -5,7 +5,7 @@ require '../db/database.php';
 ?>
 
 <head>
-    <link rel="stylesheet" href="../styles/admin/admin-booking.css">
+    <link rel="stylesheet" href="../styles/admin/admin-upper.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@ require '../db/database.php';
                             } else if ($row['bk_status'] == 3) {
                                 echo "Cancelled";
                             } ?></td>
-                        <td>
+                        <td class="btn">
                             <form action="admin-bookings-view.php?bk_id=<?php echo $row['bk_id']; ?>" method="post">
                                 <button name="view" id="view">View</button>
                             </form>

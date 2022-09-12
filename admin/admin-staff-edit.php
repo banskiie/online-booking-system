@@ -4,6 +4,10 @@ include '../util/admin_conn.php';
 require '../db/database.php';
 ?>
 
+<head>
+    <link rel="stylesheet" href="../styles/admin/admin-lower.css">
+</head>
+
 <body>
     <?php
     include '../includes/admin-header.php';
@@ -15,23 +19,39 @@ require '../db/database.php';
             $sql = "SELECT * FROM staff WHERE staff_id = '{$_GET['staff_id']}'";
             $result = $conn->query($sql);
             if ($row = $result->fetch_assoc()) { ?>
-                <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
-                    <label>First Name</label>
-                    <input type="text" name="fn" value="<?php echo $row['staff_fn']; ?>" required>
-                    <label>Middle Name</label>
-                    <input type="text" name="mn" value="<?php echo $row['staff_mn']; ?>" required>
-                    <label>Last Name</label>
-                    <input type="text" name="ln" value="<?php echo $row['staff_ln']; ?>"required>
-                    <label>Email</label>
-                    <input type="email" name="email" value="<?php echo $row['staff_email']; ?>" required>
-                    <label>Contact Number</label>
-                    <input type="text" name="contno" value="<?php echo $row['staff_contno']; ?>" required>
-                    <label>Address</label>
-                    <input type="text" name="address" value="<?php echo $row['staff_add']; ?>" required>
-                    <label>Position</label>
-                    <input type="text" name="position" value="<?php echo $row['staff_pos']; ?>" required>
-                    <button name="update">Update</button>
-                    <button><a href="admin-staff.php">Cancel</a></button>
+                <form id="form-add" action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                    <div class="form-item">
+                        <label>First Name</label>
+                        <input type="text" name="fn" value="<?php echo $row['staff_fn']; ?>" required>
+                    </div>
+                    <div class="form-item">
+                        <label>Middle Name</label>
+                        <input type="text" name="mn" value="<?php echo $row['staff_mn']; ?>" required>
+                    </div>
+                    <div class="form-item">
+                        <label>Last Name</label>
+                        <input type="text" name="ln" value="<?php echo $row['staff_ln']; ?>" required>
+                    </div>
+                    <div class="form-item">
+                        <label>Email</label>
+                        <input type="email" name="email" value="<?php echo $row['staff_email']; ?>" required>
+                    </div>
+                    <div class="form-item">
+                        <label>Contact Number</label>
+                        <input type="text" name="contno" value="<?php echo $row['staff_contno']; ?>" required>
+                    </div>
+                    <div class="form-item">
+                        <label>Address</label>
+                        <input type="text" name="address" value="<?php echo $row['staff_add']; ?>" required>
+                    </div>
+                    <div class="form-item">
+                        <label>Position</label>
+                        <input type="text" name="position" value="<?php echo $row['staff_pos']; ?>" required>
+                    </div>
+                    <div class="form-btn-grp">
+                        <button id="add-new" name="update">Update</button>
+                        <a id="cancel" href="admin-staff.php">Cancel</a>
+                    </div>
                 </form>
         <?php };
         } ?>

@@ -3,13 +3,17 @@ include '../includes/admin-head.php';
 include '../util/admin_conn.php';
 ?>
 
+<head>
+    <link rel="stylesheet" href="../styles/admin/admin-lower.css">
+</head>
+
 <body>
     <?php
     include '../includes/admin-header.php';
     ?>
     <main class="content">
         <h1>Suppliers</h1>
-        <button><a href="admin-suppliers-add.php">Add New Supplier</a></button>
+        <a href="admin-suppliers-add.php"><button id="add">Add New Supplier</button></a>
         <table>
             <tr>
                 <th>Role</th>
@@ -17,6 +21,7 @@ include '../util/admin_conn.php';
                 <th>Email</th>
                 <th>Contact Number</th>
                 <th>Address</th>
+                <th></th>
                 <th></th>
             </tr>
             <?php
@@ -31,12 +36,14 @@ include '../util/admin_conn.php';
                         <td><?php echo $row['supp_email']; ?></td>
                         <td><?php echo $row['supp_contno']; ?></td>
                         <td><?php echo $row['supp_add']; ?></td>
-                        <td>
+                        <td class="btn">
                             <form action="admin-suppliers-edit.php?supp_id=<?php echo $row['supp_id']; ?>" method="post">
-                                <button name="update">Update</button>
+                                <button id="update" name="update">Update</button>
                             </form>
+                        </td>
+                        <td class="btn">
                             <form action="../util/admin_supplier.php?supp_id=<?php echo $row['supp_id']; ?>" method="post">
-                                <button name="delete">Delete</button>
+                                <button id="delete" name="delete">Delete</button>
                             </form>
                         </td>
                     </tr>

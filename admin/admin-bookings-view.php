@@ -5,7 +5,7 @@ require '../db/database.php';
 ?>
 
 <head>
-    <link rel="stylesheet" href="../styles/admin/admin-booking.css">
+    <link rel="stylesheet" href="../styles/admin/admin-upper.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@ require '../db/database.php';
     include '../includes/admin-header.php';
     ?>
     <main class="content">
-        <div id="view-booking">
+        <div id="view-window">
             <?php
             if (isset($_POST['view'])) {
                 $id = $_GET['bk_id'];
@@ -40,7 +40,7 @@ require '../db/database.php';
                     <p>Venue: <strong><?php echo $row['venue_name']; ?></strong></p>
                     <p>Date: <strong><?php echo $row['bk_date']; ?></strong></p>
                     <p id="remark">Remark: <br>
-                        <?php echo $row['bk_remark']; ?>
+                        <i><?php echo $row['bk_remark']; ?></i>
                     </p>
                     <form action="../util/admin_booking.php?bk_id=<?php echo $id; ?>" method="post">
                         <label>Status: </label>
@@ -65,7 +65,8 @@ require '../db/database.php';
             <?php }
             } ?>
             <div id="button-grp">
-                <a href="admin-bookings.php"><button id="back"><- Back</button></a>
+                <a href="admin-bookings.php"><button id="back">
+                        <- Back</button></a>
             </div>
         </div>
 

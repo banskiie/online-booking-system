@@ -1,0 +1,107 @@
+/* table page */
+
+a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+#add {
+  width: 10rem;
+  padding: 0.75rem;
+  border: transparent;
+  border-radius: 4px;
+  color: whitesmoke;
+  transition: 0.2s linear;
+  cursor: pointer;
+  background-color: #5f261f;
+  margin-bottom: 1rem;
+}
+
+#add:hover {
+  background-color: rgb(170, 87, 76);
+}
+
+.btn {
+  width: 2.5rem;
+}
+
+#view,
+#update,
+#delete,
+#add-new,
+#cancel {
+  width: 4rem;
+  padding: 0.5rem;
+  border: transparent;
+  border-radius: 4px;
+  color: whitesmoke;
+  transition: 0.2s linear;
+  cursor: pointer;
+  margin: 0.25rem 0;
+}
+
+#view,
+#add-new {
+  background-color: rgb(0, 184, 0);
+}
+
+#view:hover,
+#add-new:hover {
+  background-color: rgb(0, 217, 0);
+}
+
+#update {
+  background-color: darkcyan;
+}
+
+#update:hover {
+  background-color: rgb(0, 194, 194);
+}
+
+#delete {
+  background-color: rgb(200, 0, 0);
+  margin-right: 2rem;
+}
+
+#delete:hover {
+  background-color: rgb(233, 0, 0);
+}
+
+/* form */
+
+#add-form {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem 0;
+}
+
+label,
+input {
+  font-size: 1.15rem;
+}
+
+input {
+  padding: 0.25rem;
+}
+
+#cancel {
+  color: rgb(200, 0, 0);
+  background-color: transparent;
+  font-size: 0.9rem;
+}
+
+#cancel:hover {
+  color: rgb(233, 0, 0);
+}
+
+textarea {
+  resize: none;
+  height: 10rem;
+  font-size: 1.15rem;
+}

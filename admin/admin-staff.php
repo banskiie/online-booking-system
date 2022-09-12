@@ -4,13 +4,17 @@ include '../util/admin_conn.php';
 require '../db/database.php';
 ?>
 
+<head>
+    <link rel="stylesheet" href="../styles/admin/admin-lower.css">
+</head>
+
 <body>
     <?php
     include '../includes/admin-header.php';
     ?>
     <main class="content">
         <h1>Staff</h1>
-        <button><a href="admin-staff-add.php">Add New Staff</a></button>
+        <a href="admin-staff-add.php"><button id="add">Add New Staff</button></a>
         <table>
             <tr>
                 <th>First Name</th>
@@ -20,6 +24,7 @@ require '../db/database.php';
                 <th>Contact Number</th>
                 <th>Address</th>
                 <th>Position</th>
+                <th></th>
                 <th></th>
             </tr>
             <?php
@@ -35,12 +40,14 @@ require '../db/database.php';
                         <td><?php echo $row['staff_contno']; ?></td>
                         <td><?php echo $row['staff_add']; ?></td>
                         <td><?php echo $row['staff_pos']; ?></td>
-                        <td>
+                        <td class="btn">
                             <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
-                                <button name="update">Update</button>
+                                <button id="update" name="update">Update</button>
                             </form>
+                        </td>
+                        <td class="btn">
                             <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
-                                <button name="delete">Delete</button>
+                                <button id="delete" name="delete">Delete</button>
                             </form>
                         </td>
                     </tr>

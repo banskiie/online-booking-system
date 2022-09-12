@@ -3,17 +3,22 @@ include '../includes/admin-head.php';
 include '../util/admin_conn.php';
 ?>
 
+<head>
+    <link rel="stylesheet" href="../styles/admin/admin-lower.css">
+</head>
+
 <body>
     <?php
     include '../includes/admin-header.php';
     ?>
     <main class="content">
         <h1>Venues</h1>
-        <button><a href="admin-venues-add.php">Add New Venue</a></button>
+        <a href="admin-venues-add.php"><button id="add">Add New Venue</button></a>
         <table>
             <tr>
                 <th>Name</th>
                 <th>Address</th>
+                <th></th>
                 <th></th>
             </tr>
             <?php
@@ -25,12 +30,14 @@ include '../util/admin_conn.php';
                     <tr>
                         <td><?php echo $row['venue_name']; ?></td>
                         <td><?php echo $row['venue_add']; ?></td>
-                        <td>
+                        <td class="btn">
                             <form action="admin-venues-edit.php?venue_id=<?php echo $row['venue_id']; ?>" method="post">
-                                <button name="update">Update</button>
+                                <button id="update" name="update">Update</button>
                             </form>
+                        </td>
+                        <td class="btn">
                             <form action="../util/admin_venue.php?venue_id=<?php echo $row['venue_id']; ?>" method="post">
-                                <button name="delete">Delete</button>
+                                <button id="delete" name="delete">Delete</button>
                             </form>
                         </td>
                     </tr>

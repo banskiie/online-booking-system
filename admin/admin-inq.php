@@ -3,6 +3,10 @@ include '../includes/admin-head.php';
 include '../util/admin_conn.php';
 ?>
 
+<head>
+    <link rel="stylesheet" href="../styles/admin/admin-upper.css">
+</head>
+
 <body>
     <?php
     include '../includes/admin-header.php';
@@ -24,9 +28,9 @@ include '../util/admin_conn.php';
                     <tr>
                         <td><?php echo $row['inq_name']; ?></td>
                         <td><?php echo $row['inq_email']; ?></td>
-                        <td>
+                        <td class="btn">
                             <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post">
-                                <button name="view">View</button>
+                                <button id="view" name="view">View</button>
                             </form>
                         </td>
                     </tr>

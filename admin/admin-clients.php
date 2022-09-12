@@ -3,6 +3,10 @@ include '../includes/admin-head.php';
 include '../util/admin_conn.php';
 ?>
 
+<head>
+    <link rel="stylesheet" href="../styles/admin/admin-upper.css">
+</head>
+
 <body>
     <?php
     include '../includes/admin-header.php';
@@ -26,9 +30,9 @@ include '../util/admin_conn.php';
                             <td><?php echo $row['clnt_fn']; ?></td>
                             <td><?php echo $row['clnt_ln']; ?></td>
                             <td><?php echo $row['clnt_email']; ?></td>
-                            <td>
+                            <td class="btn">
                                 <form action="admin-clients-view.php?clnt_id=<?php echo $row['clnt_id']; ?>" method="post">
-                                    <button name="view" id="view-btn">View</button>
+                                    <button name="view" id="view">View</button>
                                 </form>
                             </td>
                         </tr>
