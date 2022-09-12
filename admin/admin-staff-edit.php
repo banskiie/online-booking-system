@@ -1,0 +1,42 @@
+<?php
+include '../includes/admin-head.php';
+include '../util/admin_conn.php';
+require '../db/database.php';
+?>
+
+<body>
+    <?php
+    include '../includes/admin-header.php';
+    ?>
+    <main class="content">
+        <h1>Staff</h1>
+        <?php
+        if (isset($_POST['update'])) {
+            $sql = "SELECT * FROM staff WHERE staff_id = '{$_GET['staff_id']}'";
+            $result = $conn->query($sql);
+            if ($row = $result->fetch_assoc()) { ?>
+                <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                    <label>First Name</label>
+                    <input type="text" name="fn" value="<?php echo $row['staff_fn']; ?>" required>
+                    <label>Middle Name</label>
+                    <input type="text" name="mn" value="<?php echo $row['staff_mn']; ?>" required>
+                    <label>Last Name</label>
+                    <input type="text" name="ln" value="<?php echo $row['staff_ln']; ?>"required>
+                    <label>Email</label>
+                    <input type="email" name="email" value="<?php echo $row['staff_email']; ?>" required>
+                    <label>Contact Number</label>
+                    <input type="text" name="contno" value="<?php echo $row['staff_contno']; ?>" required>
+                    <label>Address</label>
+                    <input type="text" name="address" value="<?php echo $row['staff_add']; ?>" required>
+                    <label>Position</label>
+                    <input type="text" name="position" value="<?php echo $row['staff_pos']; ?>" required>
+                    <button name="update">Update</button>
+                    <button><a href="admin-staff.php">Cancel</a></button>
+                </form>
+        <?php };
+        } ?>
+    </main>
+    </div>
+</body>
+
+</html>

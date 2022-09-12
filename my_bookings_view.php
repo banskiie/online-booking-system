@@ -8,7 +8,6 @@ include 'util/client_conn.php';
 
 <head>
     <link rel="stylesheet" href="styles/my_bookings.css">
-    <script src="scripts/my_bookings.js" defer></script>
 </head>
 
 <body>
@@ -17,7 +16,6 @@ include 'util/client_conn.php';
     <?php
     include 'includes/header.php';
     include 'util/client_conn.php';
-    @session_start();
     ?>
     <!-- header.php -->
 
@@ -41,8 +39,8 @@ include 'util/client_conn.php';
                                     if ($result2->num_rows > 0) {
                                         while ($row2 = $result2->fetch_assoc()) { ?>
                                 <br><span> <?php echo $row2['supp_name']; ?> </span>
-                        <?php }
-                                    } ?>
+                            <?php }
+                                    } else { ?> <span> Suppliers no longer exists </span> <?php } ?>
                     </p>
 
                     <p>Venue: <strong><?php echo $row['venue_name']; ?></strong></p>

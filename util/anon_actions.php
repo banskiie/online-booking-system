@@ -11,7 +11,7 @@ if (isset($_POST['send'])) {
 
     $sql = sprintf(
         "INSERT INTO inquiry (inq_name, inq_email, inq_contno, inq_remark, inq_status)
-    VALUES ('%s', '%s', '%s', '%s', true)",
+    VALUES ('%s', '%s', '%s', '%s', false)",
         $conn->real_escape_string($name),
         $conn->real_escape_string($email),
         $conn->real_escape_string($contno),
@@ -105,6 +105,35 @@ if (isset($_POST['send'])) {
             } else {
                 header("Location: ../index.php?invalid_credentials");
             }
+        } else {
+            $sql = "SELECT * FROM admin WHERE admin_email = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("Location: ../login.php?sql_error");
+            } else {
+                mysqli_stmt_bind_param($stmt, "s", $email);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                if ($row = mysqli_fetch_assoc($result)) {
+                    $passCheck = password_verify($password, $row['admin_pass']);
+                    if ($passCheck == false) {
+                        header("Location: ../login.php?invalid_credentials");
+                    } elseif ($passCheck == true) {
+                        session_start();
+                        $_SESSION['sessionId'] = $row['admin_id'];
+                        $_SESSION['loggedIn'] = true;
+                        $_SESSION['role'] = 'admin';
+                        header("Location: ../admin/admin-dash.php?user=" . $_SESSION['id']);
+                    } else {
+                        header("Location: ../login.php?invalid_credentials");
+                    }
+                } else {
+                    header("location: ../login.php?no_user");
+                }
+            }
         }
     }
+} else {
+    header("Location: ../login.php?no_user");
+    exit();
 }

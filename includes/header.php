@@ -4,7 +4,7 @@
             <li><a href="index.php"><img src="images/yani-transparent.png" alt=""></a></li>
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="package.php">Packages</a></li>
+            <li><a href="service.php">Services</a></li>
             <?php if (isset($_SESSION['loggedIn']) == true && ($_SESSION['role']) == "client") { ?>
                 <li><a href="my_profile.php">My Profile</a></li>
                 <li><a href="my_bookings.php">My Bookings</a></li>

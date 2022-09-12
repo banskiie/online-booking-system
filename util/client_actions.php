@@ -59,13 +59,17 @@ if (isset($_POST['update'])) {
 
     $sql = sprintf(
         "INSERT INTO booking (clnt_id, pkg_id, venue_id, bk_name, bk_guest, bk_date, bk_remark) 
-    VALUES ($clnt_id, $package, $venue, '%s', $guest , '$date', '$remark')",
+    VALUES ($clnt_id, $package, $venue, '%s', $guest , '$date', '%s')",
         $conn->real_escape_string($name),
         $conn->real_escape_string($remark)
     );
     mysqli_query($conn, $sql);
 
-    $sql = sprintf("SELECT * FROM booking WHERE bk_name = '%s'", $conn->real_escape_string($name));
+    $sql = sprintf(
+        "SELECT * FROM booking WHERE bk_name = '%s' AND bk_remark = '%s'",
+        $conn->real_escape_string($name),
+        $conn->real_escape_string($remark)
+    );
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $bkid = $row['bk_id'];

@@ -6,8 +6,7 @@ include 'includes/head.php';
 <!-- head.php -->
 
 <head>
-    <link rel="stylesheet" href="styles/package.css">
-    <script src="scripts/package.js" defer></script>
+    <link rel="stylesheet" href="styles/service.css">
 </head>
 
 <body>
@@ -21,7 +20,7 @@ include 'includes/head.php';
     <!-- about intro -->
     <section id="package-intro">
         <img src="images/package_intro.jpg" alt="">
-        <h1>Packages</h1>
+        <h1>Services</h1>
     </section>
     <!-- about intro -->
 

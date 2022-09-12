@@ -12,7 +12,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 5rem auto;
+  margin: 5rem auto 15rem auto;
   padding: 2rem;
   background-color: whitesmoke;
   box-shadow: 0 0 2rem black;

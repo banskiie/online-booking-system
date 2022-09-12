@@ -63,10 +63,6 @@ include 'util/client_conn.php';
             </table>
         </div>
         </div>
-        <!-- <div id="add-booking">
-            <h1>Add Booking</h1>
-            <form action=""></form>
-        </div> -->
 
     </section>
 

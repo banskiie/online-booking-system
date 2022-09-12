@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  flex: 1 1 0;
+  max-width: 15rem;
+  padding: 2rem 1rem;
+  background-color: burlywood;
+}
+
+.sidebar h3 {
+  color: rgb(131, 131, 131);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin: 1rem 0;
+}
+
+.sidebar .menu {
+  margin: 0 -1rem;
+}
+
+.sidebar .menu .menu-item {
+  font-weight: bold;
+  display: block;
+  padding: 1em;
+  color: rgb(88, 61, 42);
+  text-decoration: none;
+  transition: 0.2s linear;
+  text-transform: uppercase;
+}
+
+.sidebar .menu .menu-item:hover,
+.sidebar .menu .menu-item.isactive {
+  color: burlywood;
+  background-color: rgb(88, 61, 42);
+  box-shadow: 0 0 4px black;
+}
+
+.content {
+  flex: 1 1 0;
+  padding: 2rem;
+  background-color: whitesmoke;
+}
+
+.content h1 {
+  color: #3c3f58;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: #707793;
+}
+
+svg {
+  height: 1.25rem;
+}
+span {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 1rem;
+  width: 80vw;
+  text-align: center;
+  box-shadow: 0 0 10px rgb(215, 215, 215);
+}
+
+th {
+  background-color: burlywood;
+  color: white;
+}
+
+tr,
+td,
+th {
+  padding: 0.5rem;
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(209, 209, 209);
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    max-width: 200px;
+  }
+  .bottom-item1 {
+    padding: 0.25rem 3.75rem;
+  }
+  .bottom-item2 {
+    padding: 0.25rem 4rem;
+  }
+}
