@@ -19,7 +19,7 @@ require '../db/database.php';
             $sql = "SELECT * FROM venue WHERE venue_id = '{$_GET['venue_id']}'";
             $result = $conn->query($sql);
             if ($row = $result->fetch_assoc()) { ?>
-                <form id="add-form " action="../util/admin_venue.php?venue_id=<?php echo $row['venue_id']; ?>" method="post">
+                <form id="add-form" action="../util/admin_venue.php?venue_id=<?php echo $row['venue_id']; ?>" method="post" enctype="multipart/form-data">
                     <div class="form-item">
                         <label>Name</label>
                         <input type="text" name="name" value="<?php echo $row['venue_name']; ?>" required>
@@ -27,6 +27,10 @@ require '../db/database.php';
                     <div class="form-item">
                         <label>Address</label>
                         <input type="text" name="address" value="<?php echo $row['venue_add']; ?>" required>
+                    </div>
+                    <div class="form-item">
+                        <label>Venue Image</label>
+                        <input type="file" name="uploadfile" value='<?php echo $row['venue_img']; ?>' required>
                     </div>
                     <div class="form-btn-grp">
                         <button id="update" name="update">Update</button>
@@ -39,6 +43,7 @@ require '../db/database.php';
         <a id="back-btn" href="admin-venues.php">Back</a>
 
     </main>
+    <?php ?>
 
 </body>
 

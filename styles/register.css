@@ -7,7 +7,7 @@
 
 #login-section img {
   width: 100vw;
-  height: 100vh;
+  height: 65rem;
   object-fit: cover;
   filter: brightness(40%) grayscale(50%);
 }
@@ -39,9 +39,16 @@ h1 {
   text-shadow: 0 0 2px gray;
 }
 
-form div {
+.register-column,
+.form-item {
   display: flex;
   flex-direction: column;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 label {

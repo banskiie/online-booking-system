@@ -13,7 +13,7 @@ include '../util/admin_conn.php';
     ?>
     <main class="content">
         <h1>Add Venue</h1>
-        <form id="add-form" action="../util/admin_venue.php" method="post">
+        <form id="add-form" action="../util/admin_venue.php" method="post" enctype="multipart/form-data">
             <div class="form-item">
                 <label>Venue Name</label>
                 <input type="text" name="name" required>
@@ -21,6 +21,10 @@ include '../util/admin_conn.php';
             <div class="form-item">
                 <label>Venue Address</label>
                 <input type="text" name="address" required>
+            </div>
+            <div class="form-item">
+                <label>Venue Image</label>
+                <input type="file" name="uploadfile" required>
             </div>
             <div class="form-btn-grp">
                 <button id="add-new" name="add">Add</button>

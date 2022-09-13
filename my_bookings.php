@@ -50,10 +50,10 @@ include 'util/client_conn.php';
                                     echo "Cancelled";
                                 } ?>
                             <td>
-                                <form action="my_bookings_view.php?bkid=<?php echo $row['bk_id']; ?>" method="post">
+                                <form action="my_bookings_view.php?bkid=<?php echo $row['bk_id']; ?>" method="post" enctype="multipart/form-data">
                                     <button name="view" id="view-btn">View</button>
                                 </form>
-                                <form action="util/client_actions.php?bkid=<?php echo $row['bk_id']; ?>" method="post">
+                                <form action="util/client_actions.php?bkid=<?php echo $row['bk_id']; ?>" method="post" enctype="multipart/form-data">
                                     <button name="cancel" id="cancel-btn">Cancel</button>
                                 </form>
                             </td>

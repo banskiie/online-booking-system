@@ -42,7 +42,7 @@ require '../db/database.php';
                     <p id="remark">Remark: <br>
                         <i><?php echo $row['bk_remark']; ?></i>
                     </p>
-                    <form action="../util/admin_booking.php?bk_id=<?php echo $id; ?>" method="post">
+                    <form action="../util/admin_booking.php?bk_id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
                         <label>Status: </label>
                         <select name="status" required>
 

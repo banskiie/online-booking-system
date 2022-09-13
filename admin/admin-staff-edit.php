@@ -19,14 +19,18 @@ require '../db/database.php';
             $sql = "SELECT * FROM staff WHERE staff_id = '{$_GET['staff_id']}'";
             $result = $conn->query($sql);
             if ($row = $result->fetch_assoc()) { ?>
-                <form id="form-add" action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                <form id="form-add" action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-item">
+                        <label>Staff Picture</label>
+                        <input type="file" name="uploadfile" required>
+                    </div>
                     <div class="form-item">
                         <label>First Name</label>
                         <input type="text" name="fn" value="<?php echo $row['staff_fn']; ?>" required>
                     </div>
                     <div class="form-item">
                         <label>Middle Name</label>
-                        <input type="text" name="mn" value="<?php echo $row['staff_mn']; ?>" required>
+                        <input type="text" name="mn" value="<?php echo $row['staff_mn']; ?>">
                     </div>
                     <div class="form-item">
                         <label>Last Name</label>

@@ -13,8 +13,11 @@ include '../util/admin_conn.php';
     ?>
     <main class="content">
         <h1>Add Supplier</h1>
-        <form id="add-form" action="../util/admin_supplier.php" method="post">
-
+        <form id="add-form" action="../util/admin_supplier.php" method="post" enctype="multipart/form-data">
+            <div class="form-item">
+                <label>Supplier Picture</label>
+                <input type="file" name="uploadfile" required>
+            </div>
             <div class="form-item">
                 <label>Name</label>
                 <input type="text" name="name" required>

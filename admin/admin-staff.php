@@ -17,6 +17,7 @@ require '../db/database.php';
         <a href="admin-staff-add.php"><button id="add">Add New Staff</button></a>
         <table>
             <tr>
+                <th></th>
                 <th>First Name</th>
                 <th>Middle Name</th>
                 <th>Last Name</th>
@@ -33,6 +34,15 @@ require '../db/database.php';
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { ?>
                     <tr>
+                        <td>
+                            <div id="small-icon">
+                                <?php if ($row['staff_img'] == NULL) { ?>
+                                <img src="../images/staff/default.jpg">
+                                <?php } else { ?>
+                                <img src="../images/staff/<?php echo $row['staff_img']; ?>">
+                                <?php } ?>
+                            </div>
+                        </td>
                         <td><?php echo $row['staff_fn']; ?></td>
                         <td><?php echo $row['staff_mn']; ?></td>
                         <td><?php echo $row['staff_ln']; ?></td>

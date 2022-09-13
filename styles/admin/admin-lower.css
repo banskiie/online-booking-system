@@ -105,3 +105,10 @@ textarea {
   height: 10rem;
   font-size: 1.15rem;
 }
+
+#small-icon img{
+  object-fit: cover;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}

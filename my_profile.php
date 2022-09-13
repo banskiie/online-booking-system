@@ -38,7 +38,7 @@ include 'util/client_conn.php';
         <!-- aside -->
         <div id="update-info">
             <h1>Update Info</h1>
-            <form action="util/client_actions.php" method="post">
+            <form action="util/client_actions.php" method="post" enctype="multipart/form-data">
                 <label>First Name</label>
                 <input name="first_name" type="text" value="<?php echo $_SESSION['first_name']; ?>">
                 <label>Middle Name</label>

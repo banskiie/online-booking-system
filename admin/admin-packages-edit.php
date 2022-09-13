@@ -1,6 +1,7 @@
 <?php
 include '../includes/admin-head.php';
 include '../util/admin_conn.php';
+require '../db/database.php';
 ?>
 
 <head>
@@ -16,12 +17,11 @@ include '../util/admin_conn.php';
         <h1>Edit Package</h1>
 
         <?php
-        require '../db/database.php';
         if (isset($_POST['update'])) {
             $sql = "SELECT * FROM package WHERE pkg_id = '{$_GET['pkg_id']}'";
             $result = $conn->query($sql);
             if ($row = $result->fetch_assoc()) { ?>
-                <form id="add-form" action="../util/admin_package.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post">
+                <form id="add-form" action="../util/admin_package.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post" enctype="multipart/form-data">
                     <div class="form-item">
                         <label>Name</label>
                         <input type="text" name="name" value="<?php echo $row['pkg_name']; ?>" required>
@@ -34,6 +34,10 @@ include '../util/admin_conn.php';
                         <label>Description</label>
                         <textarea name="desc"><?php echo $row['pkg_desc']; ?></textarea>
                     </div>
+                    <div class="form-item">
+                        <label>Package Image</label>
+                        <input type="file" name="uploadfile" required>
+                    </div>
                     <div class="form-btn-grp">
                         <button id="add-new" name="update">Update</button>
                         <a id="cancel" href="admin-packages.php">Cancel</a>
@@ -44,4 +48,5 @@ include '../util/admin_conn.php';
         <a id="back-btn" href="admin-packages.php">Back</a>
     </main>
 </body>
+
 </html>

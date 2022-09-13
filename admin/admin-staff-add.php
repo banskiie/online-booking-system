@@ -13,14 +13,18 @@ include '../util/admin_conn.php';
     ?>
     <main class="content">
         <h1>Add Staff</h1>
-        <form id="form-add" action="../util/admin_staff.php" method="post">
+        <form id="form-add" action="../util/admin_staff.php" method="post" enctype="multipart/form-data">
+            <div class="form-item">
+                <label>Staff Picture</label>
+                <input type="file" name="uploadfile">
+            </div>
             <div class="form-item">
                 <label>First Name</label>
                 <input type="text" name="fn" required>
             </div>
             <div class="form-item">
                 <label>Middle Name</label>
-                <input type="text" name="mn" required>
+                <input type="text" name="mn">
             </div>
             <div class="form-item">
                 <label>Last Name</label>

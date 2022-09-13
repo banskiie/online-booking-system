@@ -11,24 +11,26 @@ if (isset($_POST['add'])) {
     $contno = $_POST['contno'];
     $address = $_POST['address'];
     $position = $_POST['position'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../images/staff/" . $filename;
 
     $sql = sprintf(
-        "INSERT INTO staff (staff_fn, staff_mn, staff_ln, staff_email, staff_contno, staff_add, staff_pos)
-    VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+        "INSERT INTO staff (staff_fn, staff_mn, staff_ln, staff_email, staff_contno, staff_add, staff_pos, staff_img)
+    VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
         $conn->real_escape_string($first_name),
         $conn->real_escape_string($middle_name),
         $conn->real_escape_string($last_name),
         $conn->real_escape_string($email),
         $conn->real_escape_string($contno),
         $conn->real_escape_string($address),
-        $conn->real_escape_string($position)
+        $conn->real_escape_string($position),
+        $conn->real_escape_string($filename)
     );
 
-    if (mysqli_query($conn, $sql)) {
-        header("location: ../admin/admin-staff.php?staff-added");
-    } else {
-        header("location: ../admin/admin-staff.php?staff-not-added");
-    }
+    mysqli_query($conn, $sql);
+    move_uploaded_file($tempname, $folder);
+    header("location: ../admin/admin-staff.php?staff_added");
 } elseif (isset($_POST['delete'])) {
 
     $id = $_GET['staff_id'];
@@ -48,9 +50,13 @@ if (isset($_POST['add'])) {
     $contno = $_POST['contno'];
     $address = $_POST['address'];
     $position = $_POST['position'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../images/staff/" . $filename;
+
 
     $sql = sprintf(
-        "UPDATE staff SET staff_fn='%s', staff_mn='%s', staff_ln='%s', staff_email='%s', staff_contno='%s', staff_add='%s', staff_pos='%s'
+        "UPDATE staff SET staff_fn='%s', staff_mn='%s', staff_ln='%s', staff_email='%s', staff_contno='%s', staff_add='%s', staff_pos='%s', staff_img='%s'
     WHERE staff_id = $id",
         $conn->real_escape_string($first_name),
         $conn->real_escape_string($middle_name),
@@ -58,12 +64,10 @@ if (isset($_POST['add'])) {
         $conn->real_escape_string($email),
         $conn->real_escape_string($contno),
         $conn->real_escape_string($address),
-        $conn->real_escape_string($position)
+        $conn->real_escape_string($position),
+        $conn->real_escape_string($filename)
     );
-
-    if (mysqli_query($conn, $sql)) {
-        header("location: ../admin/admin-staff.php?staff_updated");
-    } else {
-        header("location: ../admin/admin-staff.php?staff_not_updated");
-    }
+    mysqli_query($conn, $sql);
+    move_uploaded_file($tempname, $folder);
+    header("location: ../admin/admin-staff.php?staff_updated");
 }

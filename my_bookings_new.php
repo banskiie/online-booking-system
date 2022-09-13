@@ -18,7 +18,7 @@ include 'util/client_conn.php';
     ?>
     <!-- header.php -->
     <section id="add-booking-section">
-        <form id="new-booking" action="util/client_actions.php" method="post">
+        <form id="new-booking" action="util/client_actions.php" method="post"  enctype="multipart/form-data">
             <h1>Add New Booking</h1>
             <div class="form-comp">
                 <label class="label">Name</label>

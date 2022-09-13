@@ -16,6 +16,7 @@ include '../util/admin_conn.php';
         <a href="admin-suppliers-add.php"><button id="add">Add New Supplier</button></a>
         <table>
             <tr>
+                <th></th>
                 <th>Role</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -31,6 +32,15 @@ include '../util/admin_conn.php';
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { ?>
                     <tr>
+                        <td>
+                            <div id="small-icon">
+                                <?php if ($row['supp_img'] == NULL) { ?>
+                                    <img src="../images/staff/default.jpg">
+                                <?php } else { ?>
+                                    <img src="../images/supplier/<?php echo $row['supp_img']; ?>">
+                                <?php } ?>
+                            </div>
+                        </td>
                         <td><?php echo $row['supp_role']; ?></td>
                         <td><?php echo $row['supp_name']; ?></td>
                         <td><?php echo $row['supp_email']; ?></td>

@@ -20,6 +20,7 @@ include '../util/admin_conn.php';
                 <th>Address</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             <?php
             require '../db/database.php';
@@ -30,6 +31,11 @@ include '../util/admin_conn.php';
                     <tr>
                         <td><?php echo $row['venue_name']; ?></td>
                         <td><?php echo $row['venue_add']; ?></td>
+                        <td class="btn">
+                            <form action="admin-venues-view.php?venue_id=<?php echo $row['venue_id']; ?>" method="post">
+                                <button id="view" name="view">View</button>
+                            </form>
+                        </td>
                         <td class="btn">
                             <form action="admin-venues-edit.php?venue_id=<?php echo $row['venue_id']; ?>" method="post">
                                 <button id="update" name="update">Update</button>

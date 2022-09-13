@@ -29,7 +29,7 @@ include '../util/admin_conn.php';
                         <td><?php echo $row['inq_name']; ?></td>
                         <td><?php echo $row['inq_email']; ?></td>
                         <td class="btn">
-                            <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post">
+                            <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post"  enctype="multipart/form-data">
                                 <button id="view" name="view">View</button>
                             </form>
                         </td>

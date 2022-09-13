@@ -1,5 +1,6 @@
 <!-- head.php -->
 <?php
+require 'db/database.php';
 include 'includes/head.php';
 @session_start();
 ?>
@@ -33,22 +34,57 @@ include 'includes/head.php';
     </section>
     <!-- package info -->
 
-    <!-- package offerings -->
-    <section id="package-offering">
-        <h1>Our Offerings</h1>
-        <div id="package-cards">
-            <div id="card1"><a href=""><img src="images/services/intima-boda.jpg" alt=""></a>
-                <p id="text1">intima boda</p>
-            </div>
-            <div id="card2"><a href=""><img src="images/services/full.jpg" alt=""></a>
-                <p id="text2">full day coordination</p>
-            </div>
-            <div id="card3"> <a href=""><img src="images/services/otc.jpg" alt=""></a>
-                <p id="text3">on-the-day coordination</p>
-            </div>
+    <section class="service">
+        <h1>Packages</h1>
+        <div class="container">
+            <?php
+            $sql = "SELECT * FROM package";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) { ?>
+                    <div class="package-card" style='background-image: url("images/package/<?php echo $row['pkg_img']; ?>")'>
+                        <h2><?php echo $row['pkg_name']; ?></h2>
+                        <p class="price">₱<?php echo $row['pkg_price']; ?></p>
+                        <p class="desc"><?php echo $row['pkg_desc']; ?></p>
+                    </div>
+            <?php };
+            } ?>
         </div>
     </section>
-    <!-- package offerings -->
+
+    <section class="service">
+        <h1>Venues</h1>
+        <div class="container">
+            <?php
+            $sql = "SELECT * FROM venue";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) { ?>
+                    <div class="venue-card" style='background-image: url("images/venue/<?php echo $row['venue_img']; ?>")'>
+                        <h2><?php echo $row['venue_name']; ?></h2>
+                        <p><?php echo $row['venue_add']; ?></p>
+                    </div>
+            <?php };
+            } ?>
+        </div>
+    </section>
+
+    <section class="service">
+        <h1>Suppliers</h1>
+        <div class="container">
+            <?php
+            $sql = "SELECT * FROM supplier";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) { ?>
+                    <div class="supp-card" style='background-image: url("images/supplier/<?php echo $row['supp_img']; ?>")'>
+                        <h2><?php echo $row['supp_name']; ?></h2>
+                        <p><?php echo $row['supp_role']; ?></p>
+                    </div>
+            <?php };
+            } ?>
+        </div>
+    </section>
 
     <!-- footer.php -->
     <?php

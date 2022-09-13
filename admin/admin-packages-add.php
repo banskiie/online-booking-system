@@ -13,7 +13,7 @@ include '../util/admin_conn.php';
     ?>
     <main class="content">
         <h1>Add Package</h1>
-        <form id="add-form" action="../util/admin_package.php" method="post">
+        <form id="add-form" action="../util/admin_package.php" method="post" enctype="multipart/form-data">
             <div class="form-item">
                 <label>Name</label>
                 <input type="text" name="name" required>
@@ -25,6 +25,10 @@ include '../util/admin_conn.php';
             <div class="form-item">
                 <label>Description</label>
                 <textarea name="desc" required></textarea>
+            </div>
+            <div class="form-item">
+                <label>Package Image</label>
+                <input type="file" name="uploadfile" required>
             </div>
             <div class="form-btn-grp">
                 <button id="add-new" name="add">Add</button>

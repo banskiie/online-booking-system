@@ -15,25 +15,22 @@ require '../db/database.php';
     <main class="content">
         <div id="view-window">
             <?php
-            $id = $_GET['pkg_id'];
+            $id = $_GET['venue_id'];
             if (isset($_POST['view'])) {
-                $sql = "SELECT * FROM package WHERE pkg_id = $id";
+                $sql = "SELECT * FROM venue WHERE venue_id = $id";
                 $result = $conn->query($sql);
                 if ($row = $result->fetch_assoc()) { ?>
-                    <p>Package: <strong><?php echo $row['pkg_name']; ?></strong></p>
-                    <p>Price: ₱<?php echo $row['pkg_price']; ?></p>
-                    <p id="remark">Description: <br>
-                        <i><?php echo $row['pkg_desc']; ?></i>
-                    </p>
+                    <p>Name: <strong><?php echo $row['venue_name']; ?></strong></p>
+                    <p>Address: <?php echo $row['venue_add']; ?></p>
                     <div id="display-image">
                         <?php ?>
-                            <img src="../images/package/<?php echo $row['pkg_img']; ?>">
+                            <img src="../images/venue/<?php echo $row['venue_img']; ?>">
                         <?php ?>
                     </div>
             <?php };
             } ?>
             <div id="button-grp">
-                <a href="admin-packages.php"><button id="back">
+                <a href="admin-venues.php"><button id="back">
                         <- Back</button></a>
             </div>
         </div>

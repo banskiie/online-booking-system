@@ -79,3 +79,13 @@ select {
 #back:hover {
   color: red;
 }
+
+#display-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+img {
+  margin: 1rem;
+  width: 40vw;
+}

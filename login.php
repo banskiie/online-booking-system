@@ -19,7 +19,7 @@ include 'includes/head.php';
 
     <section id="login-section">
         <img src="images/login_bg.jpg" alt="">
-        <form action="util/anon_actions.php" method="post">
+        <form action="util/anon_actions.php" method="post"  enctype="multipart/form-data">
             <h1>Login</h1>
             <div>
                 <label>Email</label>

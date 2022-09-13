@@ -1,6 +1,7 @@
 <?php
 include '../includes/admin-head.php';
 include '../util/admin_conn.php';
+require '../db/database.php';
 ?>
 
 <head>
@@ -23,14 +24,13 @@ include '../util/admin_conn.php';
                 <th></th>
             </tr>
             <?php
-            require '../db/database.php';
             $sql = "SELECT * FROM package";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { ?>
                     <tr>
                         <td><?php echo $row['pkg_name']; ?></td>
-                        <td><?php echo $row['pkg_price']; ?></td>
+                        <td>₱<?php echo $row['pkg_price']; ?></td>
                         <td class="btn">
                             <form action="admin-packages-view.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post">
                                 <button id="view" name="view">View</button>
