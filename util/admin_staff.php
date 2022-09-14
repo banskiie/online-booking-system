@@ -16,8 +16,8 @@ if (isset($_POST['add'])) {
     $folder = "../images/staff/" . $filename;
 
     $sql = sprintf(
-        "INSERT INTO staff (staff_fn, staff_mn, staff_ln, staff_email, staff_contno, staff_add, staff_pos, staff_img)
-    VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+        "INSERT INTO staff (staff_fn, staff_mn, staff_ln, staff_email, staff_contno, staff_add, staff_pos, staff_img, staff_status)
+    VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 1)",
         $conn->real_escape_string($first_name),
         $conn->real_escape_string($middle_name),
         $conn->real_escape_string($last_name),
@@ -30,16 +30,38 @@ if (isset($_POST['add'])) {
 
     mysqli_query($conn, $sql);
     move_uploaded_file($tempname, $folder);
+
+    // Log
+    $sql = sprintf(
+        "INSERT INTO user_log (ulog_act) VALUES ('Added New Staff Member, %s %s');",
+        $conn->real_escape_string($first_name),
+        $conn->real_escape_string($last_name)
+    );
+    mysqli_query($conn, $sql);
+    // Log
+
     header("location: ../admin/admin-staff.php?staff_added");
 } elseif (isset($_POST['delete'])) {
 
     $id = $_GET['staff_id'];
-    $sql = sprintf("DELETE FROM staff WHERE staff_id = $id");
-    if (mysqli_query($conn, $sql)) {
-        header("location: ../admin/admin-staff.php?staff-deleted");
-    } else {
-        header("location: ../admin/admin-staff.php?staff-not-deleted");
-    }
+
+    // Log
+    $sql = sprintf("SELECT * from staff WHERE staff_id = $id");
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $sql = sprintf(
+        "INSERT INTO user_log (ulog_act) VALUES ('Set %s, %s %s As Inactive');",
+        $conn->real_escape_string($row['staff_pos']),
+        $conn->real_escape_string($row['staff_fn']),
+        $conn->real_escape_string($row['staff_ln']),
+    );
+    mysqli_query($conn, $sql);
+    // Log
+
+    $sql = sprintf("UPDATE staff SET staff_status=0 WHERE staff_id = $id");
+    mysqli_query($conn, $sql);
+
+    header("location: ../admin/admin-staff.php?staff-deleted");
 } elseif (isset($_POST['update'])) {
 
     $id = $_GET['staff_id'];
@@ -53,7 +75,6 @@ if (isset($_POST['add'])) {
     $filename = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
     $folder = "../images/staff/" . $filename;
-
 
     $sql = sprintf(
         "UPDATE staff SET staff_fn='%s', staff_mn='%s', staff_ln='%s', staff_email='%s', staff_contno='%s', staff_add='%s', staff_pos='%s', staff_img='%s'
@@ -69,5 +90,15 @@ if (isset($_POST['add'])) {
     );
     mysqli_query($conn, $sql);
     move_uploaded_file($tempname, $folder);
+
+    // Log
+    $sql = sprintf(
+        "INSERT INTO user_log (ulog_act) VALUES ('Updated Information for Staff Member, %s %s');",
+        $conn->real_escape_string($first_name),
+        $conn->real_escape_string($last_name)
+    );
+    mysqli_query($conn, $sql);
+    // Log
+
     header("location: ../admin/admin-staff.php?staff_updated");
 }

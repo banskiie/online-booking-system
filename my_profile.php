@@ -3,6 +3,7 @@
 include 'includes/head.php';
 @session_start();
 include 'util/client_conn.php';
+require 'db/database.php';
 ?>
 <!-- head.php -->
 
@@ -22,6 +23,21 @@ include 'util/client_conn.php';
     <section id="client-profile">
         <div id="profile-info">
             <div>
+                <div id="display-image">
+                    <?php
+                    $id = $_SESSION['id'];
+                    $sql = "SELECT * FROM client WHERE clnt_id = $id";
+                    $result = $conn->query($sql);
+                    if ($row = $result->fetch_assoc()) {
+                        if ($row['clnt_img'] == NULL) { ?>
+                            <img src="images/client/default.jpg">
+                        <?php } else { ?>
+                            <img src="images/client/<?php echo $row['clnt_img']; ?>">
+                        <?php } ?>
+                </div>
+            <?php }; ?>
+            </div>
+            <div>
                 <h2>
                     <?php echo $_SESSION['first_name'] . " "
                         . $_SESSION['middle_name'] . " "
@@ -39,6 +55,8 @@ include 'util/client_conn.php';
         <div id="update-info">
             <h1>Update Info</h1>
             <form action="util/client_actions.php" method="post" enctype="multipart/form-data">
+                <label>Profile Picture</label>
+                <input type="file" name="uploadfile" required>
                 <label>First Name</label>
                 <input name="first_name" type="text" value="<?php echo $_SESSION['first_name']; ?>">
                 <label>Middle Name</label>

@@ -15,7 +15,7 @@
         <ul>
             <?php if (isset($_SESSION['loggedIn']) == true && ($_SESSION['role']) == "client") { ?>
                 <li>Hello, <?php echo $_SESSION['first_name'] ?>! </li>
-                <li><a href="util/logout.php">Logout</a></li>
+                <li><a href="util/client_logout.php">Logout</a></li>
             <?php } else { ?>
                 <li><a href="login.php">Login</a></li>
             <?php } ?>

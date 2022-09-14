@@ -22,7 +22,7 @@ require '../db/database.php';
                 <form id="add-form" action="../util/admin_supplier.php?supp_id=<?php echo $row['supp_id']; ?>" method="post" enctype="multipart/form-data">
                     <div class="form-item">
                         <label>Staff Picture</label>
-                        <input type="file" name="uploadfile">
+                        <input type="file" name="uploadfile" required>
                     </div>
                     <div class="form-item">
                         <label>Name</label>

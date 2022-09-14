@@ -19,14 +19,23 @@ body {
   width: 50vw;
   padding: 2rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: whitesmoke;
   box-shadow: 0 0 15px;
   border-radius: 2rem;
 }
 
-#profile-info div {
+/* #profile-info div {
   margin: auto 3rem;
+} */
+
+#profile-info div:nth-child(1) {
+  width: 10rem;
+}
+
+#profile-info div:nth-child(2) {
+  margin: 0 0.5rem;
 }
 
 #client-button {
@@ -90,4 +99,20 @@ input {
   width: 20rem;
   font-size: 1.25rem;
   font-family: "Fira Sans", sans-serif;
+}
+
+#display-image img {
+  object-fit: cover;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+@media (max-width: 72rem) {
+  #display-image img {
+    object-fit: cover;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+  }
 }

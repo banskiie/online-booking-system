@@ -38,7 +38,7 @@ include 'includes/head.php';
         <h1>Packages</h1>
         <div class="container">
             <?php
-            $sql = "SELECT * FROM package";
+            $sql = "SELECT * FROM package WHERE pkg_status=1";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { ?>
@@ -56,7 +56,7 @@ include 'includes/head.php';
         <h1>Venues</h1>
         <div class="container">
             <?php
-            $sql = "SELECT * FROM venue";
+            $sql = "SELECT * FROM venue WHERE venue_status=1";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { ?>
@@ -73,7 +73,7 @@ include 'includes/head.php';
         <h1>Suppliers</h1>
         <div class="container">
             <?php
-            $sql = "SELECT * FROM supplier";
+            $sql = "SELECT * FROM supplier WHERE supp_status=1";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { ?>

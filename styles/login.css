@@ -21,6 +21,12 @@
   color: rgb(170, 87, 76);
 }
 
+#login-section p {
+  text-align: center;
+  font-size: 1.5rem;
+  color: red;
+}
+
 form {
   display: flex;
   flex-direction: column;

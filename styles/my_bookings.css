@@ -164,6 +164,9 @@ textarea {
 
 #supp-checklist {
   border: solid 1px;
+  height: 4rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 textarea {

@@ -68,6 +68,11 @@ span {
   display: inline-block;
 }
 
+.tbl-cont {
+  overflow-y: scroll;
+  height: 70vh;
+}
+
 table {
   border-collapse: collapse;
   font-size: 1rem;

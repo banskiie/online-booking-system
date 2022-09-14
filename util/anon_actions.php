@@ -18,11 +18,16 @@ if (isset($_POST['send'])) {
         $conn->real_escape_string($remark)
     );
 
-    if (mysqli_query($conn, $sql)) {
-        header("location: ../contact.php?inquiry-sent");
-    } else {
-        header("location: ../contact.php?inquiry-not-sent");
-    }
+    // Log
+    $sql = sprintf(
+        "INSERT INTO user_log (ulog_act)
+    VALUES ('New inquiry from %s');",
+        $conn->real_escape_string($name)
+    );
+    mysqli_query($conn, $sql);
+    // Log
+
+    header("location: ../contact.php?inquiry-sent");
 } else if (isset($_POST['register'])) {
 
     $first_name = $_POST['first_name'];
@@ -33,6 +38,9 @@ if (isset($_POST['send'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../images/client/" . $filename;
 
     if ($password !== $confirm_password) {
         header("location: ../register.php?password_not_the_same");
@@ -52,17 +60,27 @@ if (isset($_POST['send'])) {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 $sql = sprintf(
                     "INSERT INTO client 
-                (clnt_fn, clnt_mn, clnt_ln, clnt_add, clnt_contno, clnt_email, clnt_pass) 
-                VALUES ('%s','%s','%s','%s','%s','%s','%s')",
+                (clnt_fn, clnt_mn, clnt_ln, clnt_add, clnt_contno, clnt_email, clnt_pass, clnt_img) 
+                VALUES ('%s','%s','%s','%s','%s','%s','%s', '%s')",
                     $conn->real_escape_string($first_name),
                     $conn->real_escape_string($middle_name),
                     $conn->real_escape_string($last_name),
                     $conn->real_escape_string($address),
                     $conn->real_escape_string($contno),
                     $conn->real_escape_string($email),
-                    $conn->real_escape_string($hashed_password)
+                    $conn->real_escape_string($hashed_password),
+                    $conn->real_escape_string($filename)
                 );
                 if (mysqli_query($conn, $sql)) {
+                    move_uploaded_file($tempname, $folder);
+                    // Log
+                    $sql = sprintf(
+                        "INSERT INTO user_log (ulog_act) VALUES ('Registered %s %s as New Client');",
+                        $conn->real_escape_string($first_name),
+                        $conn->real_escape_string($last_name)
+                    );
+                    mysqli_query($conn, $sql);
+                    // Log
                     header("Location: ../register.php?success");
                 } else {
                     header("location: ../register.php?sql_error");
@@ -99,8 +117,12 @@ if (isset($_POST['send'])) {
                 $_SESSION['password'] = $row['clnt_pass'];
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['role'] = "client";
-                // $sql = "INSERT INTO user_log (clnt_id, ulog_act) VALUES ('{$_SESSION['sessionId']}','Logged In')";
-                // mysqli_query($conn, $sql);
+                $sql = sprintf(
+                    "INSERT INTO user_log (ulog_act) VALUES ('Client, %s %s , Logged In');",
+                    $conn->real_escape_string($row['clnt_fn']),
+                    $conn->real_escape_string($row['clnt_ln'])
+                );
+                mysqli_query($conn, $sql);
                 header("Location: ../index.php?user=" . $_SESSION['id']);
             } else {
                 header("Location: ../index.php?invalid_credentials");
@@ -123,6 +145,9 @@ if (isset($_POST['send'])) {
                         $_SESSION['sessionId'] = $row['admin_id'];
                         $_SESSION['loggedIn'] = true;
                         $_SESSION['role'] = 'admin';
+                        $sql = sprintf(
+                            "INSERT INTO user_log (ulog_act) VALUES ('Admin Log In')");
+                        mysqli_query($conn, $sql);
                         header("Location: ../admin/admin-dash.php?user=" . $_SESSION['id']);
                     } else {
                         header("Location: ../login.php?invalid_credentials");

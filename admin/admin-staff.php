@@ -15,55 +15,57 @@ require '../db/database.php';
     <main class="content">
         <h1>Staff</h1>
         <a href="admin-staff-add.php"><button id="add">Add New Staff</button></a>
-        <table>
-            <tr>
-                <th></th>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-                <th>Position</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <?php
-            $sql = "SELECT * FROM staff";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) { ?>
-                    <tr>
-                        <td>
-                            <div id="small-icon">
-                                <?php if ($row['staff_img'] == NULL) { ?>
-                                <img src="../images/staff/default.jpg">
-                                <?php } else { ?>
-                                <img src="../images/staff/<?php echo $row['staff_img']; ?>">
-                                <?php } ?>
-                            </div>
-                        </td>
-                        <td><?php echo $row['staff_fn']; ?></td>
-                        <td><?php echo $row['staff_mn']; ?></td>
-                        <td><?php echo $row['staff_ln']; ?></td>
-                        <td><?php echo $row['staff_email']; ?></td>
-                        <td><?php echo $row['staff_contno']; ?></td>
-                        <td><?php echo $row['staff_add']; ?></td>
-                        <td><?php echo $row['staff_pos']; ?></td>
-                        <td class="btn">
-                            <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
-                                <button id="update" name="update">Update</button>
-                            </form>
-                        </td>
-                        <td class="btn">
-                            <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
-                                <button id="delete" name="delete">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-            <?php };
-            } ?>
-        </table>
+        <div class="tbl-cont">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                    <th>Position</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <?php
+                $sql = "SELECT * FROM staff WHERE staff_status=1";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) { ?>
+                        <tr>
+                            <td>
+                                <div id="small-icon">
+                                    <?php if ($row['staff_img'] == NULL) { ?>
+                                        <img src="../images/staff/default.jpg">
+                                    <?php } else { ?>
+                                        <img src="../images/staff/<?php echo $row['staff_img']; ?>">
+                                    <?php } ?>
+                                </div>
+                            </td>
+                            <td><?php echo $row['staff_fn']; ?></td>
+                            <td><?php echo $row['staff_mn']; ?></td>
+                            <td><?php echo $row['staff_ln']; ?></td>
+                            <td><?php echo $row['staff_email']; ?></td>
+                            <td><?php echo $row['staff_contno']; ?></td>
+                            <td><?php echo $row['staff_add']; ?></td>
+                            <td><?php echo $row['staff_pos']; ?></td>
+                            <td class="btn">
+                                <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                    <button id="update" name="update">Update</button>
+                                </form>
+                            </td>
+                            <td class="btn">
+                                <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                    <button id="delete" name="delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php };
+                } ?>
+            </table>
+        </div>
     </main>
     </div>
 </body>

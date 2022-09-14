@@ -38,7 +38,7 @@ include 'util/client_conn.php';
                 <select name="package" required>
                     <?php
                     require 'db/database.php';
-                    $sql = "SELECT * FROM package";
+                    $sql = "SELECT * FROM package WHERE pkg_status=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) { ?>
@@ -53,7 +53,7 @@ include 'util/client_conn.php';
                 <select name="venue" required>
                     <?php
                     require 'db/database.php';
-                    $sql = "SELECT * FROM venue";
+                    $sql = "SELECT * FROM venue WHERE venue_status=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) { ?>
@@ -68,7 +68,7 @@ include 'util/client_conn.php';
                 <div id="supp-checklist">
                     <?php
                     require 'db/database.php';
-                    $sql = "SELECT * FROM supplier";
+                    $sql = "SELECT * FROM supplier WHERE supp_status=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) { ?>

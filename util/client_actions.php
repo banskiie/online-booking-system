@@ -11,20 +11,25 @@ if (isset($_POST['update'])) {
     $last_name = $_POST['last_name'];
     $address = $_POST['address'];
     $contno = $_POST['contno'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../images/client/" . $filename;
 
     $sql = sprintf(
         "UPDATE client 
     SET clnt_fn = '%s', clnt_mn = '%s', clnt_ln = '%s', 
-    clnt_add = '%s', clnt_contno = '%s'
+    clnt_add = '%s', clnt_contno = '%s', clnt_img = '%s'
     WHERE clnt_id = $id",
         $conn->real_escape_string($first_name),
         $conn->real_escape_string($middle_name),
         $conn->real_escape_string($last_name),
         $conn->real_escape_string($address),
         $conn->real_escape_string($contno),
+        $conn->real_escape_string($filename)
     );
 
     if (mysqli_query($conn, $sql)) {
+        move_uploaded_file($tempname, $folder);
         $_SESSION['first_name'] =  $first_name;
         $_SESSION['middle_name'] = $middle_name;
         $_SESSION['last_name'] = $last_name;

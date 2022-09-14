@@ -59,12 +59,12 @@ a {
 }
 
 #delete {
-  background-color: rgb(200, 0, 0);
+  background-color: rgb(122, 0, 0);
   margin-right: 2rem;
 }
 
 #delete:hover {
-  background-color: rgb(233, 0, 0);
+  background-color: rgb(255, 0, 0);
 }
 
 /* form */

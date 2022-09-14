@@ -23,9 +23,7 @@ require '../db/database.php';
                     <p>Name: <strong><?php echo $row['venue_name']; ?></strong></p>
                     <p>Address: <?php echo $row['venue_add']; ?></p>
                     <div id="display-image">
-                        <?php ?>
-                            <img src="../images/venue/<?php echo $row['venue_img']; ?>">
-                        <?php ?>
+                        <img src="../images/venue/<?php echo $row['venue_img']; ?>">
                     </div>
             <?php };
             } ?>
