@@ -1,10 +1,9 @@
-<!-- head.php -->
 <?php
 include 'includes/head.php';
 @session_start();
 include 'util/client_conn.php';
+require 'db/database.php';
 ?>
-<!-- head.php -->
 
 <head>
     <link rel="stylesheet" href="styles/my_bookings.css">
@@ -13,11 +12,9 @@ include 'util/client_conn.php';
 
 <body>
 
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
     ?>
-    <!-- header.php -->
 
     <section id="booking-section">
         <a href="my_bookings_new.php"><button id="new-bk-btn">New Booking</button>
@@ -32,7 +29,6 @@ include 'util/client_conn.php';
                     <th></th>
                 </tr>
                 <?php
-                require 'db/database.php';
                 $sql = "SELECT * FROM booking where clnt_id = '{$_SESSION['id']}'";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -69,7 +65,6 @@ include 'util/client_conn.php';
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
 
 </body>
 

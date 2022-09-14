@@ -160,5 +160,4 @@ if (isset($_POST['send'])) {
     }
 } else {
     header("Location: ../login.php?no_user");
-    exit();
 }

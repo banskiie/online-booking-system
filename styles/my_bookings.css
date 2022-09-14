@@ -17,6 +17,7 @@ body {
   padding: 2rem 1rem;
   box-shadow: 0 0 15px;
   align-items: center;
+  overflow-y: scroll;
 }
 
 table {
