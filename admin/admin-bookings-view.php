@@ -38,14 +38,17 @@ require '../db/database.php';
                                     } else { ?> <span> Suppliers no longer exists </span> <?php } ?>
                     </p>
                     <p>Venue: <strong><?php echo $row['venue_name']; ?></strong></p>
-                    <p>Date: <strong><?php echo $row['bk_date']; ?></strong></p>
+                    
                     <p id="remark">Remark: <br>
                         <i><?php echo $row['bk_remark']; ?></i>
                     </p>
                     <form action="../util/admin_booking.php?bk_id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-comp">
+                            <label class="label">Date</label>
+                            <input type="date" name="date" value="<?php echo $row['bk_date']; ?>" required>
+                        </div>
                         <label>Status: </label>
                         <select name="status" required>
-
                             <option disabled selected value style="display:none"><?php if ($row['bk_status'] == 0) {
                                                                                         echo "Pending";
                                                                                     } else if ($row['bk_status'] == 1) {

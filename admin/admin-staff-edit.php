@@ -13,7 +13,7 @@ require '../db/database.php';
     include '../includes/admin-header.php';
     ?>
     <main class="content">
-        <h1>Staff</h1>
+        <h1>Edit Staff</h1>
         <?php
         if (isset($_POST['update'])) {
             $sql = "SELECT * FROM staff WHERE staff_id = '{$_GET['staff_id']}'";

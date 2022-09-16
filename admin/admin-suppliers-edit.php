@@ -13,7 +13,7 @@ require '../db/database.php';
     include '../includes/admin-header.php';
     ?>
     <main class="content">
-        <h1>Edit Suppliers</h1>
+        <h1>Edit Supplier</h1>
         <?php
         if (isset($_POST['update'])) {
             $sql = "SELECT * FROM supplier WHERE supp_id = '{$_GET['supp_id']}'";
