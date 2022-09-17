@@ -19,7 +19,7 @@ include 'includes/head.php';
 
     <section id="contact-section">
         <h1>Get in touch</h1>
-        <form action="util/anon_actions.php" method="POST"  enctype="multipart/form-data">
+        <form action="util/anon_actions.php" method="POST" enctype="multipart/form-data">
             <label>Name</label>
             <input name="name" type="text" required>
             <label>Contact Number</label>

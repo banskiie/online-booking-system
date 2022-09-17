@@ -58,15 +58,15 @@ require 'db/database.php';
                 <label>Profile Picture</label>
                 <input type="file" name="uploadfile" required>
                 <label>First Name</label>
-                <input name="first_name" type="text" value="<?php echo $_SESSION['first_name']; ?>">
+                <input name="first_name" type="text" value="<?php echo $_SESSION['first_name']; ?>" required>
                 <label>Middle Name</label>
                 <input name="middle_name" type="text" value="<?php echo $_SESSION['middle_name']; ?>">
                 <label>Last Name</label>
-                <input name="last_name" type="text" value="<?php echo $_SESSION['last_name']; ?>">
+                <input name="last_name" type="text" value="<?php echo $_SESSION['last_name']; ?>" required>
                 <label>Address</label>
-                <input name="address" type="text" value="<?php echo $_SESSION['address']; ?>">
+                <input name="address" type="text" value="<?php echo $_SESSION['address']; ?>" required>
                 <label>Contact Number</label>
-                <input name="contno" type="text" value="<?php echo $_SESSION['contno']; ?>">
+                <input name="contno" type="text" value="<?php echo $_SESSION['contno']; ?>" required>
                 <div>
                     <button class="btn1" name="update">Update</button>
                     <button id="cancel-update-btn" class="btn2" type="button">Cancel</button>

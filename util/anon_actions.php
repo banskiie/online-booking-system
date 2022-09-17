@@ -11,13 +11,13 @@ if (isset($_POST['send'])) {
 
     $sql = sprintf(
         "INSERT INTO inquiry (inq_name, inq_email, inq_contno, inq_remark, inq_status)
-    VALUES ('%s', '%s', '%s', '%s', false)",
+    VALUES ('%s', '%s', '%s', '%s', 0)",
         $conn->real_escape_string($name),
         $conn->real_escape_string($email),
         $conn->real_escape_string($contno),
         $conn->real_escape_string($remark)
     );
-
+    mysqli_query($conn, $sql);
     // Log
     $sql = sprintf(
         "INSERT INTO user_log (ulog_act)
@@ -118,7 +118,7 @@ if (isset($_POST['send'])) {
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['role'] = "client";
                 $sql = sprintf(
-                    "INSERT INTO user_log (ulog_act) VALUES ('Client, %s %s , Logged In');",
+                    "INSERT INTO user_log (ulog_act) VALUES ('Client, %s %s, Logged In');",
                     $conn->real_escape_string($row['clnt_fn']),
                     $conn->real_escape_string($row['clnt_ln'])
                 );
@@ -146,7 +146,8 @@ if (isset($_POST['send'])) {
                         $_SESSION['loggedIn'] = true;
                         $_SESSION['role'] = 'admin';
                         $sql = sprintf(
-                            "INSERT INTO user_log (ulog_act) VALUES ('Admin Log In')");
+                            "INSERT INTO user_log (ulog_act) VALUES ('Admin Log In')"
+                        );
                         mysqli_query($conn, $sql);
                         header("Location: ../admin/admin-dash.php?user=" . $_SESSION['id']);
                     } else {

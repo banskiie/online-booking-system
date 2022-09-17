@@ -34,7 +34,7 @@ include 'includes/head.php';
                     </div>
                     <div class="form-item">
                         <label>Middle Name</label>
-                        <input name="middle_name" type="text" required>
+                        <input name="middle_name" type="text">
                     </div>
                     <div class="form-item">
                         <label>Last Name</label>

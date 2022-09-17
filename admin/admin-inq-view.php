@@ -27,7 +27,7 @@ include '../util/admin_conn.php';
                         <i><?php echo $row['inq_remark']; ?></i>
                     </p>
             <?php }
-                $sql = "UPDATE inquiry SET inq_status=true WHERE inq_id='{$_GET['inq_id']}'";
+                $sql = "UPDATE inquiry SET inq_status=1 WHERE inq_id='{$_GET['inq_id']}'";
                 mysqli_query($conn, $sql);
             } ?>
             <div id="button-grp">
