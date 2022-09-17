@@ -112,3 +112,24 @@ textarea {
   height: 3rem;
   border-radius: 50%;
 }
+
+/* search */
+
+input {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
+
+#search {
+  padding: 0.3rem 0.75rem;
+  border: transparent;
+  border-radius: 4px;
+  color: whitesmoke;
+  transition: 0.2s linear;
+  cursor: pointer;
+  background-color: #1f525f;
+  margin-bottom: 1rem;
+}
+
+#search:hover {
+  background-color:#2f8ba1;
+}

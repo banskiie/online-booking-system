@@ -1,5 +1,6 @@
 <!-- head.php -->
 <?php
+require 'db/database.php';
 include 'includes/head.php';
 @session_start();
 ?>
@@ -39,8 +40,34 @@ include 'includes/head.php';
 
     <hr>
 
-    <!-- meet the team -->
     <section id="meet-the-team">
+        <h1>Meet the Team</h1>
+        <div id="coordinator-cards">
+            <?php
+            $sql = "SELECT * FROM staff WHERE staff_status=1 ORDER by staff_pos ASC";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) { ?>
+
+                    <div class="card">
+                        <?php if ($row['staff_img'] == NULL) { ?>
+                            <img src="images/staff/default.jpg">
+                        <?php } else { ?>
+                            <img src="images/staff/<?php echo $row['staff_img']; ?>">
+                        <?php } ?>
+                        <div class="container">
+                            <h4><b><?php echo $row['staff_fn']; ?></b></h4>
+                            <p><?php echo $row['staff_pos']; ?></p>
+                        </div>
+                    </div>
+
+            <?php }
+            } ?>
+        </div>
+    </section>
+
+    <!-- meet the team -->
+    <!-- <section id="meet-the-team">
         <h1>Meet the Team</h1>
         <div id="the-team">
             <div id="head-cards">
@@ -128,7 +155,7 @@ include 'includes/head.php';
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- meet the team -->
 
     <!-- testimonial -->

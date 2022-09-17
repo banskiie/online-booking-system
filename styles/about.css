@@ -85,26 +85,17 @@
   text-align: center;
 }
 
-#head-cards {
-  display: flex;
-  justify-content: center;
-}
-
-#officer-cards {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#officer-cards .card {
-  transform: scale(0.9);
-}
-
 #coordinator-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
+}
+
+#coordinator-cards img {
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
 }
 
 #coordinator-cards .card {

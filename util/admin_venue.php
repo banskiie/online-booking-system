@@ -75,4 +75,4 @@ if (isset($_POST['add'])) {
     // Log
 
     header("location: ../admin/admin-venues.php?venue_updated");
-}
+} 
