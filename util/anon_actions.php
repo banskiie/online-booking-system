@@ -107,6 +107,8 @@ if (isset($_POST['send'])) {
                 header("Location: ../login.php?invalid_credentials");
             } else if ($passCheck == true) {
                 session_start();
+                ini_set('session.gc_maxlifetime', 3600);
+                session_set_cookie_params(3600);
                 $_SESSION['id'] = $row['clnt_id'];
                 $_SESSION['first_name'] = $row['clnt_fn'];
                 $_SESSION['middle_name'] = $row['clnt_mn'];
@@ -142,6 +144,8 @@ if (isset($_POST['send'])) {
                         header("Location: ../login.php?invalid_credentials");
                     } elseif ($passCheck == true) {
                         session_start();
+                        ini_set('session.gc_maxlifetime', 3600);
+                        session_set_cookie_params(3600);
                         $_SESSION['sessionId'] = $row['admin_id'];
                         $_SESSION['loggedIn'] = true;
                         $_SESSION['role'] = 'admin';

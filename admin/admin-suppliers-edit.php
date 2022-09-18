@@ -45,7 +45,7 @@ require '../db/database.php';
                         <input type="text" name="address" value="<?php echo $row['supp_add']; ?>" required>
                     </div>
                     <div class="form-btn-grp">
-                        <button id="update" name="update">Update</button>
+                        <button id="add-new" name="update">Update</button>
                         <a id="cancel" href="admin-suppliers.php">Cancel</a>
                     </div>
                 </form>

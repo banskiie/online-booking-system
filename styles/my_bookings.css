@@ -8,29 +8,35 @@ body {
 
 #booking-section {
   height: 80vh;
-  width: 70rem;
+  width: 70vw;
   margin: 4rem auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: whitesmoke;
   border-radius: 1rem;
   padding: 2rem 1rem;
   box-shadow: 0 0 15px;
   align-items: center;
 }
-
+#upper-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #clnt-bookings {
-  height: 25rem;
+  height: 27.5rem;
 }
 
 table {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 1.25rem;
-  width: 65rem;
+  width: 65vw;
   box-shadow: 0 0 15px;
   text-align: center;
-  border: solid 1px black;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 th {

@@ -37,6 +37,7 @@ nav ul {
   display: flex;
   padding: 0 6rem;
   align-items: center;
+  animation: fadeIn 1.5s;
 }
 
 nav a {
@@ -74,6 +75,18 @@ footer span {
   z-index: 50;
   position: fixed;
   background-color: black;
+}
+
+#right-nav li:nth-child(1):hover,
+#right-nav li:nth-child(3):hover {
+  transform: scale(1);
+}
+
+#nav-client-icon img {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: middle;
 }
 
 @media (max-width: 72rem) {

@@ -1,3 +1,7 @@
+<?php
+require 'db/database.php'
+?>
+
 <header>
     <nav>
         <ul>
@@ -12,13 +16,27 @@
                 <li><a href="contact.php">Contact Us</a></li>
             <?php } ?>
         </ul>
-        <ul>
+        <ul id="right-nav">
+            
             <?php if (isset($_SESSION['loggedIn']) == true && ($_SESSION['role']) == "client") { ?>
                 <li>Hello, <?php echo $_SESSION['first_name'] ?>! </li>
                 <li><a href="util/client_logout.php">Logout</a></li>
+                <li id="nav-client-icon"><?php
+                $id = $_SESSION['id'];
+                $sql = "SELECT * FROM client WHERE clnt_id = $id";
+                $result = $conn->query($sql);
+                if ($row = $result->fetch_assoc()) {
+                    if ($row['clnt_img'] == NULL) { ?>
+                        <img src="images/client/default.jpg">
+                    <?php } else { ?>
+                        <img src="images/client/<?php echo $row['clnt_img']; ?>">
+                <?php }
+                } ?>
+            </li>
             <?php } else { ?>
                 <li><a href="login.php">Login</a></li>
             <?php } ?>
+            
         </ul>
     </nav>
 </header>

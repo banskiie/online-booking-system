@@ -6,8 +6,8 @@ a {
 }
 
 #add {
-  width: 10rem;
-  padding: 0.5rem;
+  width: 4rem;
+  padding: 0.45rem;
   border: transparent;
   border-radius: 4px;
   color: whitesmoke;
@@ -24,9 +24,6 @@ a {
   width: 2.5rem;
 }
 
-#view,
-#update,
-#delete,
 #add-new,
 #cancel {
   width: 4rem;
@@ -40,6 +37,23 @@ a {
 }
 
 #view,
+#update,
+#delete {
+  width: 2rem;
+  padding: 0.25rem 0 0.25rem 0;
+  border: transparent;
+  border-radius: 4px;
+  color:whitesmoke;
+  transition: 0.2s linear;
+  cursor: pointer;
+  margin: 0.25rem 0;
+}
+
+svg {
+  vertical-align: middle;
+}
+
+#view,
 #add-new {
   background-color: rgb(0, 184, 0);
 }
@@ -47,6 +61,7 @@ a {
 #view:hover,
 #add-new:hover {
   background-color: rgb(0, 217, 0);
+  color: black;
 }
 
 #update {
@@ -55,15 +70,17 @@ a {
 
 #update:hover {
   background-color: rgb(0, 194, 194);
+  color: black;
 }
 
 #delete {
   background-color: rgb(122, 0, 0);
-  margin-right: 2rem;
+  margin-right: 1.25rem;
 }
 
 #delete:hover {
   background-color: rgb(255, 0, 0);
+  color: black;
 }
 
 /* form */
@@ -105,7 +122,7 @@ textarea {
   font-size: 1.15rem;
 }
 
-#small-icon img{
+#small-icon img {
   object-fit: cover;
   width: 3rem;
   height: 3rem;
@@ -119,16 +136,23 @@ input {
 }
 
 #search {
-  padding: 0.3rem 0.75rem;
+  width: 2.5rem;
+  padding: 0.45rem 0;
   border: transparent;
   border-radius: 4px;
   color: whitesmoke;
   transition: 0.2s linear;
   cursor: pointer;
   background-color: #1f525f;
-  margin-bottom: 1rem;
+  margin-right: 0.5rem;
 }
 
 #search:hover {
-  background-color:#2f8ba1;
+  background-color: #2f8ba1;
+}
+
+#top-form {
+  display: flex;
+  align-items: center;
+  justify-content: star;
 }

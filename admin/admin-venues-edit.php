@@ -33,7 +33,7 @@ require '../db/database.php';
                         <input type="file" name="uploadfile" value='<?php echo $row['venue_img']; ?>' required>
                     </div>
                     <div class="form-btn-grp">
-                        <button id="update" name="update">Update</button>
+                        <button id="add-new" name="update">Update</button>
                         <a id="cancel" href="admin-venues.php">Cancel</a>
                     </div>
                 </form>

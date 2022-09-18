@@ -47,7 +47,11 @@ require '../db/database.php';
         </div>
         <div class="pagination">
             <ul>
-                <li><a href="?pageno=1">First</a></li>
+                <li><a href="?pageno=1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+                        </svg>
+                    </a></li>
                 <li class="<?php if ($pageno <= 1) {
                                 echo 'disabled';
                             } ?>">
@@ -55,7 +59,11 @@ require '../db/database.php';
                                     echo '#';
                                 } else {
                                     echo "?pageno=" . ($pageno - 1);
-                                } ?>">Prev</a>
+                                } ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                    </a>
                 </li>
                 <li class="<?php if ($pageno >= $total_pages) {
                                 echo 'disabled';
@@ -64,9 +72,16 @@ require '../db/database.php';
                                     echo '#';
                                 } else {
                                     echo "?pageno=" . ($pageno + 1);
-                                } ?>">Next</a>
+                                } ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </a>
                 </li>
-                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+                <li><a href="?pageno=<?php echo $total_pages; ?>"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </a></li>
             </ul>
         </div>
     </main>

@@ -26,10 +26,6 @@ body {
   border-radius: 2rem;
 }
 
-/* #profile-info div {
-  margin: auto 3rem;
-} */
-
 #profile-info div:nth-child(1) {
   width: 10rem;
 }
