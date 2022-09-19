@@ -1,28 +1,21 @@
-<!-- head.php -->
 <?php
-include 'includes/head.php';
-@session_start();
+require 'db/database.php';
 include 'util/client_conn.php';
+include 'includes/head.php';
 ?>
-<!-- head.php -->
 
 <head>
     <link rel="stylesheet" href="styles/my_bookings.css">
 </head>
 
 <body>
-
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
-    include 'util/client_conn.php';
     ?>
-    <!-- header.php -->
 
     <section id="booking-section">
         <div id="view-booking">
-            <?php
-            require 'db/database.php';
+            <?php            
             if (isset($_POST['view'])) {
                 $sql = "SELECT * FROM booking 
                 INNER JOIN venue ON booking.venue_id = venue.venue_id 
@@ -66,7 +59,6 @@ include 'util/client_conn.php';
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
 
 </body>
 

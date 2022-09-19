@@ -1,9 +1,8 @@
-<!-- head.php -->
 <?php
 include 'includes/head.php';
-@session_start();
+session_start();
 ?>
-<!-- head.php -->
+
 
 <head>
     <link rel="stylesheet" href="styles/contact.css">
@@ -11,11 +10,9 @@ include 'includes/head.php';
 
 <body>
 
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
     ?>
-    <!-- header.php -->
 
     <section id="contact-section">
         <h1>Get in touch</h1>
@@ -38,7 +35,6 @@ include 'includes/head.php';
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
 </body>
 
 </html>

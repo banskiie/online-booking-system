@@ -1,6 +1,5 @@
 <?php
 require "../db/database.php";
-@session_start();
 if (isset($_SESSION["role"]) == "client") {
     $id = $_SESSION['id'];
     $sql = sprintf("SELECT * from client WHERE clnt_id = $id");

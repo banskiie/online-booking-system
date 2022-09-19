@@ -1,10 +1,8 @@
-<!-- head.php -->
 <?php
 require 'db/database.php';
 include 'includes/head.php';
 @session_start();
 ?>
-<!-- head.php -->
 
 <head>
     <link rel="stylesheet" href="styles/service.css">
@@ -12,27 +10,22 @@ include 'includes/head.php';
 
 <body>
 
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
     ?>
-    <!-- header.php -->
 
-    <!-- about intro -->
     <section id="package-intro">
         <img src="images/package_intro.jpg" alt="">
         <h1>Services</h1>
     </section>
-    <!-- about intro -->
 
-    <!-- package info -->
     <section id="package-info">
         <p>Just got engaged and no idea of what to do next? We got you covered!
             Our team will provide you the service to get everything started
             from scratch to finish.</p>
         <p>You deserve the best hassle-free wedding experience!</p>
     </section>
-    <!-- package info -->
+
 
     <section class="service">
         <h1>Packages</h1>
@@ -86,11 +79,10 @@ include 'includes/head.php';
         </div>
     </section>
 
-    <!-- footer.php -->
+
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
 </body>
 
 </html>

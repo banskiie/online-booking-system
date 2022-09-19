@@ -1,9 +1,7 @@
-<!-- head.php -->
 <?php
 include 'includes/head.php';
-@session_start();
+session_start();
 ?>
-<!-- head.php -->
 
 <head>
     <link rel="stylesheet" href="styles/register.css">
@@ -11,11 +9,9 @@ include 'includes/head.php';
 
 <body>
 
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
     ?>
-    <!-- header.php -->
 
     <section id="login-section">
         <img src="images/login_bg.jpg" alt="">
@@ -80,11 +76,11 @@ include 'includes/head.php';
             <?php } ?>
         </form>
     </section>
-    <!-- footer.php -->
+
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
+
 </body>
 
 </html>

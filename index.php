@@ -1,9 +1,8 @@
-<!-- head.php -->
 <?php
 include 'includes/head.php';
-@session_start();
+session_start();
 ?>
-<!-- head.php -->
+
 
 <head>
     <link rel="stylesheet" href="styles/index.css">
@@ -11,21 +10,17 @@ include 'includes/head.php';
 
 <body>
 
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
     ?>
-    <!-- header.php -->
 
-    <!-- book now section -->
     <section id="book-now-section">
         <img src="images/bg-book-now.jpg" alt="">
         <h1>Online Booking System</h1>
         <a href="contact.php" class="button">Book Now!</a>
     </section>
-    <!-- book now section -->
     <hr>
-    <!-- welcome info section -->
+
     <section id="welcome-info-section">
         <h1>We are Yani M!</h1>
         <p>We are a team consisting of young professionals from all walks of life gathered by one great passion in
@@ -38,12 +33,10 @@ include 'includes/head.php';
             inspired our brand to always strive for growth, improvement, and continuous geniune work.</p>
         <a href="about.php#meet-the-team" class="button">Meet the Team!</a>
     </section>
-    <!-- welcome info section -->
-    <!-- footer.php -->
+
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
 </body>
 
 </html>

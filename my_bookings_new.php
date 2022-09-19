@@ -1,10 +1,9 @@
-<!-- head.php -->
 <?php
-include 'includes/head.php';
-@session_start();
+require 'db/database.php';
 include 'util/client_conn.php';
+include 'includes/head.php';
 ?>
-<!-- head.php -->
+
 
 <head>
     <link rel="stylesheet" href="styles/my_bookings.css">
@@ -12,11 +11,9 @@ include 'util/client_conn.php';
 </head>
 
 <body>
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
     ?>
-    <!-- header.php -->
     <section id="add-booking-section">
         <form id="new-booking" action="util/client_actions.php" method="post"  enctype="multipart/form-data">
             <h1>Add New Booking</h1>
@@ -37,7 +34,6 @@ include 'util/client_conn.php';
                 <label class="label">Package</label>
                 <select name="package" required>
                     <?php
-                    require 'db/database.php';
                     $sql = "SELECT * FROM package WHERE pkg_status=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
@@ -52,7 +48,6 @@ include 'util/client_conn.php';
                 <label class="label">Venue</label>
                 <select name="venue" required>
                     <?php
-                    require 'db/database.php';
                     $sql = "SELECT * FROM venue WHERE venue_status=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
@@ -67,7 +62,6 @@ include 'util/client_conn.php';
                 <label class="label">Suppliers</label>
                 <div id="supp-checklist">
                     <?php
-                    require 'db/database.php';
                     $sql = "SELECT * FROM supplier WHERE supp_status=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
@@ -92,7 +86,6 @@ include 'util/client_conn.php';
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
 </body>
 
 </html>

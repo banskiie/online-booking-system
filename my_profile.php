@@ -1,11 +1,8 @@
-<!-- head.php -->
 <?php
 include 'includes/head.php';
-@session_start();
 include 'util/client_conn.php';
 require 'db/database.php';
 ?>
-<!-- head.php -->
 
 <head>
     <link rel="stylesheet" href="styles/my_profile.css">
@@ -14,11 +11,9 @@ require 'db/database.php';
 
 <body>
 
-    <!-- header.php -->
     <?php
     include 'includes/header.php';
     ?>
-    <!-- header.php -->
 
     <section id="client-profile">
         <div id="profile-info">
@@ -51,7 +46,6 @@ require 'db/database.php';
                 <button id="edit-info-btn" class="btn1">Edit Info</button>
             </div>
         </div>
-        <!-- aside -->
         <div id="update-info">
             <h1>Update Info</h1>
             <form action="util/client_actions.php" method="post" enctype="multipart/form-data">
@@ -78,13 +72,11 @@ require 'db/database.php';
                 <?php } else if (isset($_GET['update_error'])) { ?>
                     <h1>Update Error!</h1>
                 <?php } ?>
-                <!-- aside -->
     </section>
 
     <?php
     include 'includes/footer.php';
     ?>
-    <!-- footer.php -->
 </body>
 
 
