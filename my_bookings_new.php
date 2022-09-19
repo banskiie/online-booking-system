@@ -1,7 +1,7 @@
 <?php
-require 'db/database.php';
 include 'util/client_conn.php';
 include 'includes/head.php';
+require 'db/database.php';
 ?>
 
 

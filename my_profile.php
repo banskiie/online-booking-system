@@ -1,9 +1,8 @@
 <?php
-include 'includes/head.php';
 include 'util/client_conn.php';
+include 'includes/head.php';
 require 'db/database.php';
 ?>
-
 <head>
     <link rel="stylesheet" href="styles/my_profile.css">
     <script src="scripts/my_profile.js" defer></script>

@@ -122,6 +122,10 @@ tr:nth-child(odd) {
   background-color: rgb(88, 61, 42);
 }
 
+#logout-link:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 1024px) {
   .sidebar {
     max-width: 200px;

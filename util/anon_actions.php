@@ -92,7 +92,6 @@ if (isset($_POST['send'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    //Client Check
     $sql = "SELECT * FROM client WHERE clnt_email = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -123,7 +122,7 @@ if (isset($_POST['send'])) {
                     $conn->real_escape_string($row['clnt_ln'])
                 );
                 mysqli_query($conn, $sql);
-                header("Location: ../index.php?user=" . $_SESSION['id']);
+                header("Location: ../index.php");
             } else {
                 header("Location: ../index.php?invalid_credentials");
             }
@@ -151,7 +150,7 @@ if (isset($_POST['send'])) {
                             "INSERT INTO user_log (ulog_act) VALUES ('Admin Log In')"
                         );
                         mysqli_query($conn, $sql);
-                        header("Location: ../admin/admin-dash.php?user=" . $_SESSION['id']);
+                        header("Location: ../admin/admin-dash.php");
                     } else {
                         header("Location: ../login.php?invalid_credentials");
                     }

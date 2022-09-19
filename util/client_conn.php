@@ -1,6 +1,7 @@
 <?php
-@session_start();
+session_start();
 
 if (isset($_SESSION["role"]) != "client" && $_SESSION['loggedIn'] != true) {
     header('Location: index.php'); 
+    session_destroy();
 }

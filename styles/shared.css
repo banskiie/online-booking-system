@@ -82,11 +82,23 @@ footer span {
   transform: scale(1);
 }
 
+#right-nav li:nth-child(3) {
+  margin-left: -1rem;
+}
+
 #nav-client-icon img {
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
   vertical-align: middle;
+}
+
+#logoutform{
+  padding-right: 1rem;
+}
+
+#logout-link:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 72rem) {

@@ -1,9 +1,8 @@
 <?php
-require 'db/database.php';
-include 'includes/head.php';
 session_start();
+include 'includes/head.php';
+require 'db/database.php';
 ?>
-
 
 <head>
     <link rel="stylesheet" href="styles/about.css">

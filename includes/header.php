@@ -1,5 +1,5 @@
 <?php
-require 'db/database.php'
+require 'db/database.php';
 ?>
 
 <header>
@@ -17,26 +17,34 @@ require 'db/database.php'
             <?php } ?>
         </ul>
         <ul id="right-nav">
-            
             <?php if (isset($_SESSION['loggedIn']) == true && ($_SESSION['role']) == "client") { ?>
                 <li>Hello, <?php echo $_SESSION['first_name'] ?>! </li>
-                <li><a href="util/client_logout.php">Logout</a></li>
+                <li>
+                    <form id="logoutform" action="util/client_logout.php" method="POST">
+                        <a id="logout-link" onclick="myFunction()">Logout</a>
+                    </form>
+                </li>
                 <li id="nav-client-icon"><?php
-                $id = $_SESSION['id'];
-                $sql = "SELECT * FROM client WHERE clnt_id = $id";
-                $result = $conn->query($sql);
-                if ($row = $result->fetch_assoc()) {
-                    if ($row['clnt_img'] == NULL) { ?>
-                        <img src="images/client/default.jpg">
-                    <?php } else { ?>
-                        <img src="images/client/<?php echo $row['clnt_img']; ?>">
-                <?php }
-                } ?>
-            </li>
+                                            $id = $_SESSION['id'];
+                                            $sql = "SELECT * FROM client WHERE clnt_id = $id";
+                                            $result = $conn->query($sql);
+                                            if ($row = $result->fetch_assoc()) {
+                                                if ($row['clnt_img'] == NULL) { ?>
+                            <img src="images/client/default.jpg">
+                        <?php } else { ?>
+                            <img src="images/client/<?php echo $row['clnt_img']; ?>">
+                    <?php }
+                                            } ?>
+                </li>
             <?php } else { ?>
                 <li><a href="login.php">Login</a></li>
             <?php } ?>
-            
         </ul>
     </nav>
 </header>
+
+<script>
+    function myFunction() {
+        document.getElementById("logoutform").submit();
+    }
+</script>

@@ -1,6 +1,6 @@
 <?php
-require 'db/database.php';
 include 'util/client_conn.php';
+require 'db/database.php';
 include 'includes/head.php';
 ?>
 

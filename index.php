@@ -1,6 +1,7 @@
 <?php
-include 'includes/head.php';
 session_start();
+include 'includes/head.php';
+require 'db/database.php';
 ?>
 
 
