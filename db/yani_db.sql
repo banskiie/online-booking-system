@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 18, 2022 at 10:02 AM
+-- Generation Time: Sep 20, 2022 at 02:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -68,8 +68,10 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`bk_id`, `clnt_id`, `pkg_id`, `venue_id`, `bk_name`, `bk_guest`, `bk_remark`, `bk_date`, `bk_status`) VALUES
 (18, 17, 17, 1, 'James and Clara\'s Wedding', 25, 'I would like to have a sky-themed wedding!', '2023-01-04', 2),
-(19, 18, 13, 4, 'Thomas Wedding', 125, 'I would love a grandiose wedding.', '2022-09-21', 1),
-(20, 19, 16, 4, 'Francis-Donna Wedding', 69, 'Indian Themed', '2022-09-17', 3);
+(19, 18, 13, 4, 'Thomas Wedding', 125, 'I would love a grandiose wedding.', '2022-09-21', 0),
+(20, 19, 16, 4, 'Francis-Donna Wedding', 69, 'Indian Themed', '2022-09-17', 3),
+(21, 20, 17, 1, 'Patricia\'s BTS Wedding', 100, 'I would like to have purple and white as my main theme.', '2023-01-11', 1),
+(23, 21, 16, 4, 'Belle-Nozomi Wedding', 100, 'Korea Themed\r\n', '2022-09-28', 0);
 
 -- --------------------------------------------------------
 
@@ -96,7 +98,9 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`clnt_id`, `clnt_fn`, `clnt_mn`, `clnt_ln`, `clnt_contno`, `clnt_add`, `clnt_email`, `clnt_pass`, `clnt_img`) VALUES
 (17, 'James', 'Anderson', 'de Guzman', '09151234567', 'Lapasan, Cagayan de Oro City', 'james@test.com', '$2y$10$2ZLeOI2zXXMYR/wgOoZ74O4LvPd/qqVTNKq4l9Uy8dCaDAecCPLNu', 'James de Guzman.jpg'),
 (18, 'Thomas', 'Anderson', 'Romanio', '09151234567', 'Camiguin', 'thomas@test.com', '$2y$10$n0smyW3pkUVz61M5n0RVBevLGli0FUJ48qYkjSj/0thpLmSQIq.J6', ''),
-(19, 'Francis', 'Tabiano', 'Cabahug', '09151234567', 'Aurora, Zamboanga del Sur', 'francis@test.com', '$2y$10$PzH5gf5lFXaLXZdiP4xYIeGmULlqA9WNXM32A/HjU260YsIYRS4J.', 'francis.jpg');
+(19, 'Francis', 'Tabiano', 'Cabahug', '09151234567', 'Aurora, Zamboanga del Sur', 'francis@test.com', '$2y$10$PzH5gf5lFXaLXZdiP4xYIeGmULlqA9WNXM32A/HjU260YsIYRS4J.', 'francis.jpg'),
+(20, 'Patricia Anne', 'Montemayor', 'Ong San Soy', '09151234567', 'Igpit, Misamis Oriental', 'patricia@gmail.com', '$2y$10$o8fQ3EPq/KfHiQnLlY/0Jeo/PidpvckKN7VDoBKK8W9qvYyxU/QxC', 'patricia.jpg'),
+(21, 'Marie Isabelle', '', 'Trimidal', '09151234567', 'Igpit, Misamis Oriental', 'belle@test.com', '$2y$10$CtI03mgVQbZtybEs4pzGD.tDVTLkjyed01ENt0cKK4906X2F5hLX2', '');
 
 -- --------------------------------------------------------
 
@@ -119,7 +123,10 @@ CREATE TABLE `inquiry` (
 --
 
 INSERT INTO `inquiry` (`inq_id`, `inq_name`, `inq_contno`, `inq_email`, `inq_remark`, `inq_status`, `inq_datetime`) VALUES
-(23, 'Francis Gabriel Cabahug', '09151234567', 'francis@test.com', 'I would like to see if there are available slots for a November wedding?', 1, '2022-09-18 13:19:26');
+(23, 'Francis Gabriel Cabahug', '09151234567', 'francis@test.com', 'I would like to see if there are available slots for a November wedding?', 1, '2022-09-18 13:19:26'),
+(24, 'Jeremiah Osabel', '09151234567', 'josabel@gmail.com', 'Sample text\r\n', 0, '2022-09-19 12:12:18'),
+(25, 'Jc Niere', '09151234567', 'niere@test.com', 'Sample text', 1, '2022-09-19 12:39:04'),
+(26, 'Patricia', '09151234567', 'patricia@gmail.com', 'I would like to ask for your services!', 0, '2022-09-19 17:50:21');
 
 -- --------------------------------------------------------
 
@@ -170,17 +177,45 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`staff_id`, `staff_img`, `staff_fn`, `staff_mn`, `staff_ln`, `staff_email`, `staff_contno`, `staff_add`, `staff_pos`, `staff_status`) VALUES
+(1, 'Ayana.jpg', 'Ayana', '', 'Flores', 'ayana@gmail.com', '09999914556', 'Cagayan de Oro City', 'Head Coordinator', 1),
+(2, 'ferle.jpg', 'Ferle', '', 'Busano', 'ferle@test.com', '09123456789', 'Cagayan de Oro City', 'Officer-In-Charge', 1),
+(3, 'Gillian.jpg', 'Gillian', '', 'Mugot', 'gillian@test.com', '09151234567', 'Cagayan de Oro', 'Officer-In-Charge', 1),
+(4, 'Heds.jpg', 'Hedda', '', 'Gulmatico', 'hedda@test.com', '09151234567', 'Cagayan de Oro', 'Officer-In-Charge', 1),
 (5, 'patricia.jpg', 'Patricia Anne', '', 'Ong San Soy', 'patricia@gmail.com', '09291449870', 'Igpit, Cagayan de Oro', 'On-The-Day Coordinator', 1),
-(9, 'ferle.jpg', 'Ferle', '', 'Busano', 'ferle@test.com', '09123456789', 'Cagayan de Oro City', 'Officer-In-Charge', 1),
-(10, 'Ayana.jpg', 'Ayana', '', 'Flores', 'ayana@gmail.com', '09999914556', 'Cagayan de Oro City', 'Head Coordinator', 1),
-(12, 'Gillian.jpg', 'Gillian', '', 'Mugot', 'gillian@test.com', '09151234567', 'Cagayan de Oro', 'Officer-In-Charge', 1),
-(13, 'Heds.jpg', 'Hedda', '', 'Gulmatico', 'hedda@test.com', '09151234567', 'Cagayan de Oro', 'Officer-In-Charge', 1),
 (14, 'Glenny.jpg', 'Glenny', '', 'Melendres', 'glenny@test.com', '09151234567', 'Cagayan de Oro', 'On-The-Day Coordinator', 1),
 (15, 'Shimmay.jpg', 'Shimmay', '', 'Balagtas', 'shimmay@test.com', '09151234567', 'Cagayan de Oro', 'On-The-Day Coordinator', 1),
 (16, 'Donna.jpg', 'Donna', '', 'Rodrigo', 'donna@test.com', '09151234567', 'Cagayan de Oro', 'On-The-Day Coordinator', 1),
 (17, 'Frenzcel.jpg', 'Frenzcel', '', 'Felias', 'frenzcel@test.com', '09151234567', 'Cagayan de Oro', 'On-The-Day Coordinator', 1),
 (18, 'Mehzi.jpg', 'Mehzi', '', 'Navarro', 'mehzi@test.com', '09151234567', 'Cagayan de Oro', 'On-The-Day Coordinator', 1),
 (19, 'Erika.jpg', 'Erika', '', 'Manego', 'erika@test.com', '09151234567', 'Cagayan de Oro', 'On-The-Day Coordinator', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_grp`
+--
+
+CREATE TABLE `staff_grp` (
+  `bk_id` int(11) NOT NULL,
+  `staff_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `staff_grp`
+--
+
+INSERT INTO `staff_grp` (`bk_id`, `staff_id`) VALUES
+(18, 1),
+(18, 2),
+(18, 5),
+(19, 5),
+(19, 14),
+(19, 15),
+(20, 16),
+(20, 17),
+(23, 1),
+(23, 2),
+(23, 14);
 
 -- --------------------------------------------------------
 
@@ -239,7 +274,14 @@ INSERT INTO `supplier_grp` (`supp_id`, `bk_id`) VALUES
 (16, 18),
 (2, 19),
 (16, 19),
-(17, 20);
+(17, 20),
+(16, 21),
+(17, 21),
+(2, 22),
+(16, 22),
+(17, 22),
+(2, 23),
+(16, 23);
 
 -- --------------------------------------------------------
 
@@ -344,7 +386,228 @@ INSERT INTO `user_log` (`ulog_id`, `ulog_act`, `ulog_datetime`) VALUES
 (346, 'Admin Log Out', '2022-09-18 15:49:07'),
 (347, 'Client, Francis Cabahug, Logged In', '2022-09-18 15:49:14'),
 (348, 'Client, Francis Cabahug, Log Out', '2022-09-18 15:50:27'),
-(349, 'Admin Log In', '2022-09-18 15:51:05');
+(349, 'Admin Log In', '2022-09-18 15:51:05'),
+(350, 'Client, Francis Cabahug, Logged In', '2022-09-18 16:46:29'),
+(351, 'Client, Francis Cabahug, Log Out', '2022-09-18 17:23:15'),
+(352, 'Admin Log In', '2022-09-18 17:23:20'),
+(353, 'Admin Log Out', '2022-09-18 17:26:17'),
+(354, 'Admin Log In', '2022-09-18 17:26:22'),
+(355, 'Admin Log In', '2022-09-19 12:01:33'),
+(356, 'Admin Log Out', '2022-09-19 12:03:15'),
+(357, 'Admin Log In', '2022-09-19 12:04:15'),
+(358, 'Admin Log Out', '2022-09-19 12:04:34'),
+(359, 'Client, Francis Cabahug, Logged In', '2022-09-19 12:05:41'),
+(360, 'Client, Francis Cabahug, Log Out', '2022-09-19 12:06:05'),
+(361, 'Admin Log In', '2022-09-19 12:06:27'),
+(362, 'Admin Log Out', '2022-09-19 12:07:44'),
+(363, 'Admin Log In', '2022-09-19 12:10:18'),
+(364, 'Admin Log Out', '2022-09-19 12:10:28'),
+(365, 'New inquiry from Jeremiah Osabel', '2022-09-19 12:12:18'),
+(366, 'Admin Log In', '2022-09-19 12:12:30'),
+(367, 'Admin Log Out', '2022-09-19 12:12:44'),
+(368, 'Admin Log In', '2022-09-19 12:13:33'),
+(369, 'Admin Log Out', '2022-09-19 12:13:57'),
+(370, 'Client, Francis Cabahug, Logged In', '2022-09-19 12:14:11'),
+(371, 'Client, Francis Cabahug, Log Out', '2022-09-19 12:14:21'),
+(372, 'Client, Francis Cabahug, Logged In', '2022-09-19 12:17:05'),
+(373, 'Client, Francis Cabahug, Log Out', '2022-09-19 12:17:17'),
+(374, 'Admin Log In', '2022-09-19 12:17:34'),
+(375, 'Admin Log In', '2022-09-19 12:37:30'),
+(376, 'Admin Log Out', '2022-09-19 12:37:59'),
+(377, 'Admin Log In', '2022-09-19 12:38:15'),
+(378, 'Admin Log Out', '2022-09-19 12:38:36'),
+(379, 'New inquiry from Jc Niere', '2022-09-19 12:39:04'),
+(380, 'Admin Log In', '2022-09-19 12:39:13'),
+(381, 'Admin Log In', '2022-09-19 16:41:35'),
+(382, 'Admin Log Out', '2022-09-19 16:41:50'),
+(383, 'Admin Log In', '2022-09-19 16:41:56'),
+(384, 'Admin Log Out', '2022-09-19 16:42:07'),
+(385, 'Admin Log In', '2022-09-19 16:42:21'),
+(386, 'Admin Log Out', '2022-09-19 16:42:24'),
+(387, 'Admin Log In', '2022-09-19 16:42:36'),
+(388, 'Admin Log Out', '2022-09-19 16:42:38'),
+(389, 'Admin Log In', '2022-09-19 16:42:45'),
+(390, 'Admin Log Out', '2022-09-19 16:42:56'),
+(391, 'Admin Log In', '2022-09-19 16:43:30'),
+(392, 'Admin Log Out', '2022-09-19 16:43:38'),
+(393, 'Client, Francis Cabahug, Logged In', '2022-09-19 16:43:52'),
+(394, 'Client, Francis Cabahug, Log Out', '2022-09-19 16:43:59'),
+(395, 'Admin Log In', '2022-09-19 16:49:17'),
+(396, 'Admin Log Out', '2022-09-19 16:50:44'),
+(397, 'Client, Francis Cabahug, Logged In', '2022-09-19 16:54:53'),
+(398, 'Client, Francis Cabahug, Log Out', '2022-09-19 16:58:07'),
+(399, 'Admin Log In', '2022-09-19 16:58:12'),
+(400, 'Admin Log Out', '2022-09-19 16:58:15'),
+(401, 'Admin Log In', '2022-09-19 16:58:26'),
+(402, 'Admin Log Out', '2022-09-19 17:01:59'),
+(403, 'Admin Log In', '2022-09-19 17:03:51'),
+(404, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:05:07'),
+(405, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:10:08'),
+(406, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:12:35'),
+(407, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:12:42'),
+(408, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:12:48'),
+(409, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:13:35'),
+(410, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:13:38'),
+(411, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:14:08'),
+(412, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:14:57'),
+(413, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:15:05'),
+(414, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:15:35'),
+(415, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:15:42'),
+(416, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:16:18'),
+(417, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:16:29'),
+(418, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:16:33'),
+(419, 'Admin Log In', '2022-09-19 17:20:40'),
+(420, 'Admin Log In', '2022-09-19 17:24:56'),
+(421, 'Admin Log In', '2022-09-19 17:25:08'),
+(422, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:25:26'),
+(423, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:25:31'),
+(424, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:27:47'),
+(425, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:30:57'),
+(426, 'Admin Log In', '2022-09-19 17:31:15'),
+(427, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:31:27'),
+(428, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:33:14'),
+(429, 'Admin Log In', '2022-09-19 17:33:18'),
+(430, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:33:30'),
+(431, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:33:33'),
+(432, 'Admin Log In', '2022-09-19 17:34:20'),
+(433, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:34:30'),
+(434, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:34:35'),
+(435, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:35:17'),
+(436, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:36:19'),
+(437, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:38:16'),
+(438, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:38:23'),
+(439, 'Admin Log In', '2022-09-19 17:41:56'),
+(440, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:42:16'),
+(441, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:42:20'),
+(442, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:42:27'),
+(443, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:42:32'),
+(444, 'Admin Log In', '2022-09-19 17:43:06'),
+(445, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:44:44'),
+(446, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:49:47'),
+(447, 'New inquiry from Patricia', '2022-09-19 17:50:21'),
+(448, 'Admin Log In', '2022-09-19 17:50:28'),
+(449, 'Registered Patricia Anne Ong San Soy as New Client', '2022-09-19 17:51:47'),
+(450, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-19 17:51:55'),
+(451, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-19 17:53:29'),
+(452, 'Admin Log In', '2022-09-19 17:53:39'),
+(453, 'Client, Francis Cabahug, Logged In', '2022-09-19 17:57:00'),
+(454, 'Client, Francis Cabahug, Log Out', '2022-09-19 17:57:05'),
+(455, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-19 17:58:43'),
+(456, 'Admin Log In', '2022-09-19 19:36:15'),
+(457, 'Admin Log In', '2022-09-19 19:37:48'),
+(458, 'Admin Log Out', '2022-09-19 19:37:54'),
+(459, 'Admin Log In', '2022-09-19 19:41:03'),
+(460, 'Client, Francis Cabahug, Logged In', '2022-09-19 19:52:27'),
+(461, 'Client, Francis Cabahug, Log Out', '2022-09-19 19:52:33'),
+(462, 'Admin Log In', '2022-09-19 19:52:55'),
+(463, 'Admin Log Out', '2022-09-19 19:53:29'),
+(464, 'Admin Log In', '2022-09-19 19:54:29'),
+(465, 'Admin Log Out', '2022-09-19 19:54:42'),
+(466, 'Client, Francis Cabahug, Logged In', '2022-09-19 19:57:36'),
+(467, 'Client, Francis Cabahug, Log Out', '2022-09-19 19:57:43'),
+(468, 'Admin Log In', '2022-09-19 19:59:38'),
+(469, 'Admin Log Out', '2022-09-19 19:59:43'),
+(470, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:00:07'),
+(471, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:00:31'),
+(472, 'Admin Log In', '2022-09-19 20:05:39'),
+(473, 'Admin Log Out', '2022-09-19 20:05:42'),
+(474, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:05:48'),
+(475, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:07:15'),
+(476, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:07:32'),
+(477, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:10:48'),
+(478, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:10:59'),
+(479, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:14:32'),
+(480, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:14:38'),
+(481, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:15:25'),
+(482, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:16:06'),
+(483, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:26:01'),
+(484, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:26:44'),
+(485, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:26:49'),
+(486, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:28:35'),
+(487, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:29:39'),
+(488, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:30:16'),
+(489, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:30:20'),
+(490, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:30:32'),
+(491, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:30:36'),
+(492, 'Admin Log In', '2022-09-19 20:30:54'),
+(493, 'Admin Log Out', '2022-09-19 20:30:58'),
+(494, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:31:11'),
+(495, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:32:02'),
+(496, 'Admin Log In', '2022-09-19 20:32:26'),
+(497, 'Admin Log Out', '2022-09-19 20:32:30'),
+(498, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:33:40'),
+(499, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:33:45'),
+(500, 'Admin Log In', '2022-09-19 20:35:02'),
+(501, 'Admin Log Out', '2022-09-19 20:35:06'),
+(502, 'Admin Log In', '2022-09-19 20:35:14'),
+(503, 'Admin Log Out', '2022-09-19 20:35:17'),
+(504, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:35:47'),
+(505, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:35:50'),
+(506, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:36:25'),
+(507, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:38:13'),
+(508, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:38:46'),
+(509, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:38:51'),
+(510, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:40:47'),
+(511, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:41:00'),
+(512, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:43:06'),
+(513, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:43:11'),
+(514, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:44:08'),
+(515, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:44:15'),
+(516, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:44:34'),
+(517, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:47:51'),
+(518, 'Admin Log In', '2022-09-19 20:48:04'),
+(519, 'Admin Log Out', '2022-09-19 20:48:13'),
+(520, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:49:26'),
+(521, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:49:43'),
+(522, 'Admin Log In', '2022-09-19 20:49:52'),
+(523, 'Admin Log Out', '2022-09-19 20:50:25'),
+(524, 'Client, Francis Cabahug, Logged In', '2022-09-19 20:51:17'),
+(525, 'Client, Francis Cabahug, Log Out', '2022-09-19 20:53:05'),
+(526, 'Admin Log In', '2022-09-19 20:53:20'),
+(527, 'Admin Log Out', '2022-09-19 20:53:27'),
+(528, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 09:18:35'),
+(529, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 10:02:07'),
+(530, 'Admin Log In', '2022-09-20 10:02:12'),
+(531, 'Admin Log Out', '2022-09-20 10:02:31'),
+(532, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 10:02:37'),
+(533, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 10:17:55'),
+(534, 'Admin Log In', '2022-09-20 10:18:00'),
+(535, 'Admin Log Out', '2022-09-20 10:24:51'),
+(536, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 10:24:58'),
+(537, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 10:25:17'),
+(538, 'Admin Log In', '2022-09-20 10:25:22'),
+(539, 'Admin Log Out', '2022-09-20 10:29:45'),
+(540, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 10:29:52'),
+(541, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 10:30:11'),
+(542, 'Admin Log In', '2022-09-20 10:30:21'),
+(543, 'Admin Log Out', '2022-09-20 10:30:45'),
+(544, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 10:30:58'),
+(545, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 10:35:18'),
+(546, 'Registered Marie Isabelle Trimidal as New Client', '2022-09-20 10:36:07'),
+(547, 'Client, Marie Isabelle Trimidal, Logged In', '2022-09-20 10:36:15'),
+(548, 'Client, Marie Isabelle Trimidal, Log Out', '2022-09-20 10:37:43'),
+(549, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 10:37:49'),
+(550, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 10:54:32'),
+(551, 'Admin Log In', '2022-09-20 10:54:37'),
+(552, 'Admin Log Out', '2022-09-20 10:54:58'),
+(553, 'Admin Log In', '2022-09-20 10:55:04'),
+(554, 'Admin Log Out', '2022-09-20 11:00:31'),
+(555, 'Admin Log In', '2022-09-20 11:03:58'),
+(556, 'Admin Log Out', '2022-09-20 11:04:12'),
+(557, 'Client, Marie Isabelle Trimidal, Logged In', '2022-09-20 16:41:05'),
+(558, 'Client, Marie Isabelle Trimidal, Log Out', '2022-09-20 16:51:23'),
+(559, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 16:51:30'),
+(560, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 16:56:45'),
+(561, 'Client, Marie Isabelle Trimidal, Logged In', '2022-09-20 16:56:51'),
+(562, 'Client, Marie Isabelle Trimidal, Log Out', '2022-09-20 17:15:34'),
+(563, 'Client, Francis Cabahug, Logged In', '2022-09-20 17:15:40'),
+(564, 'Client, Marie Isabelle Trimidal, Logged In', '2022-09-20 17:17:31'),
+(565, 'Client, Marie Isabelle Trimidal, Log Out', '2022-09-20 17:18:01'),
+(566, 'Client, Patricia Anne Ong San Soy, Logged In', '2022-09-20 17:22:38'),
+(567, 'Client, Patricia Anne Ong San Soy, Log Out', '2022-09-20 17:24:28'),
+(568, 'Admin Log In', '2022-09-20 17:24:34'),
+(569, 'Admin Log In', '2022-09-20 17:29:51'),
+(570, 'Admin Log In', '2022-09-20 17:55:12');
 
 -- --------------------------------------------------------
 
@@ -442,19 +705,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `bk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `clnt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `clnt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `inquiry`
 --
 ALTER TABLE `inquiry`
-  MODIFY `inq_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `inq_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `package`
@@ -478,7 +741,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `ulog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=350;
+  MODIFY `ulog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=571;
 
 --
 -- AUTO_INCREMENT for table `venue`
