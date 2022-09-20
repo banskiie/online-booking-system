@@ -75,7 +75,7 @@ table {
   border-collapse: collapse;
   font-size: 1rem;
   width: 80vw;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 0 10px rgb(215, 215, 215);
 }
 

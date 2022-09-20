@@ -15,95 +15,129 @@ require 'db/database.php';
     include 'includes/header.php';
     ?>
 
-    <section id="booking-section">
-        <div id="upper-view">
-            <a href="my_bookings_new.php"><button id="new-bk-btn">New Booking</button>
-                <div id="tables">
-            </a>
-            <div id="clnt-bookings">
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                    <?php
-                    $id = $_SESSION['id'];
-                    if (isset($_GET['pageno'])) {
-                        $pageno = $_GET['pageno'];
-                    } else {
-                        $pageno = 1;
-                    }
-                    $no_of_records_per_page = 3;
-                    $offset = ($pageno - 1) * $no_of_records_per_page;
-
-                    $total_pages_sql = "SELECT COUNT(*) FROM booking WHERE clnt_id=$id";
-                    $result = mysqli_query($conn, $total_pages_sql);
-                    $total_rows = mysqli_fetch_array($result)[0];
-                    $total_pages = ceil($total_rows / $no_of_records_per_page);
-
-                    $sql = "SELECT * FROM booking WHERE clnt_id=$id LIMIT $offset, $no_of_records_per_page";
-                    $res_data = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_array($res_data)) { ?>
-                        <tr>
-                            <td><?php echo $row['bk_name']; ?></td>
-                            <td><?php echo $row['bk_date']; ?></td>
-                            <td><?php if ($row['bk_status'] == 0) {
-                                    echo "Pending";
-                                } else if ($row['bk_status'] == 1) {
-                                    echo "Scheduled";
-                                } else if ($row['bk_status'] == 2) {
-                                    echo "Finished";
-                                } else if ($row['bk_status'] == 3) {
-                                    echo "Cancelled";
-                                } ?>
-                            <td>
-                                <form action="my_bookings_view.php?bkid=<?php echo $row['bk_id']; ?>" method="post" enctype="multipart/form-data">
-                                    <button name="view" id="view-btn">View</button>
-                                </form>
-                                <form action="util/client_actions.php?bkid=<?php echo $row['bk_id']; ?>" method="post" enctype="multipart/form-data">
-                                    <button name="cancel" id="cancel-btn">Cancel</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php };
-                    ?>
-                </table>
-            </div>
-        </div>
-
-        <div class="pagination">
-            <ul>
-                <li><a href="?pageno=1">First</a></li>
-                <li class="<?php if ($pageno <= 1) {
-                                echo 'disabled';
-                            } ?>">
-                    <a href="<?php if ($pageno <= 1) {
-                                    echo '#';
-                                } else {
-                                    echo "?pageno=" . ($pageno - 1);
-                                } ?>">Prev</a>
-                </li>
-                <li class="<?php if ($pageno >= $total_pages) {
-                                echo 'disabled';
-                            } ?>">
-                    <a href="<?php if ($pageno >= $total_pages) {
-                                    echo '#';
-                                } else {
-                                    echo "?pageno=" . ($pageno + 1);
-                                } ?>">Next</a>
-                </li>
-                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-            </ul>
-        </div>
-
-
-    </section>
-
     <?php
-    include 'includes/footer.php';
+    $id = $_SESSION['id'];
+    $sql = "SELECT * FROM booking WHERE clnt_id = $id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
     ?>
+            <section id="booking-section">
+                <div id="view-booking">
+                    <?php
+                    $sql = "SELECT * FROM booking
+                        INNER JOIN venue ON booking.venue_id = venue.venue_id
+                        INNER JOIN package ON booking.pkg_id = package.pkg_id
+                        WHERE clnt_id = $id";
+                    $bk_id = $row['bk_id'];
+                    $result = $conn->query($sql);
+                    if ($row = $result->fetch_assoc()) { ?>
+                        <h1><?php echo $row['bk_name']; ?></h1>
+                        <p>Package: <strong><?php echo $row['pkg_name']; ?></strong></p>
+                        <p>Number of Guests: <strong><?php echo $row['bk_guest']; ?></strong></h1>
+
+                        <p>Suppliers: <?php $sql2 = "SELECT * FROM supplier_grp INNER JOIN supplier ON supplier.supp_id = supplier_grp.supp_id WHERE supplier_grp.bk_id = $bk_id";
+                                        $result2 = $conn->query($sql2);
+                                        if ($result2->num_rows > 0) {
+                                            while ($row2 = $result2->fetch_assoc()) { ?>
+                                    <br><span> <?php echo $row2['supp_name']; ?> </span>
+                                <?php }
+                                        } else { ?> <span> Suppliers no longer exists </span> <?php } ?>
+                        </p>
+
+                        <p>Venue: <strong><?php echo $row['venue_name']; ?></strong></p>
+                        <p>Date: <strong><?php echo $row['bk_date']; ?></strong></p>
+                        <p style="color:red"> Status: <?php if ($row['bk_status'] == 0) { ?>
+                                <span class="status pending">Pending</span>
+                            <?php } else if ($row['bk_status'] == 1) { ?>
+                                <span class="status scheduled">Scheduled</span>
+                            <?php } else if ($row['bk_status'] == 2) { ?>
+                                <span class="status finished">Finished</span>
+                            <?php } else if ($row['bk_status'] == 3) { ?>
+                                <span class="status cancelled">Cancelled</span>
+                            <?php } ?>
+                        </p>
+                        <p>Remark: <br><br>
+                            <i><?php echo $row['bk_remark']; ?></i>
+                        </p>
+                </div>
+            </section>
+    <?php }
+                }
+            } else { ?>
+    <section id="add-booking-section">
+        <form id="new-booking" action="util/client_actions.php" method="post" enctype="multipart/form-data">
+            <h1>Add New Booking</h1>
+            <div class="form-comp">
+                <label class="label">Name</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-comp">
+                <label class="label">Number of Guests</label>
+                <input type="int" name="guest" required>
+            </div>
+            <div class="form-comp">
+                <label class="label">Date</label>
+                <input type="date" name="date" required>
+            </div>
+            <div class="form-comp option">
+                <label class="label">Package</label>
+                <select name="package" required>
+                    <?php
+                    $sql = "SELECT * FROM package WHERE pkg_status=1";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) { ?>
+                            <option value="<?php echo $row['pkg_id']; ?>"><?php echo $row['pkg_name']; ?></option>
+                    <?php }
+                    } ?>
+                </select>
+            </div>
+
+            <div class="form-comp option">
+                <label class="label">Venue</label>
+                <select name="venue" required>
+                    <?php
+                    $sql = "SELECT * FROM venue WHERE venue_status=1";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) { ?>
+                            <option value="<?php echo $row['venue_id']; ?>"><?php echo $row['venue_name']; ?></option>
+                    <?php }
+                    } ?>
+                </select>
+            </div>
+
+            <div>
+                <label class="label">Suppliers</label>
+                <div id="supp-checklist">
+                    <?php
+                    $sql = "SELECT * FROM supplier WHERE supp_status=1";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) { ?>
+                            <div>
+                                <input type="checkbox" name="supp[ ]" value="<?php echo $row['supp_id']; ?>"><?php echo $row['supp_name']; ?><br />
+                            </div>
+                    <?php }
+                    } ?>
+                </div>
+            </div>
+
+            <div class="form-comp">
+                <label class="label">Remark</label>
+                <textarea name="remark"></textarea>
+            </div>
+
+            <button name="add">Add</button>
+            <a href="my_bookings.php">Cancel</a>
+        </form>
+    </section>
+<?php } ?>
+
+<?php
+include 'includes/footer.php';
+?>
 
 </body>
 

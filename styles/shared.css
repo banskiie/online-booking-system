@@ -91,6 +91,7 @@ footer span {
   width: 2rem;
   height: 2rem;
   vertical-align: middle;
+  object-fit: cover;
 }
 
 #logoutform{

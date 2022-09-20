@@ -63,15 +63,16 @@ require '../db/database.php';
                             <tr>
                                 <td><?php echo $row['bk_name']; ?></td>
                                 <td><?php echo $row['bk_date']; ?></td>
-                                <td><?php if ($row['bk_status'] == 0) {
-                                        echo "Pending";
-                                    } else if ($row['bk_status'] == 1) {
-                                        echo "Scheduled";
-                                    } else if ($row['bk_status'] == 2) {
-                                        echo "Finished";
-                                    } else if ($row['bk_status'] == 3) {
-                                        echo "Cancelled";
-                                    } ?></td>
+                                <td><?php if ($row['bk_status'] == 0) { ?>
+                                        <span class="status pending">Pending</span>
+                                    <?php } else if ($row['bk_status'] == 1) { ?>
+                                        <span class="status scheduled">Scheduled</span>
+                                    <?php } else if ($row['bk_status'] == 2) { ?>
+                                        <span class="status finished">Finished</span>
+                                    <?php } else if ($row['bk_status'] == 3) { ?>
+                                        <span class="status cancelled">Cancelled</span>
+                                    <?php } ?>
+                                </td>
                                 <td class="btn">
                                     <form action="admin-bookings-view.php?bk_id=<?php echo $row['bk_id']; ?>" method="post">
                                         <button name="view" id="view">
@@ -111,15 +112,16 @@ require '../db/database.php';
                             <tr>
                                 <td><?php echo $row['bk_name']; ?></td>
                                 <td><?php echo $row['bk_date']; ?></td>
-                                <td><?php if ($row['bk_status'] == 0) {
-                                        echo "Pending";
-                                    } else if ($row['bk_status'] == 1) {
-                                        echo "Scheduled";
-                                    } else if ($row['bk_status'] == 2) {
-                                        echo "Finished";
-                                    } else if ($row['bk_status'] == 3) {
-                                        echo "Cancelled";
-                                    } ?></td>
+                                <td><?php if ($row['bk_status'] == 0) { ?>
+                                        <span class="status pending">Pending</span>
+                                    <?php } else if ($row['bk_status'] == 1) { ?>
+                                        <span class="status scheduled">Scheduled</span>
+                                    <?php } else if ($row['bk_status'] == 2) { ?>
+                                        <span class="status finished">Finished</span>
+                                    <?php } else if ($row['bk_status'] == 3) { ?>
+                                        <span class="status cancelled">Cancelled</span>
+                                    <?php } ?>
+                                </td>
                                 <td class="btn">
                                     <form action="admin-bookings-view.php?bk_id=<?php echo $row['bk_id']; ?>" method="post">
                                         <button name="view" id="view">
@@ -152,15 +154,16 @@ require '../db/database.php';
                         <tr>
                             <td><?php echo $row['bk_name']; ?></td>
                             <td><?php echo $row['bk_date']; ?></td>
-                            <td><?php if ($row['bk_status'] == 0) {
-                                    echo "Pending";
-                                } else if ($row['bk_status'] == 1) {
-                                    echo "Scheduled";
-                                } else if ($row['bk_status'] == 2) {
-                                    echo "Finished";
-                                } else if ($row['bk_status'] == 3) {
-                                    echo "Cancelled";
-                                } ?></td>
+                            <td><?php if ($row['bk_status'] == 0) { ?>
+                                    <span class="status pending">Pending</span>
+                                <?php } else if ($row['bk_status'] == 1) { ?>
+                                    <span class="status scheduled">Scheduled</span>
+                                <?php } else if ($row['bk_status'] == 2) { ?>
+                                    <span class="status finished">Finished</span>
+                                <?php } else if ($row['bk_status'] == 3) { ?>
+                                    <span class="status cancelled">Cancelled</span>
+                                <?php } ?>
+                            </td>
                             <td class="btn">
                                 <form action="admin-bookings-view.php?bk_id=<?php echo $row['bk_id']; ?>" method="post">
                                     <button name="view" id="view">

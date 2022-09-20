@@ -96,8 +96,8 @@ select {
 
 #small-icon img {
   object-fit: cover;
-  width: 3rem;
-  height: 3rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
 }
 
@@ -132,4 +132,33 @@ input {
 }
 svg {
   vertical-align: middle;
+}
+
+/* status text */
+
+.status {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 0.25rem 1rem;
+  border-radius: 8px;
+  color: white;
+  vertical-align: middle;
+  width: 6rem;
+  text-align: center;
+}
+
+.pending {
+  background-color: blue;
+}
+
+.scheduled {
+  background-color: darkorange;
+}
+
+.finished {
+  background-color: green;
+}
+
+.cancelled {
+  background-color: maroon;
 }

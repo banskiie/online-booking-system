@@ -28,80 +28,6 @@ body {
   height: 27.5rem;
 }
 
-table {
-  border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 1.25rem;
-  width: 65vw;
-  box-shadow: 0 0 15px;
-  text-align: center;
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-th {
-  background-color: rgb(95, 38, 31);
-  color: white;
-}
-
-tr,
-td,
-th {
-  padding: 0.5rem;
-}
-
-tr:nth-child(odd) {
-  background-color: rgb(209, 209, 209);
-}
-button {
-  width: 10rem;
-}
-#new-bk-btn {
-  padding: 0.5rem 1.5rem;
-  margin: 1rem 0;
-  font-size: 1rem;
-  background-color: rgb(95, 38, 31);
-  color: whitesmoke;
-  border: transparent;
-  border-radius: 8px;
-  transition: 0.2s linear;
-  font-family: "Fira Sans", sans-serif;
-}
-
-#new-bk-btn:hover {
-  background-color: rgb(177, 73, 59);
-}
-
-#cancel-btn {
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  background-color: rgb(141, 16, 0);
-  color: whitesmoke;
-  border: transparent;
-  border-radius: 8px;
-  transition: 0.2s linear;
-  font-family: "Fira Sans", sans-serif;
-}
-
-#cancel-btn:hover {
-  background-color: rgb(255, 30, 0);
-}
-
-#view-btn {
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  background-color: rgb(0, 141, 12);
-  color: whitesmoke;
-  border: transparent;
-  border-radius: 8px;
-  transition: 0.2s linear;
-  font-family: "Fira Sans", sans-serif;
-}
-
-#view-btn:hover {
-  background-color: rgb(0, 212, 18);
-}
-
 #view-booking {
   display: flex;
   flex-direction: column;
@@ -115,23 +41,6 @@ button {
 
 #view-booking p {
   font-size: 1rem;
-}
-
-#back-btn {
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  background-color: rgb(141, 16, 0);
-  color: whitesmoke;
-  border: transparent;
-  border-radius: 8px;
-  transition: 0.2s linear;
-  font-family: "Fira Sans", sans-serif;
-  text-align: center;
-  
-}
-
-#back-btn:hover {
-  background-color: rgb(255, 30, 0);
 }
 
 h1 {
@@ -236,4 +145,41 @@ textarea {
 
 .pagination a:nth-child(1) {
   background-color: rgb(88, 61, 42);
+}
+
+/* status text */
+
+.status {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 0.25rem 1rem;
+  border-radius: 8px;
+  color: white;
+  vertical-align: middle;
+  width: 6rem;
+  text-align: center;
+}
+
+.pending {
+  background-color: blue;
+}
+
+.scheduled {
+  background-color: darkorange;
+}
+
+.finished {
+  background-color: green;
+}
+
+.cancelled {
+  background-color: maroon;
+}
+
+/* svg */
+
+svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
 }
