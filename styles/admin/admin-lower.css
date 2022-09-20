@@ -154,5 +154,10 @@ input {
 #top-form {
   display: flex;
   align-items: center;
-  justify-content: star;
+  justify-content: space-between;
+}
+
+#top-form div {
+  display: flex;
+  align-items: center;
 }
