@@ -13,5 +13,19 @@ if (isset($_POST['update'])) {
     );
 
     mysqli_query($conn, $sql);
-    header("location: ../admin/admin-bookings.php?status_update");
+    header("location: ../admin/admin-bookings.php");
+} else if (isset($_POST['update-staff'])) {
+
+    $stafflist = $_POST['staff'];
+    $id = $_GET['bk_id'];
+
+    $sql = "DELETE FROM staff_grp WHERE bk_id=$id";
+    mysqli_query($conn, $sql);
+
+    foreach ($stafflist as $value) {
+        $sql = "INSERT INTO staff_grp (staff_id,bk_id) VALUES ($value,$id)";
+        mysqli_query($conn, $sql);
+    }
+
+    header("location: ../admin/admin-bookings-view.php?bk_id=" . $_GET['bk_id']);
 }

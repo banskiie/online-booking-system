@@ -35,8 +35,7 @@ require 'db/database.php';
                         <h1><?php echo $row['bk_name']; ?></h1>
                         <p>Package: <strong><?php echo $row['pkg_name']; ?></strong></p>
                         <p>Number of Guests: <strong><?php echo $row['bk_guest']; ?></strong></h1>
-
-                        <p>Suppliers: <?php $sql2 = "SELECT * FROM supplier_grp INNER JOIN supplier ON supplier.supp_id = supplier_grp.supp_id WHERE supplier_grp.bk_id = $bk_id";
+                        <p>Suppliers: <?php $sql2 = "SELECT * FROM supplier_grp INNER JOIN supplier ON supplier.supp_id = supplier_grp.supp_id WHERE supplier_grp.bk_id = $bk_id AND supp_status=1";
                                         $result2 = $conn->query($sql2);
                                         if ($result2->num_rows > 0) {
                                             while ($row2 = $result2->fetch_assoc()) { ?>
