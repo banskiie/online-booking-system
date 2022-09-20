@@ -26,7 +26,7 @@ require '../db/database.php';
                 } else {
                     $pageno = 1;
                 }
-                $no_of_records_per_page = 13;
+                $no_of_records_per_page = 12;
                 $offset = ($pageno - 1) * $no_of_records_per_page;
 
                 $total_pages_sql = "SELECT COUNT(*) FROM user_log ORDER BY ulog_datetime DESC";
