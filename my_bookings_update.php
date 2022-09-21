@@ -92,7 +92,7 @@ require 'db/database.php';
                     <?php }
                     } ?>
                 </div>
-                <button name="update-bk">Update</button>
+                <button name="update-bk">Edit</button>
                 <a href="my_bookings.php">Cancel</a>
             </form>
         </section>
