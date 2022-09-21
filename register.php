@@ -26,37 +26,37 @@ include 'includes/head.php';
                     </div>
                     <div class="form-item">
                         <label>First Name</label>
-                        <input name="first_name" type="text" required>
+                        <input name="first_name" type="text" maxlength="50" required>
                     </div>
                     <div class="form-item">
                         <label>Middle Name</label>
-                        <input name="middle_name" type="text">
+                        <input name="middle_name" type="text" maxlength="50">
                     </div>
                     <div class="form-item">
                         <label>Last Name</label>
-                        <input name="last_name" type="text" required>
+                        <input name="last_name" type="text" maxlength="50" required>
                     </div>
                     <div class="form-item">
                         <label>Contact Number</label>
-                        <input name="contno" type="text" required>
+                        <input name="contno" type="text" maxlength="11" required>
                     </div>
                 </div>
                 <div class="register-column">
                     <div class="form-item">
                         <label>Address</label>
-                        <input name="address" type="text" required>
+                        <input name="address" type="text" maxlength="100" required>
                     </div>
                     <div class="form-item">
                         <label>Email</label>
-                        <input name="email" type="email" required>
+                        <input name="email" type="email" maxlength="100" required>
                     </div>
                     <div class="form-item">
                         <label>Password</label>
-                        <input name="password" type="password" required>
+                        <input name="password" type="password" maxlength="50" required>
                     </div>
                     <div class="form-item">
                         <label>Confirm Password</label>
-                        <input name="confirm_password" type="password" required>
+                        <input name="confirm_password" type="password" maxlength="50" required>
                     </div>
                 </div>
             </div>

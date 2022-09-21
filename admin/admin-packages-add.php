@@ -16,7 +16,7 @@ include '../util/admin_conn.php';
         <form id="add-form" action="../util/admin_package.php" method="post" enctype="multipart/form-data">
             <div class="form-item">
                 <label>Name</label>
-                <input type="text" name="name" required>
+                <input type="text" name="name" maxlength="100" required>
             </div>
             <div class="form-item">
                 <label>Price</label>
@@ -24,7 +24,7 @@ include '../util/admin_conn.php';
             </div>
             <div class="form-item">
                 <label>Description</label>
-                <textarea name="desc" required></textarea>
+                <textarea name="desc" maxlength="255" required></textarea>
             </div>
             <div class="form-item">
                 <label>Package Image</label>

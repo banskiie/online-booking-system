@@ -24,7 +24,7 @@ require '../db/database.php';
                 <form id="add-form" action="../util/admin_package.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post" enctype="multipart/form-data">
                     <div class="form-item">
                         <label>Name</label>
-                        <input type="text" name="name" value="<?php echo $row['pkg_name']; ?>" required>
+                        <input type="text" name="name" value="<?php echo $row['pkg_name']; ?>" maxlength="100" required>
                     </div>
                     <div class="form-item">
                         <label>Price</label>
@@ -32,7 +32,7 @@ require '../db/database.php';
                     </div>
                     <div class="form-item">
                         <label>Description</label>
-                        <textarea name="desc"><?php echo $row['pkg_desc']; ?></textarea>
+                        <textarea name="desc" maxlength="255"><?php echo $row['pkg_desc']; ?></textarea>
                     </div>
                     <div class="form-item">
                         <label>Package Image</label>

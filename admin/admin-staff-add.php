@@ -20,31 +20,31 @@ include '../util/admin_conn.php';
             </div>
             <div class="form-item">
                 <label>First Name</label>
-                <input type="text" name="fn" required>
+                <input type="text" name="fn" maxlength="50" required>
             </div>
             <div class="form-item">
                 <label>Middle Name</label>
-                <input type="text" name="mn">
+                <input type="text" name="mn" maxlength="50">
             </div>
             <div class="form-item">
                 <label>Last Name</label>
-                <input type="text" name="ln" required>
+                <input type="text" name="ln" maxlength="50" required>
             </div>
             <div class="form-item">
                 <label>Email</label>
-                <input type="email" name="email" required>
+                <input type="email" name="email" maxlength="100" required>
             </div>
             <div class="form-item">
                 <label>Contact Number</label>
-                <input type="text" name="contno" required>
+                <input type="text" name="contno" maxlength="11" required>
             </div>
             <div class="form-item">
                 <label>Address</label>
-                <input type="text" name="address" required>
+                <input type="text" name="address" maxlength="100" required>
             </div>
             <div class="form-item">
                 <label>Position</label>
-                <input type="text" name="position" required>
+                <input type="text" name="position" maxlength="50" required>
             </div>
             <div class="form-btn-grp">
                 <button id="add-new" name="add">Add</button>

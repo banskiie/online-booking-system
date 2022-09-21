@@ -16,11 +16,11 @@ include '../util/admin_conn.php';
         <form id="add-form" action="../util/admin_venue.php" method="post" enctype="multipart/form-data">
             <div class="form-item">
                 <label>Venue Name</label>
-                <input type="text" name="name" required>
+                <input type="text" name="name" maxlength="100" required>
             </div>
             <div class="form-item">
                 <label>Venue Address</label>
-                <input type="text" name="address" required>
+                <input type="text" name="address" maxlength="100" required>
             </div>
             <div class="form-item">
                 <label>Venue Image</label>

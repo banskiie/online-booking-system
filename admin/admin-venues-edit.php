@@ -22,11 +22,11 @@ require '../db/database.php';
                 <form id="add-form" action="../util/admin_venue.php?venue_id=<?php echo $row['venue_id']; ?>" method="post" enctype="multipart/form-data">
                     <div class="form-item">
                         <label>Name</label>
-                        <input type="text" name="name" value="<?php echo $row['venue_name']; ?>" required>
+                        <input type="text" name="name" value="<?php echo $row['venue_name']; ?>" maxlength="100" required>
                     </div>
                     <div class="form-item">
                         <label>Address</label>
-                        <input type="text" name="address" value="<?php echo $row['venue_add']; ?>" required>
+                        <input type="text" name="address" value="<?php echo $row['venue_add']; ?>" maxlength="100" required>
                     </div>
                     <div class="form-item">
                         <label>Venue Image</label>

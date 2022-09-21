@@ -18,13 +18,13 @@ include 'includes/head.php';
         <h1>Get in touch</h1>
         <form action="util/anon_actions.php" method="POST" enctype="multipart/form-data">
             <label>Name</label>
-            <input name="name" type="text" required>
+            <input name="name" type="text" maxlength="50" required>
             <label>Contact Number</label>
-            <input name="contno" type="text" required>
+            <input name="contno" type="text" maxlength="11" required>
             <label>Email</label>
-            <input name="email" type="email" required>
+            <input name="email" type="email" maxlength="100" required>
             <label>Remark</label>
-            <textarea name="remark" required></textarea>
+            <textarea name="remark" maxlength="255" required></textarea>
             <button type="submit" name="send">Send</button>
             <?php if (isset($_GET['inquiry-sent'])) { ?>
                 <p>Inquiry Sent!</p>

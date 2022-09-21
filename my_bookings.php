@@ -16,7 +16,6 @@ require 'db/database.php';
     ?>
 
     <?php
-    $id = $_SESSION['id'];
     $sql = "SELECT * FROM booking WHERE clnt_id = $id";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -56,9 +55,19 @@ require 'db/database.php';
                                 <span class="status cancelled">Cancelled</span>
                             <?php } ?>
                         </p>
-                        <p>Remark: <br><br>
+                        <p id="remark">Remark: <br><br>
                             <i><?php echo $row['bk_remark']; ?></i>
                         </p>
+                        <?php if ($row['bk_status'] == 0) { ?>
+                            <form action="my_bookings_update.php" method="post">
+                                <button id="update" name="update">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                    </svg>
+                                    <span>Update</span>
+                                </button>
+                            </form>
+                        <?php } ?>
                 </div>
             </section>
     <?php }
@@ -73,7 +82,7 @@ require 'db/database.php';
             </div>
             <div class="form-comp">
                 <label class="label">Number of Guests</label>
-                <input type="int" name="guest" required>
+                <input type="int" name="guest" maxlength="5" required>
             </div>
             <div class="form-comp">
                 <label class="label">Date</label>
@@ -82,6 +91,7 @@ require 'db/database.php';
             <div class="form-comp option">
                 <label class="label">Package</label>
                 <select name="package" required>
+                    <option value="" disabled selected>-- Select Package --</option>
                     <?php
                     $sql = "SELECT * FROM package WHERE pkg_status=1";
                     $result = $conn->query($sql);
@@ -96,6 +106,7 @@ require 'db/database.php';
             <div class="form-comp option">
                 <label class="label">Venue</label>
                 <select name="venue" required>
+                    <option value="" disabled selected>-- Select Venue --</option>
                     <?php
                     $sql = "SELECT * FROM venue WHERE venue_status=1";
                     $result = $conn->query($sql);
@@ -106,7 +117,6 @@ require 'db/database.php';
                     } ?>
                 </select>
             </div>
-
             <div>
                 <label class="label">Suppliers</label>
                 <div id="supp-checklist">
@@ -122,17 +132,16 @@ require 'db/database.php';
                     } ?>
                 </div>
             </div>
-
             <div class="form-comp">
                 <label class="label">Remark</label>
-                <textarea name="remark"></textarea>
+                <textarea name="remark" maxlength="255"></textarea>
             </div>
-
             <button name="add">Add</button>
-            <a href="my_bookings.php">Cancel</a>
         </form>
     </section>
 <?php } ?>
+
+
 
 <?php
 include 'includes/footer.php';

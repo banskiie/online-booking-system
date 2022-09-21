@@ -36,11 +36,11 @@ body {
 }
 
 #view-booking h1 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
 }
 
 #view-booking p {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 h1 {
@@ -182,4 +182,29 @@ svg {
   width: 1.5rem;
   height: 1.5rem;
   vertical-align: middle;
+}
+
+/* others */
+
+button span {
+  vertical-align: middle;
+}
+
+#update {
+  background-color: green;
+  color: whitesmoke;
+  border: transparent;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: 0.2s linear;
+}
+
+#update:hover {
+  background-color: lawngreen;
+  color: black;
+  cursor: pointer;
+}
+
+#remark {
+  height: 8rem;
 }

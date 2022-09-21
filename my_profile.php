@@ -3,6 +3,7 @@ include 'util/client_conn.php';
 include 'includes/head.php';
 require 'db/database.php';
 ?>
+
 <head>
     <link rel="stylesheet" href="styles/my_profile.css">
     <script src="scripts/my_profile.js" defer></script>
@@ -51,15 +52,15 @@ require 'db/database.php';
                 <label>Profile Picture</label>
                 <input type="file" name="uploadfile" required>
                 <label>First Name</label>
-                <input name="first_name" type="text" value="<?php echo $_SESSION['first_name']; ?>" required>
+                <input name="first_name" type="text" value="<?php echo $_SESSION['first_name']; ?>" maxlength="50" required>
                 <label>Middle Name</label>
-                <input name="middle_name" type="text" value="<?php echo $_SESSION['middle_name']; ?>">
+                <input name="middle_name" type="text" value="<?php echo $_SESSION['middle_name']; ?>" maxlength="50">
                 <label>Last Name</label>
-                <input name="last_name" type="text" value="<?php echo $_SESSION['last_name']; ?>" required>
+                <input name="last_name" type="text" value="<?php echo $_SESSION['last_name']; ?>" maxlength="50" required>
                 <label>Address</label>
-                <input name="address" type="text" value="<?php echo $_SESSION['address']; ?>" required>
+                <input name="address" type="text" value="<?php echo $_SESSION['address']; ?>" maxlength="100" required>
                 <label>Contact Number</label>
-                <input name="contno" type="text" value="<?php echo $_SESSION['contno']; ?>" required>
+                <input name="contno" type="text" value="<?php echo $_SESSION['contno']; ?>" maxlength="11" required>
                 <div>
                     <button class="btn1" name="update">Update</button>
                     <button id="cancel-update-btn" class="btn2" type="button">Cancel</button>

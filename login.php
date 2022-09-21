@@ -19,11 +19,11 @@ include 'includes/head.php';
             <h1>Login</h1>
             <div>
                 <label>Email</label>
-                <input name="email" type="text" required>
+                <input name="email" type="text" maxlength="100" required>
             </div>
             <div>
                 <label>Password</label>
-                <input name="password" type="password" required>
+                <input name="password" type="password" maxlength="50" required>
             </div>
             <button type="submit" name="login">Login</button>
             <a href="register.php">New User? Register here!</a>
