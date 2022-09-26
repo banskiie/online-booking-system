@@ -13,7 +13,7 @@ require '../db/database.php';
     include '../includes/admin-header.php';
     ?>
     <main class="content">
-        <h1>Edit Admin</h1>
+        <h1>Edit Pages</h1>
         <?php
         $sql = "SELECT * FROM text WHERE text_id = 1";
         $result = $conn->query($sql);
