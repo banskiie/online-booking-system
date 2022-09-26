@@ -54,7 +54,7 @@ if (isset($_POST['add'])) {
 
     $sql = sprintf("UPDATE supplier SET supp_status=0 WHERE supp_id = $id");
     mysqli_query($conn, $sql);
-    header("location: ../admin/admin-suppliers.php?supplier-deleted");
+    header("location: ../admin/admin-suppliers.php?supplier_deleted");
 } elseif (isset($_POST['update'])) {
 
     $id = $_GET['supp_id'];

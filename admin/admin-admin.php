@@ -8,21 +8,13 @@ require '../db/database.php';
     <link rel="stylesheet" href="../styles/admin/admin-lower.css">
 </head>
 
-<?php if (isset($_GET['staff_added'])) {
-    echo '<script>alert("Staff Added")</script>';
-} elseif (isset($_GET['staff_updated'])) {
-    echo '<script>alert("Staff Updated")</script>';
-} elseif (isset($_GET['staff_deleted'])) {
-    echo '<script>alert("Staff Deleted")</script>';
-} ?>
-
 <body>
     <?php
     include '../includes/admin-header.php';
     ?>
     <main class="content">
-        <h1>Staff</h1>
-        <form id="top-form" action="admin-staff.php" method="GET">
+        <h1>Admin</h1>
+        <form id="top-form" action="admin-admin.php" method="GET">
             <div><button name="search-submit" id="search">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -31,7 +23,7 @@ require '../db/database.php';
                 <input name="search" type="text">
             </div>
 
-            <a href="admin-staff-add.php">
+            <a href="admin-admin-add.php">
                 <button type="button" id="add">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -43,14 +35,11 @@ require '../db/database.php';
         <div class="tbl-cont">
             <table>
                 <tr>
-                    <th></th>
                     <th>First Name</th>
                     <th>Middle Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
-                    <th>Address</th>
-                    <th>Position</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -77,33 +66,22 @@ require '../db/database.php';
                         $no_of_records_per_page = 6;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
-                        $total_pages_sql = "SELECT COUNT(*) FROM staff WHERE staff_status=1";
+                        $total_pages_sql = "SELECT COUNT(*) FROM admin WHERE admin_status=1";
                         $result = mysqli_query($conn, $total_pages_sql);
                         $total_rows = mysqli_fetch_array($result)[0];
                         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                        $sql = "SELECT * FROM staff WHERE staff_status=1 ORDER BY staff_id ASC LIMIT $offset, $no_of_records_per_page";
+                        $sql = "SELECT * FROM admin WHERE admin_status=1 LIMIT $offset, $no_of_records_per_page";
                         $res_data = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_array($res_data)) { ?>
                             <tr>
-                                <td>
-                                    <div id="small-icon">
-                                        <?php if ($row['staff_img'] == NULL) { ?>
-                                            <img src="../images/staff/default.jpg">
-                                        <?php } else { ?>
-                                            <img src="../images/staff/<?php echo $row['staff_img']; ?>">
-                                        <?php } ?>
-                                    </div>
-                                </td>
-                                <td><?php echo $row['staff_fn']; ?></td>
-                                <td><?php echo $row['staff_mn']; ?></td>
-                                <td><?php echo $row['staff_ln']; ?></td>
-                                <td><?php echo $row['staff_email']; ?></td>
-                                <td><?php echo $row['staff_contno']; ?></td>
-                                <td><?php echo $row['staff_add']; ?></td>
-                                <td><?php echo $row['staff_pos']; ?></td>
+                                <td><?php echo $row['admin_fn']; ?></td>
+                                <td><?php echo $row['admin_mn']; ?></td>
+                                <td><?php echo $row['admin_ln']; ?></td>
+                                <td><?php echo $row['admin_email']; ?></td>
+                                <td><?php echo $row['admin_contno']; ?></td>  
                                 <td class="btn">
-                                    <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                    <form action="admin-admin-edit.php?admin_id=<?php echo $row['admin_id']; ?>" method="post">
                                         <button id="update" name="update">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -112,7 +90,7 @@ require '../db/database.php';
                                     </form>
                                 </td>
                                 <td class="btn">
-                                    <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                    <form action="../util/admin_admin.php?admin_id=<?php echo $row['admin_id']; ?>" method="post">
                                         <button id="delete" name="delete">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
@@ -133,40 +111,29 @@ require '../db/database.php';
                         $no_of_records_per_page = 6;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
-                        $total_pages_sql = "SELECT COUNT(*) FROM staff WHERE (staff_fn LIKE '%$queried%' OR staff_mn LIKE '%$queried%' OR staff_ln LIKE '%$queried%' OR staff_email LIKE '%$queried%' OR staff_contno LIKE '%$queried%' OR staff_add LIKE '%$queried%' OR staff_pos LIKE '%$queried%')";
+                        $total_pages_sql = "SELECT COUNT(*) FROM admin WHERE admin_status=1 WHERE (admin_fn LIKE '%$queried%' OR admin_mn LIKE '%$queried%' OR admin_ln LIKE '%$queried%' OR admin_email LIKE '%$queried%' OR admin_contno LIKE '%$queried%')";
                         foreach ($keys as $k) {
-                            $total_pages_sql .= " OR staff_fn LIKE '%$k%' OR staff_mn LIKE '%$k%' OR staff_ln LIKE '%$k%' OR staff_email LIKE '%$k%' OR staff_contno LIKE '%$k%' OR staff_add LIKE '%$k%' OR staff_pos LIKE '%$k%'";
+                            $total_pages_sql .= " OR admin_fn LIKE '%$k%' OR admin_mn LIKE '%$k%' OR admin_ln LIKE '%$k%' OR admin_email LIKE '%$k%' OR admin_contno LIKE '%$k%'";
                         }
                         $result = mysqli_query($conn, $total_pages_sql);
                         $total_rows = mysqli_fetch_array($result)[0];
                         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                        $sql = "SELECT * FROM staff WHERE (staff_fn LIKE '%$queried%' OR staff_mn LIKE '%$queried%' OR staff_ln LIKE '%$queried%' OR staff_email LIKE '%$queried%' OR staff_contno LIKE '%$queried%' OR staff_add LIKE '%$queried%' OR staff_pos LIKE '%$queried%')";
+                        $sql = "SELECT * FROM admin WHERE admin_status=1 WHERE (admin_fn LIKE '%$queried%' OR admin_mn LIKE '%$queried%' OR admin_ln LIKE '%$queried%' OR admin_email LIKE '%$queried%' OR admin_contno LIKE '%$queried%')";
                         foreach ($keys as $k) {
-                            $sql .= " OR staff_fn LIKE '%$k%' OR staff_mn LIKE '%$k%' OR staff_ln LIKE '%$k%' OR staff_email LIKE '%$k%' OR staff_contno LIKE '%$k%' OR staff_add LIKE '%$k%' OR staff_pos LIKE '%$k%'";
+                            $sql .= " OR admin_fn LIKE '%$k%' OR admin_mn LIKE '%$k%' OR admin_ln LIKE '%$k%' OR admin_email LIKE '%$k%' OR admin_contno LIKE '%$k%'";
                         }
-                        $sql .= "AND staff_status=1 LIMIT $offset, $no_of_records_per_page";
+                        $sql .= "LIMIT $offset, $no_of_records_per_page";
                         $res_data = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_array($res_data)) { ?>
                             <tr>
-                                <td>
-                                    <div id="small-icon">
-                                        <?php if ($row['staff_img'] == NULL) { ?>
-                                            <img src="../images/staff/default.jpg">
-                                        <?php } else { ?>
-                                            <img src="../images/staff/<?php echo $row['staff_img']; ?>">
-                                        <?php } ?>
-                                    </div>
-                                </td>
-                                <td><?php echo $row['staff_fn']; ?></td>
-                                <td><?php echo $row['staff_mn']; ?></td>
-                                <td><?php echo $row['staff_ln']; ?></td>
-                                <td><?php echo $row['staff_email']; ?></td>
-                                <td><?php echo $row['staff_contno']; ?></td>
-                                <td><?php echo $row['staff_add']; ?></td>
-                                <td><?php echo $row['staff_pos']; ?></td>
+                                <td><?php echo $row['admin_fn']; ?></td>
+                                <td><?php echo $row['admin_mn']; ?></td>
+                                <td><?php echo $row['admin_ln']; ?></td>
+                                <td><?php echo $row['admin_email']; ?></td>
+                                <td><?php echo $row['admin_contno']; ?></td>
                                 <td class="btn">
-                                    <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                    <form action="admin-admin-edit.php?admin_id=<?php echo $row['admin_id']; ?>" method="post">
                                         <button id="update" name="update">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -175,7 +142,7 @@ require '../db/database.php';
                                     </form>
                                 </td>
                                 <td class="btn">
-                                    <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                    <form action="../util/admin_admin.php?admin_id=<?php echo $row['admin_id']; ?>" method="post">
                                         <button id="delete" name="delete">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
@@ -195,33 +162,22 @@ require '../db/database.php';
                     $no_of_records_per_page = 6;
                     $offset = ($pageno - 1) * $no_of_records_per_page;
 
-                    $total_pages_sql = "SELECT COUNT(*) FROM staff WHERE staff_status=1";
+                    $total_pages_sql = "SELECT COUNT(*) FROM admin WHERE admin_status=1";
                     $result = mysqli_query($conn, $total_pages_sql);
                     $total_rows = mysqli_fetch_array($result)[0];
                     $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                    $sql = "SELECT * FROM staff WHERE staff_status=1 ORDER BY staff_id ASC LIMIT $offset, $no_of_records_per_page";
+                    $sql = "SELECT * FROM admin WHERE admin_status=1 LIMIT $offset, $no_of_records_per_page";
                     $res_data = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($res_data)) { ?>
                         <tr>
-                            <td>
-                                <div id="small-icon">
-                                    <?php if ($row['staff_img'] == NULL) { ?>
-                                        <img src="../images/staff/default.jpg">
-                                    <?php } else { ?>
-                                        <img src="../images/staff/<?php echo $row['staff_img']; ?>">
-                                    <?php } ?>
-                                </div>
-                            </td>
-                            <td><?php echo $row['staff_fn']; ?></td>
-                            <td><?php echo $row['staff_mn']; ?></td>
-                            <td><?php echo $row['staff_ln']; ?></td>
-                            <td><?php echo $row['staff_email']; ?></td>
-                            <td><?php echo $row['staff_contno']; ?></td>
-                            <td><?php echo $row['staff_add']; ?></td>
-                            <td><?php echo $row['staff_pos']; ?></td>
+                            <td><?php echo $row['admin_fn']; ?></td>
+                            <td><?php echo $row['admin_mn']; ?></td>
+                            <td><?php echo $row['admin_ln']; ?></td>
+                            <td><?php echo $row['admin_email']; ?></td>
+                            <td><?php echo $row['admin_contno']; ?></td>
                             <td class="btn">
-                                <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                <form action="admin-admin-edit.php?admin_id=<?php echo $row['admin_id']; ?>" method="post">
                                     <button id="update" name="update">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -230,7 +186,7 @@ require '../db/database.php';
                                 </form>
                             </td>
                             <td class="btn">
-                                <form action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
+                                <form action="../util/admin_admin.php?admin_id=<?php echo $row['admin_id']; ?>" method="post">
                                     <button id="delete" name="delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />

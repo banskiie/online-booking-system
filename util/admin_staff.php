@@ -61,7 +61,7 @@ if (isset($_POST['add'])) {
     $sql = sprintf("UPDATE staff SET staff_status=0 WHERE staff_id = $id");
     mysqli_query($conn, $sql);
 
-    header("location: ../admin/admin-staff.php?staff-deleted");
+    header("location: ../admin/admin-staff.php?staff_deleted");
 } elseif (isset($_POST['update'])) {
 
     $id = $_GET['staff_id'];

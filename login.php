@@ -27,13 +27,16 @@ include 'includes/head.php';
             </div>
             <button type="submit" name="login">Login</button>
             <a href="register.php">New User? Register here!</a>
-            <?php if (isset($_GET['invalid_credentials'])) { ?>
-                <p><?php echo "Wrong Email or Password!"; ?></p>
-            <?php } else if (isset($_GET['sql_error'])) { ?>
-                <p><?php echo "SQL Error!"; ?></p>
-            <?php } else if (isset($_GET['no_user'])) { ?>
-                <p><?php echo "User doesn't exist! Please register!"; ?></p>
-            <?php } ?>
+
+            <?php if (isset($_GET['no_user'])) {
+                echo '<script>alert("User does not exist! Please register!")</script>';
+            } ?>
+            <?php if (isset($_GET['sql_error'])) {
+                echo '<script>alert("SQL Error!")</script>';
+            } ?>
+            <?php if (isset($_GET['invalid_credentials'])) {
+                echo '<script>alert("Wrong Email or Password!")</script>';
+            } ?>
         </form>
     </section>
 

@@ -8,6 +8,14 @@ require '../db/database.php';
     <link rel="stylesheet" href="../styles/admin/admin-lower.css">
 </head>
 
+<?php if (isset($_GET['package_added'])) {
+    echo '<script>alert("Package Added")</script>';
+} elseif (isset($_GET['package_updated'])) {
+    echo '<script>alert("Package Updated")</script>';
+} elseif (isset($_GET['package_deleted'])) {
+    echo '<script>alert("Package Deleted")</script>';
+} ?>
+
 <body>
     <?php
     include '../includes/admin-header.php';

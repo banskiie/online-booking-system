@@ -32,7 +32,7 @@ if (isset($_POST['add'])) {
     mysqli_query($conn, $sql);
     // Log
 
-    header("location: ../admin/admin-packages.php?package_updated");
+    header("location: ../admin/admin-packages.php?package_added");
 } elseif (isset($_POST['delete'])) {
     $id = $_GET['pkg_id'];
 
@@ -50,7 +50,7 @@ if (isset($_POST['add'])) {
     $sql = sprintf("UPDATE package SET pkg_status=0 WHERE pkg_id = $id");
     mysqli_query($conn, $sql);
 
-    header("location: ../admin/admin-packages.php?package-deleted");
+    header("location: ../admin/admin-packages.php?package_deleted");
 } elseif (isset($_POST['update'])) {
 
     $id = $_GET['pkg_id'];

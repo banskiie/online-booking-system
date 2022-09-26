@@ -1,6 +1,6 @@
 <div class="app">
     <aside class="sidebar">
-        <h3>YANI M | ADMINISTRATOR</h3>
+        <h3>Hello, <?php echo $_SESSION['first_name'] ?>!</h3>
         <nav class="menu">
             <hr>
             <a href="admin-dash.php" class="menu-item">
@@ -73,6 +73,28 @@
                 <span>Staff List</span>
             </a>
             <hr>
+        </nav>
+        <h3>ADMINISTRATOR</h3>
+        <nav class="menu">
+            <hr>
+            <a href="admin-admin.php" class="menu-item">
+                <span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                    </svg>
+                </span>
+                <span>Admin List</span>
+            </a>
+            <hr>
+            <a href="admin-pages.php" class="menu-item">
+                <span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                    </svg>
+                </span>
+                <span>Edit Pages</span>
+            </a>
+            <hr>
             <a href="admin-log.php" class="menu-item">
                 <span>
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -94,6 +116,7 @@
             </form>
             <hr>
         </nav>
+
     </aside>
 
     <script>

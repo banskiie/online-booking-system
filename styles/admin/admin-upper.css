@@ -128,7 +128,8 @@ input {
 #top-form {
   display: flex;
   align-items: center;
-  justify-content: star;
+  justify-content: start;
+  width: 80vw;
 }
 svg {
   vertical-align: middle;

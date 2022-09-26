@@ -62,29 +62,39 @@ if (isset($_POST['update'])) {
 
     $supplist = $_POST['supp'];
 
-    $sql = sprintf(
-        "INSERT INTO booking (clnt_id, pkg_id, venue_id, bk_name, bk_guest, bk_date, bk_remark) 
-    VALUES ($clnt_id, $package, $venue, '%s', $guest , '$date', '%s')",
-        $conn->real_escape_string($name),
-        $conn->real_escape_string($remark)
-    );
-    mysqli_query($conn, $sql);
-
-    $sql = sprintf(
-        "SELECT * FROM booking WHERE bk_name = '%s' AND bk_remark = '%s'",
-        $conn->real_escape_string($name),
-        $conn->real_escape_string($remark)
-    );
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $bkid = $row['bk_id'];
-
-    foreach ($supplist as $value) {
-        $sql = "INSERT INTO supplier_grp (supp_id,bk_id) VALUES ($value,$bkid)";
+    $sql = "SELECT bk_date FROM booking where bk_date = ?";
+    $stmt = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmt, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $date);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+    $rowCount = mysqli_stmt_num_rows($stmt);
+    if ($rowCount > 0) {
+        header("location: ../my_bookings.php?date-taken");
+    } else {
+        $sql = sprintf(
+            "INSERT INTO booking (clnt_id, pkg_id, venue_id, bk_name, bk_guest, bk_date, bk_remark) 
+        VALUES ($clnt_id, $package, $venue, '%s', $guest , '$date', '%s')",
+            $conn->real_escape_string($name),
+            $conn->real_escape_string($remark)
+        );
         mysqli_query($conn, $sql);
-    }
 
-    header("location: ../my_bookings.php");
+        $sql = sprintf(
+            "SELECT * FROM booking WHERE bk_name = '%s' AND bk_remark = '%s'",
+            $conn->real_escape_string($name),
+            $conn->real_escape_string($remark)
+        );
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $bkid = $row['bk_id'];
+
+        foreach ($supplist as $value) {
+            $sql = "INSERT INTO supplier_grp (supp_id,bk_id) VALUES ($value,$bkid)";
+            mysqli_query($conn, $sql);
+        }
+        header("location: ../my_bookings.php");
+    }
 } else if (isset($_POST['update-bk'])) {
 
     $clnt_id = $_SESSION['id'];
@@ -97,30 +107,41 @@ if (isset($_POST['update'])) {
 
     $supplist = $_POST['supp'];
 
-    $sql = sprintf(
-        "UPDATE booking SET clnt_id=$clnt_id, pkg_id=$package, venue_id=$venue, bk_name='%s', bk_guest=$guest, bk_date='$date', bk_remark='%s' 
+
+    $sql = "SELECT bk_date FROM booking where bk_date = ?";
+    $stmt = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmt, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $date);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+    $rowCount = mysqli_stmt_num_rows($stmt);
+    if ($rowCount > 0) {
+        header("location: ../my_bookings.php?date-taken");
+    } else {
+        $sql = sprintf(
+            "UPDATE booking SET clnt_id=$clnt_id, pkg_id=$package, venue_id=$venue, bk_name='%s', bk_guest=$guest, bk_date='$date', bk_remark='%s' 
     WHERE clnt_id=$clnt_id",
-        $conn->real_escape_string($name),
-        $conn->real_escape_string($remark)
-    );
-    mysqli_query($conn, $sql);
-
-    $sql = sprintf(
-        "SELECT * FROM booking WHERE bk_name = '%s' AND bk_remark = '%s'",
-        $conn->real_escape_string($name),
-        $conn->real_escape_string($remark)
-    );
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $bkid = $row['bk_id'];
-
-    $sql = "DELETE FROM supplier_grp WHERE bk_id=$bkid";
-    mysqli_query($conn, $sql);
-
-    foreach ($supplist as $value) {
-        $sql = "INSERT INTO supplier_grp (supp_id,bk_id) VALUES ($value,$bkid)";
+            $conn->real_escape_string($name),
+            $conn->real_escape_string($remark)
+        );
         mysqli_query($conn, $sql);
-    }
 
-    header("location: ../my_bookings.php");
+        $sql = sprintf(
+            "SELECT * FROM booking WHERE bk_name = '%s' AND bk_remark = '%s'",
+            $conn->real_escape_string($name),
+            $conn->real_escape_string($remark)
+        );
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $bkid = $row['bk_id'];
+
+        $sql = "DELETE FROM supplier_grp WHERE bk_id=$bkid";
+        mysqli_query($conn, $sql);
+
+        foreach ($supplist as $value) {
+            $sql = "INSERT INTO supplier_grp (supp_id,bk_id) VALUES ($value,$bkid)";
+            mysqli_query($conn, $sql);
+        }
+        header("location: ../my_bookings.php");
+    }
 }

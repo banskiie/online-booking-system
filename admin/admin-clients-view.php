@@ -36,8 +36,6 @@ require '../db/database.php';
                     </button></a>
             </div>
         </div>
-
-
     </main>
     </div>
 </body>

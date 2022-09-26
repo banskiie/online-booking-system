@@ -62,18 +62,18 @@ include 'includes/head.php';
             </div>
             <button type="submit" name="register">Register</button>
             <a href="login.php">Already have an account? Register here!</a>
-            <?php if (isset($_GET['password_not_the_same'])) { ?>
-                <p>Password not the same!</p>
-            <?php } ?>
-            <?php if (isset($_GET['sql_error'])) { ?>
-                <p>SQL Error!</p>
-            <?php } ?>
-            <?php if (isset($_GET['email_already_taken'])) { ?>
-                <p>Email already taken!</p>
-            <?php } ?>
-            <?php if (isset($_GET['success'])) { ?>
-                <p>Account registered!</p>
-            <?php } ?>
+            <?php if (isset($_GET['password_not_the_same'])) {
+                echo '<script>alert("Password is not the same!")</script>';
+            } ?>
+            <?php if (isset($_GET['sql_error'])) {
+                echo '<script>alert("SQL Error!")</script>';
+            } ?>
+            <?php if (isset($_GET['email_already_taken'])) {
+                echo '<script>alert("Email already taken!")</script>';
+            } ?>
+            <?php if (isset($_GET['success'])) {
+                echo '<script>alert("Account registered!")</script>';
+            } ?>
         </form>
     </section>
 

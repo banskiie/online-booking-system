@@ -20,10 +20,14 @@ require 'db/database.php';
     </section>
 
     <section id="package-info">
-        <p>Just got engaged and no idea of what to do next? We got you covered!
-            Our team will provide you the service to get everything started
-            from scratch to finish.</p>
-        <p>You deserve the best hassle-free wedding experience!</p>
+        <?php
+        $sql = "SELECT * FROM text";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { ?>
+                <p><?php echo $row['text_service']; ?></p>
+        <?php };
+        } ?>
     </section>
 
 

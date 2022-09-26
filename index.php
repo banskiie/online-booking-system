@@ -27,14 +27,14 @@ require 'db/database.php';
 
     <section id="welcome-info-section">
         <h1>We are Yani M!</h1>
-        <p>We are a team consisting of young professionals from all walks of life gathered by one great passion in
-            service and anything related to love and tying the knot! We all have in our heart one goal
-            - to provide quality, systematic and <strong>REAL</strong>ational services to all.</p>
-        <p>Weddings have been one of the most celebrated gathers in the Filipino Culture. And we consider the details,
-            preparation, and the coming together of everything envisioned as an art to be done precisely, systematically,
-            and heartfully. <strong>WE COME</strong> in service and <strong>WE DO</strong> with sincere goal driven desires.</p>
-        <p>The past year has been a good one for us. The countless learning we experienced humbled us through and
-            inspired our brand to always strive for growth, improvement, and continuous geniune work.</p>
+        <?php
+        $sql = "SELECT * FROM text";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { ?>
+                <p><?php echo $row['text_home']; ?></p>
+        <?php };
+        } ?>
         <a href="about.php#meet-the-team" class="button">Meet the Team!</a>
     </section>
 

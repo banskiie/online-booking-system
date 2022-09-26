@@ -4,6 +4,10 @@ section {
   align-items: center;
 }
 
+svg {
+  vertical-align: middle;
+}
+
 .dashboard_card {
   display: flex;
   flex-direction: column;

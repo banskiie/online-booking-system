@@ -22,12 +22,14 @@ require 'db/database.php';
     <section id="about-info">
         <img src="images/yani-transparent.png" alt="">
         <div class="vl"></div>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate illum magnam voluptates et animi quibusdam,
-            magni nam facilis est iste neque, in voluptatum, adipisci repellendus dolores consequatur rem voluptatem
-            voluptatibus hic delectus quod dolorem officiis molestias totam. Amet iure incidunt dicta repellendus
-            autem eveniet officia sit mollitia veniam. Quo, error!
-        </p>
+        <?php
+        $sql = "SELECT * FROM text";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { ?>
+                <p><?php echo $row['text_about']; ?></p>
+        <?php };
+        } ?>
     </section>
 
     <hr>
@@ -36,7 +38,7 @@ require 'db/database.php';
         <h1>Meet the Team</h1>
         <div id="coordinator-cards">
             <?php
-            $sql = "SELECT * FROM staff WHERE staff_status=1 ORDER by staff_pos ASC";
+            $sql = "SELECT * FROM staff WHERE staff_status=1 ORDER by staff_id ASC";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { ?>
@@ -58,10 +60,7 @@ require 'db/database.php';
         </div>
     </section>
 
-    <section id="testimonial">
-        <h1>This is a sample testimonial from client.</h1>
-        <p>-Mr. Client</p>
-    </section>
+    <hr>
 
     <section id="about-the-planner">
         <img id="pic" src="images/about-the-planner/planner-pic.png" alt="">
@@ -70,8 +69,14 @@ require 'db/database.php';
 
     <section id="team-info">
         <img src="images/team-members/full-team.jpg" alt="">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi vel delectus aperiam
-            cupiditate ad numquam cumque enim, sit vero laborum, dolorem placeat eos corporis iste.</p>
+        <?php
+        $sql = "SELECT * FROM text";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { ?>
+                <p><?php echo $row['text_team']; ?></p>
+        <?php };
+        } ?>
     </section>
 
     <?php

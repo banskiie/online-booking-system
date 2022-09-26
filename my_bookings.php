@@ -138,6 +138,9 @@ require 'db/database.php';
             </div>
             <button name="add">Add</button>
         </form>
+        <?php if (isset($_GET['date-taken'])) {
+                    echo '<script>alert("Date Already Booked/Taken!")</script>';
+                } ?>
     </section>
 <?php } ?>
 

@@ -117,7 +117,7 @@ if (isset($_POST['send'])) {
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['role'] = "client";
                 $sql = sprintf(
-                    "INSERT INTO user_log (ulog_act) VALUES ('Client, %s %s, Logged In');",
+                    "INSERT INTO user_log (ulog_act) VALUES ('Client, %s %s, Log In');",
                     $conn->real_escape_string($row['clnt_fn']),
                     $conn->real_escape_string($row['clnt_ln'])
                 );
@@ -127,7 +127,7 @@ if (isset($_POST['send'])) {
                 header("Location: ../index.php?invalid_credentials");
             }
         } else {
-            $sql = "SELECT * FROM admin WHERE admin_email = ?";
+            $sql = "SELECT * FROM admin WHERE admin_email = ? AND admin_status=1";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
                 header("Location: ../login.php?sql_error");
@@ -141,13 +141,14 @@ if (isset($_POST['send'])) {
                         header("Location: ../login.php?invalid_credentials");
                     } elseif ($passCheck == true) {
                         session_start();
-                        ini_set('session.gc_maxlifetime', 3600);
-                        session_set_cookie_params(3600);
                         $_SESSION['id'] = $row['admin_id'];
+                        $_SESSION['first_name'] = $row['admin_fn'];
                         $_SESSION['loggedIn'] = true;
                         $_SESSION['role'] = 'admin';
                         $sql = sprintf(
-                            "INSERT INTO user_log (ulog_act) VALUES ('Admin Log In')"
+                            "INSERT INTO user_log (ulog_act) VALUES ('Admin, %s %s, Log In')",
+                            $conn->real_escape_string($row['admin_fn']),
+                            $conn->real_escape_string($row['admin_ln'])
                         );
                         mysqli_query($conn, $sql);
                         header("Location: ../admin/admin-dash.php");

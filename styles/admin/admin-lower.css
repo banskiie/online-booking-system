@@ -120,6 +120,7 @@ textarea {
   resize: none;
   height: 10rem;
   font-size: 1.15rem;
+  width: 60vw;
 }
 
 #small-icon img {
@@ -155,6 +156,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 80vw;
 }
 
 #top-form div {

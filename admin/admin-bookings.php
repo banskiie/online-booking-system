@@ -8,6 +8,10 @@ require '../db/database.php';
     <link rel="stylesheet" href="../styles/admin/admin-upper.css">
 </head>
 
+<?php if (isset($_GET['booking_updated'])) {
+    echo '<script>alert("Booking Updated")</script>';
+}?>
+
 <body>
     <?php
     include '../includes/admin-header.php';
@@ -57,7 +61,7 @@ require '../db/database.php';
                         $total_rows = mysqli_fetch_array($result)[0];
                         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                        $sql = "SELECT * FROM booking LIMIT $offset, $no_of_records_per_page";
+                        $sql = "SELECT * FROM booking ORDER BY bk_date ASC LIMIT $offset, $no_of_records_per_page";
                         $res_data = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_array($res_data)) { ?>
                             <tr>
@@ -103,7 +107,7 @@ require '../db/database.php';
                         $total_rows = mysqli_fetch_array($result)[0];
                         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                        $sql = "SELECT * FROM booking WHERE (bk_name LIKE '%$queried%')";
+                        $sql = "SELECT * FROM booking ORDER BY bk_date ASC WHERE (bk_name LIKE '%$queried%')";
                         foreach ($keys as $k) {
                             $sql .= " OR bk_name LIKE '%$k%'";
                         }
@@ -150,7 +154,7 @@ require '../db/database.php';
                     $total_rows = mysqli_fetch_array($result)[0];
                     $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                    $sql = "SELECT * FROM booking LIMIT $offset, $no_of_records_per_page";
+                    $sql = "SELECT * FROM booking ORDER BY bk_date ASC LIMIT $offset, $no_of_records_per_page";
                     $res_data = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($res_data)) { ?>
                         <tr>

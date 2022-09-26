@@ -8,6 +8,14 @@ require '../db/database.php';
     <link rel="stylesheet" href="../styles/admin/admin-lower.css">
 </head>
 
+<?php if (isset($_GET['venue_added'])) {
+    echo '<script>alert("Venue Added")</script>';
+} elseif (isset($_GET['venue_updated'])) {
+    echo '<script>alert("Venue Updated")</script>';
+} elseif (isset($_GET['venue_deleted'])) {
+    echo '<script>alert("Venue Deleted")</script>';
+} ?>
+
 <body>
     <?php
     include '../includes/admin-header.php';
