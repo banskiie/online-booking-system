@@ -129,7 +129,6 @@ input {
   display: flex;
   align-items: center;
   justify-content: start;
-  width: 80vw;
 }
 svg {
   vertical-align: middle;
@@ -200,4 +199,14 @@ svg {
   transition: 0.2s linear;
   cursor: pointer;
   vertical-align: middle;
+}
+
+.date-lbl {
+  padding: 0 1rem;
+}
+
+.top-bk {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
 }

@@ -62,10 +62,10 @@ if (isset($_POST['update'])) {
 
     $supplist = $_POST['supp'];
 
-    $sql = "SELECT bk_date FROM booking where bk_date = ?";
+    $sql = "SELECT bk_date FROM booking where bk_date = ? AND clnt_id != ?";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $date);
+    mysqli_stmt_bind_param($stmt, "ss", $date, $clnt_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
     $rowCount = mysqli_stmt_num_rows($stmt);
@@ -108,10 +108,10 @@ if (isset($_POST['update'])) {
     $supplist = $_POST['supp'];
 
 
-    $sql = "SELECT bk_date FROM booking where bk_date = ?";
+    $sql = "SELECT bk_date FROM booking where bk_date = ? AND clnt_id != ?";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $date);
+    mysqli_stmt_bind_param($stmt, "ss", $date, $clnt_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
     $rowCount = mysqli_stmt_num_rows($stmt);

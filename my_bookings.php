@@ -9,6 +9,10 @@ require 'db/database.php';
     <script src="scripts/my_bookings.js" defer></script>
 </head>
 
+<?php if (isset($_GET['date-taken'])) {
+    echo '<script>alert("Date Already Booked/Taken!")</script>';
+} ?>
+
 <body>
 
     <?php
@@ -138,9 +142,7 @@ require 'db/database.php';
             </div>
             <button name="add">Add</button>
         </form>
-        <?php if (isset($_GET['date-taken'])) {
-                    echo '<script>alert("Date Already Booked/Taken!")</script>';
-                } ?>
+
     </section>
 <?php } ?>
 

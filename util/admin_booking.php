@@ -8,10 +8,10 @@ if (isset($_POST['update'])) {
     $status = $_POST['status'];
     $date = date('Y-m-d', strtotime($_POST['date']));
 
-    $sql = "SELECT bk_date FROM booking where bk_date = ?";
+    $sql = "SELECT bk_date FROM booking where bk_date = ? AND bk_id != ?";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $date);
+    mysqli_stmt_bind_param($stmt, "ss", $date, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
     $rowCount = mysqli_stmt_num_rows($stmt);
