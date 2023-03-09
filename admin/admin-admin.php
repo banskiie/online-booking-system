@@ -33,15 +33,15 @@ require '../db/database.php';
             </a>
         </form>
         <div class="tbl-cont">
-            <table>
+            <table style="width: 80vw;">
                 <tr>
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
+                    <th style="width: 7vw;">First Name</th>
+                    <th style="width: 7vw;">Middle Name</th>
+                    <th style="width: 7vw;">Last Name</th>
+                    <th style="width: 12vw;">Email</th>
                     <th>Contact Number</th>
-                    <th></th>
-                    <th></th>
+                    <th style="width: 3vw;"></th>
+                    <th style="width: 3vw;"></th>
                 </tr>
 
                 <?php

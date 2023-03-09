@@ -20,8 +20,10 @@ require '../db/database.php';
                 $sql = "SELECT * FROM venue WHERE venue_id = $id";
                 $result = $conn->query($sql);
                 if ($row = $result->fetch_assoc()) { ?>
-                    <p>Name: <strong><?php echo $row['venue_name']; ?></strong></p>
-                    <p>Address: <?php echo $row['venue_add']; ?></p>
+                    <p><i>Name:</i> <strong><?php echo $row['venue_name']; ?></strong></p>
+                    <p><i>Address:</i> <?php echo $row['venue_add']; ?></p>
+                    <p><i>Capacity:</i> <strong><?php echo $row['venue_cap']; ?></strong></p>
+                    <p><i>Description:</i> <?php echo $row['venue_desc']; ?></p>
                     <div id="display-image">
                         <img src="../images/venue/<?php echo $row['venue_img']; ?>">
                     </div>

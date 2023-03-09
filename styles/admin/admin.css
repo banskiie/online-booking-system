@@ -74,7 +74,6 @@ span {
 table {
   border-collapse: collapse;
   font-size: 1rem;
-  width: 80vw;
   text-align: left;
   box-shadow: 0 0 10px rgb(215, 215, 215);
 }
@@ -82,11 +81,13 @@ table {
 th {
   background-color: burlywood;
   color: white;
+  text-align: left;
 }
 
 tr,
 td,
 th {
+  word-wrap: break-word;
   padding: 0.5rem;
 }
 

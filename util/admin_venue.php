@@ -5,15 +5,19 @@ if (isset($_POST['add'])) {
 
     $name = $_POST['name'];
     $address = $_POST['address'];
+    $capacity = $_POST['capacity'];
+    $description = $_POST['description'];
     $filename = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
     $folder = "../images/venue/" . $filename;
 
     $sql = sprintf(
-        "INSERT INTO venue (venue_name, venue_add, venue_img, venue_status)
-    VALUES ('%s', '%s', '%s', 1)",
+        "INSERT INTO venue (venue_name, venue_add, venue_cap, venue_desc, venue_img, venue_status)
+    VALUES ('%s', '%s', '%s', '%s', '%s', 1)",
         $conn->real_escape_string($name),
         $conn->real_escape_string($address),
+        $conn->real_escape_string($capacity),
+        $conn->real_escape_string($description),
         $conn->real_escape_string($filename)
     );
 
@@ -51,20 +55,19 @@ if (isset($_POST['add'])) {
     $id = $_GET['venue_id'];
     $name = $_POST['name'];
     $address = $_POST['address'];
-    $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "../images/venue/" . $filename;
+    $capacity = $_POST['capacity'];
+    $description = $_POST['description'];
 
     $sql = sprintf(
-        "UPDATE venue SET venue_name='%s', venue_add='%s', venue_img='%s'
+        "UPDATE venue SET venue_name='%s', venue_add='%s', venue_cap='%s', venue_desc='%s'
     WHERE venue_id = $id",
         $conn->real_escape_string($name),
         $conn->real_escape_string($address),
-        $conn->real_escape_string($filename)
+        $conn->real_escape_string($capacity),
+        $conn->real_escape_string($description)
     );
 
     mysqli_query($conn, $sql);
-    move_uploaded_file($tempname, $folder);
 
     // Log
     $sql = sprintf(
@@ -75,4 +78,21 @@ if (isset($_POST['add'])) {
     // Log
 
     header("location: ../admin/admin-venues.php?venue_updated");
-} 
+} elseif (isset($_POST['update-pic'])) {
+
+    $id = $_GET['venue_id'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../images/venue/" . $filename;
+
+    $sql = sprintf(
+        "UPDATE venue SET venue_img='%s'
+    WHERE venue_id = $id",
+        $conn->real_escape_string($filename)
+    );
+
+    mysqli_query($conn, $sql);
+    move_uploaded_file($tempname, $folder);
+
+    header("location: ../admin/admin-venues.php?venue_updated");
+}

@@ -63,23 +63,18 @@ if (isset($_POST['add'])) {
     $email = $_POST['email'];
     $role = $_POST['role'];
     $address = $_POST['address'];
-    $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "../images/supplier/" . $filename;
 
     $sql = sprintf(
-        "UPDATE supplier SET supp_name='%s', supp_contno='%s', supp_email='%s', supp_role='%s', supp_add='%s', supp_img='%s'
+        "UPDATE supplier SET supp_name='%s', supp_contno='%s', supp_email='%s', supp_role='%s', supp_add='%s', 
     WHERE supp_id = $id",
         $conn->real_escape_string($name),
         $conn->real_escape_string($contno),
         $conn->real_escape_string($email),
         $conn->real_escape_string($role),
         $conn->real_escape_string($address),
-        $conn->real_escape_string($filename)
     );
 
     mysqli_query($conn, $sql);
-    move_uploaded_file($tempname, $folder);
 
     // Log
     $sql = sprintf(
@@ -88,6 +83,23 @@ if (isset($_POST['add'])) {
     );
     mysqli_query($conn, $sql);
     // Log
+
+    header("location: ../admin/admin-suppliers.php?supplier_updated");
+} elseif (isset($_POST['update-pic'])) {
+
+    $id = $_GET['supp_id'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../images/supplier/" . $filename;
+
+    $sql = sprintf(
+        "UPDATE supplier SET supp_img='%s'
+    WHERE supp_id = $id",
+        $conn->real_escape_string($filename)
+    );
+
+    mysqli_query($conn, $sql);
+    move_uploaded_file($tempname, $folder);
 
     header("location: ../admin/admin-suppliers.php?supplier_updated");
 }

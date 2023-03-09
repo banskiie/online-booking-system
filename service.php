@@ -41,7 +41,7 @@ require 'db/database.php';
                 while ($row = $result->fetch_assoc()) { ?>
                     <div class="package-card" style='background-image: url("images/package/<?php echo $row['pkg_img']; ?>")'>
                         <h2><?php echo $row['pkg_name']; ?></h2>
-                        <p class="price">₱<?php echo $row['pkg_price']; ?></p>
+                        <p class="price">₱<?php echo number_format($row['pkg_price'], 2, '.', ','); ?></p>
                         <p class="desc"><?php echo $row['pkg_desc']; ?></p>
                     </div>
             <?php };

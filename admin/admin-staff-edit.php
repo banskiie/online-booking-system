@@ -21,8 +21,11 @@ require '../db/database.php';
             <form id="form-add" action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post" enctype="multipart/form-data">
                 <div class="form-item">
                     <label>Staff Picture</label>
-                    <input type="file" name="uploadfile" required>
+                    <input type="file" name="uploadfile" value='<?php echo $row['staff_img']; ?>' required>
+                    <button id="add-new" name="update-pic">Update</button>
                 </div>
+            </form>
+            <form id="form-add" action="../util/admin_staff.php?staff_id=<?php echo $row['staff_id']; ?>" method="post" enctype="multipart/form-data">
                 <div class="form-item">
                     <label>First Name</label>
                     <input type="text" name="fn" value="<?php echo $row['staff_fn']; ?>" maxlength="50" required>

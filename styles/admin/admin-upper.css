@@ -1,3 +1,7 @@
+.docu-top {
+  text-align: center;
+}
+
 /* table page */
 
 .btn {
@@ -26,15 +30,15 @@
 
 #view-window {
   border: solid 1px gray;
-  width: 65vw;
+  width: 65%;
   margin: 1rem auto;
   box-shadow: 0 0 5px darkgray;
   background-color: white;
 }
 
-p {
+/* p {
   border-bottom: solid 1px gray;
-}
+} */
 
 p,
 label {
@@ -48,17 +52,29 @@ select {
 }
 
 #update {
-  padding: 0.2rem 1.5rem;
+  /* padding: 0.2rem 1.5rem;
+  font-size: 1rem;
   background-color: darkcyan;
   color: whitesmoke;
   border: transparent;
   border-radius: 4px;
   transition: 0.2s linear;
+  cursor: pointer; */
+
+  padding: 0.5rem 1.5rem;
+  color: whitesmoke;
+  border: transparent;
+  border-radius: 8px;
+  transition: 0.2s linear;
   cursor: pointer;
+  width: 50%;
+  margin: 1rem 25%;
+  background-color: rgb(0, 96, 3);
+  font-size: 1.1rem;
 }
 
 #update:hover {
-  background-color: rgb(0, 194, 194);
+  background-color:rgb(0, 175, 6);
 }
 
 #remark {
@@ -84,11 +100,26 @@ select {
   color: red;
 }
 
+#print {
+  margin: 1rem;
+  background-color: transparent;
+  border: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  color: rgb(0, 110, 144);
+  transition: 0.2s linear;
+}
+
+#print:hover {
+  color: rgb(0, 204, 255);
+}
+
 #display-image {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #display-image img {
   margin: 1rem;
   width: 40vw;
@@ -103,7 +134,8 @@ select {
 
 /* search */
 
-input {
+input,
+select {
   margin: 0.5rem 0.5rem 0.5rem 0;
   font-size: 1.15rem;
   padding: 0.25rem;
@@ -130,20 +162,54 @@ input {
   align-items: center;
   justify-content: start;
 }
+
 svg {
   vertical-align: middle;
+}
+
+#price {
+  width: 2.5rem;
+  padding: 0.45rem;
+  border: transparent;
+  border-radius: 4px;
+  color: whitesmoke;
+  transition: 0.2s linear;
+  cursor: pointer;
+  background-color: #1f5f38;
+  margin: 0 0 0.5rem;
+}
+
+#price:hover {
+  background-color: #62c236;
+}
+
+#refresh {
+  width: 2.5rem;
+  padding: 0.45rem;
+  border: transparent;
+  border-radius: 4px;
+  color: whitesmoke;
+  transition: 0.2s linear;
+  cursor: pointer;
+  background-color: #444444;
+  margin: 0 0.5rem 0.5rem;
+}
+
+#refresh:hover {
+  background-color: rgb(97, 97, 97);
 }
 
 /* status text */
 
 .status {
   font-size: 0.8rem;
+  font-weight: bold;
   text-transform: uppercase;
   padding: 0.25rem 1rem;
   border-radius: 8px;
   color: white;
   vertical-align: middle;
-  width: 6rem;
+  width: 7rem;
   text-align: center;
 }
 
@@ -208,5 +274,44 @@ svg {
 .top-bk {
   display: flex;
   justify-content: space-between;
+  width: 80vw;
+}
+
+#tbl-print {
+  align-items: center;
+  width: 85vw;
+  margin: auto;
+}
+
+.cont-print {
+  height: 20vh;
+}
+
+#content-for-print {
+  background-color: white;
+}
+
+#signature {
+  margin-top: 6rem;
+}
+
+.supp-grp {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  margin: 1rem;
+}
+
+#supp-checklist {
+  border: solid 1px;
+  height: 4rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0.25rem 1rem;
+  margin: 0.2rem;
+}
+
+textarea {
+  resize: none;
+  height: 7rem;
   width: 80vw;
 }

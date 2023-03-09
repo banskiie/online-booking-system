@@ -41,13 +41,13 @@ require '../db/database.php';
             </div>
         </form>
         <div class="tbl-cont">
-            <table>
+            <table style="width: 80vw;">
                 <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th style="width: 60vw;">Name</th>
+                    <th style="width: 11vw;">Price</th>
+                    <th style="width: 3vw;"></th>
+                    <th style="width: 3vw;"></th>
+                    <th style="width: 3vw;"></th>
                 </tr>
 
                 <?php
@@ -82,7 +82,7 @@ require '../db/database.php';
                         while ($row = mysqli_fetch_array($res_data)) { ?>
                             <tr>
                                 <td><?php echo $row['pkg_name']; ?></td>
-                                <td>₱<?php echo $row['pkg_price']; ?></td>
+                                <td>₱<?php echo number_format($row['pkg_price'], 2, '.', ','); ?></td>
                                 <td class="btn">
                                     <form action="admin-packages-view.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post">
                                         <button id="view" name="view">
@@ -140,7 +140,7 @@ require '../db/database.php';
                         while ($row = mysqli_fetch_array($res_data)) { ?>
                             <tr>
                                 <td><?php echo $row['pkg_name']; ?></td>
-                                <td>₱<?php echo $row['pkg_price']; ?></td>
+                                <td>₱<?php echo number_format($row['pkg_price'], 2, '.', ','); ?></td>
                                 <td class="btn">
                                     <form action="admin-packages-view.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post">
                                         <button id="view" name="view">
@@ -191,7 +191,7 @@ require '../db/database.php';
                     while ($row = mysqli_fetch_array($res_data)) { ?>
                         <tr>
                             <td><?php echo $row['pkg_name']; ?></td>
-                            <td>₱<?php echo $row['pkg_price']; ?></td>
+                            <td>₱<?php echo number_format($row['pkg_price'], 2, '.', ','); ?></td>
                             <td class="btn">
                                 <form action="admin-packages-view.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post">
                                     <button id="view" name="view">

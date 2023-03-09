@@ -1,9 +1,7 @@
 body {
-  background-image: linear-gradient(
-    180deg,
-    rgb(180, 104, 94),
-    rgb(235, 170, 161)
-  );
+  background-image: linear-gradient(180deg,
+      rgb(180, 104, 94),
+      rgb(235, 170, 161));
 }
 
 #booking-section {
@@ -19,11 +17,13 @@ body {
   box-shadow: 0 0 15px;
   align-items: center;
 }
+
 #upper-view {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 #clnt-bookings {
   height: 27.5rem;
 }
@@ -44,7 +44,15 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
+  margin: 1rem auto;
+  text-align: center;
+  background-color: black;
+  font-size: 3.5rem;
+  color: transparent;
+  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
 }
 
 .form-comp {
@@ -53,8 +61,7 @@ h1 {
 }
 
 #add-booking-section {
-  height: 50rem;
-  width: 40rem;
+  width: 36rem;
   margin: 4rem auto;
   display: flex;
   flex-direction: column;
@@ -63,6 +70,10 @@ h1 {
   padding: 2rem 1rem;
   box-shadow: 0 0 15px;
   align-items: center;
+}
+
+#lower-add {
+  width: 24rem;
 }
 
 .label {
@@ -79,17 +90,44 @@ textarea {
   font-family: "Fira Sans", sans-serif;
 }
 
+.supp-grp {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+}
+
 #supp-checklist {
   border: solid 1px;
   height: 4rem;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding: 0.25rem 1rem;
+  margin: 0.2rem;
 }
 
-textarea {
-  resize: none;
-  height: 7rem;
+.send-btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  background-color: rgb(0, 90, 0);
+  color: whitesmoke;
+  border: transparent;
+  border-radius: 8px;
+  transition: 0.2s linear;
+  font-family: "Fira Sans", sans-serif;
+  width: 80vw;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  margin: 1rem auto !important;
+  background-color: rgb(95, 38, 31) !important;
+  font-size: 1.5rem !important;
+  font-weight: bold;
 }
+
+.send-btn:hover {
+  background-color: rgb(170, 87, 76) !important;
+  cursor: pointer !important;
+}
+
 
 #add-booking-section button {
   padding: 0.5rem 1.5rem;
@@ -108,6 +146,31 @@ textarea {
 
 #add-booking-section button:hover {
   background-color: rgb(1, 163, 1);
+}
+
+.bk-btn {
+  width: 100% !important;
+  margin: 1rem 0 0 0 !important;
+  background-color: rgb(95, 38, 31) !important;
+  font-size: 1.5rem !important;
+  font-weight: bold;
+}
+
+.bk-btn:hover {
+  background-color: rgb(170, 87, 76) !important;
+  cursor: pointer !important;
+}
+
+.cancel-btn {
+  width: 36rem !important;
+  background-color: transparent !important;
+  color: rgb(122, 0, 0) !important;
+  border: solid 2px rgb(122, 0, 0) !important;
+}
+
+.cancel-btn:hover {
+  background-color: rgb(122, 0, 0) !important;
+  color: white !important;
 }
 
 #add-booking-section a {
@@ -179,9 +242,10 @@ textarea {
 /* svg */
 
 svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
   vertical-align: middle;
+  margin: auto;
 }
 
 /* others */
@@ -207,4 +271,113 @@ button span {
 
 #remark {
   height: 8rem;
+}
+
+
+#supp-btn a {
+  vertical-align: middle !important;
+  text-anchor: middle !important;
+}
+
+#venue-btn:hover,
+#supp-btn:hover {
+  cursor: pointer;
+}
+
+/* modal for custom venue */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 20rem;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vc {
+  background-color: transparent !important;
+  color: red !important;
+  width: 14rem !important;
+}
+
+.vc:hover {
+  color: maroon !important;
+}
+
+/* Table */
+
+table {
+  overflow-y: scroll;
+  width: 80vw;
+  border-collapse: collapse;
+  font-size: 1rem;
+  text-align: left;
+  box-shadow: 0 0 10px rgb(215, 215, 215);
+  margin: 1.85rem auto 1rem auto;
+  height: 57.5vh;
+  overflow-y: scroll;
+  display: block;
+}
+
+th {
+  background-color: burlywood;
+  color: white;
+  text-align: left;
+}
+
+tr,
+td,
+th {
+  word-wrap: break-word;
+  padding: 0.5rem;
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(209, 209, 209);
+}
+
+tr:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+textarea {
+  resize: none;
+  height: 10vh;
+
+}
+
+.inbox-textarea {
+  display: block;
+  resize: none;
+  height: 10vh;
+  margin: 1rem auto;
+  width: 80vw;
 }

@@ -147,8 +147,8 @@
 }
 
 #team-info p {
-  width: 32rem;
-  text-align: justify;
+  width: 45rem;
+  text-align: center;
   text-shadow: 0 0 5px gray;
   padding: 2rem;
 }

@@ -23,6 +23,14 @@ include '../util/admin_conn.php';
                 <input type="text" name="address" maxlength="100" required>
             </div>
             <div class="form-item">
+                <label>Venue Capacity</label>
+                <input type="number" name="capacity" min="0" max="9999" step="1" required />
+            </div>
+            <div class="form-item">
+                <label>Venue Description</label>
+                <textarea name="description" maxlength="255" required></textarea>
+            </div>
+            <div class="form-item">
                 <label>Venue Image</label>
                 <input type="file" name="uploadfile" required>
             </div>

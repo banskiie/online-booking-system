@@ -43,13 +43,13 @@ require '../db/database.php';
             </div>
         </form>
         <div class="tbl-cont">
-            <table>
+            <table style="width: 80vw;">
                 <tr>
-                    <th>Name</th>
+                    <th style="width: 20vw;">Name</th>
                     <th>Address</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th style="width: 3vw;"></th>
+                    <th style="width: 3vw;"></th>
+                    <th style="width: 3vw;"></th>
                 </tr>
                 <?php
                 if (isset($_GET['search-submit'])) {

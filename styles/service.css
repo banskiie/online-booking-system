@@ -43,6 +43,7 @@
   color: rgb(216, 216, 216);
 }
 
+
 /* service class */
 
 .service {
@@ -74,7 +75,7 @@
   padding: 0.5rem;
   margin: 1rem;
   width: 35vw;
-  height: 20rem;
+  height: 30rem;
   background-size: cover;
   text-align: center;
   display: flex;
@@ -93,7 +94,33 @@
 .supp-card h2,
 .supp-card p {
   color: whitesmoke;
-  text-shadow: 0 0 5px black;
+  text-shadow: 0 0 5px rgb(0, 0, 0);
+  background-color: rgba(112, 49, 13, 0.5);
+  padding: 0.2rem;
+  border-radius: 0.4rem;
+}
+
+.package-card h2 {
+  font-size: 1.6rem;
+}
+
+.package-card p {
+  text-align: left;
+}
+
+.venue-card,
+.supp-card {
+  text-align: left;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.venue-card h2,
+.venue-card p,
+.supp-card h2,
+.supp-card p {
+  margin: 0.15rem;
 }
 
 .venue-card h2,
@@ -104,7 +131,7 @@
 .venue-card:hover,
 .package-card:hover,
 .supp-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.008);
 }
 
 .price {
@@ -115,6 +142,7 @@
   #package-intro h1 {
     font-size: 8rem;
   }
+
   .desc {
     font-size: 0.9rem;
   }

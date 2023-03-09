@@ -22,7 +22,6 @@ require '../db/database.php';
     ?>
     <main class="content">
         <h1>Suppliers</h1>
-
         <form id="top-form" action="admin-suppliers.php" method="GET">
             <div>
                 <button name="search-submit" id="search"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -43,16 +42,16 @@ require '../db/database.php';
             </div>
         </form>
         <div class="tbl-cont">
-            <table>
+            <table style="width: 80vw;">
                 <tr>
-                    <th></th>
-                    <th>Role</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Contact Number</th>
+                    <th style="width: 3.5vw;"></th>
+                    <th style="width: 8vw;">Role</th>
+                    <th style="width: 8vw;">Name</th>
+                    <th style="width: 15.5vw;">Email</th>
+                    <th style="width: 8vw;">Cont Number</th>
                     <th>Address</th>
-                    <th></th>
-                    <th></th>
+                    <th style="width: 3vw;"></th>
+                    <th style="width: 3vw;"></th>
                 </tr>
                 <?php
                 if (isset($_GET['search-submit'])) {
@@ -73,7 +72,7 @@ require '../db/database.php';
                         } else {
                             $pageno = 1;
                         }
-                        $no_of_records_per_page = 6;
+                        $no_of_records_per_page = 8;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT COUNT(*) FROM supplier WHERE supp_status=1";
@@ -127,7 +126,7 @@ require '../db/database.php';
                             $pageno = 1;
                         }
 
-                        $no_of_records_per_page = 6;
+                        $no_of_records_per_page = 8;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT * FROM supplier WHERE (supp_name LIKE '%$queried%' OR supp_add LIKE '%$queried%' OR supp_role LIKE '%$queried%' OR supp_email LIKE '%$queried%') AND supp_status=1";
@@ -186,7 +185,7 @@ require '../db/database.php';
                     } else {
                         $pageno = 1;
                     }
-                    $no_of_records_per_page = 6;
+                    $no_of_records_per_page = 8;
                     $offset = ($pageno - 1) * $no_of_records_per_page;
 
                     $total_pages_sql = "SELECT COUNT(*) FROM supplier WHERE supp_status=1";

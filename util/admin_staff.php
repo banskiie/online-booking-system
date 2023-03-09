@@ -72,12 +72,9 @@ if (isset($_POST['add'])) {
     $contno = $_POST['contno'];
     $address = $_POST['address'];
     $position = $_POST['position'];
-    $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "../images/staff/" . $filename;
 
     $sql = sprintf(
-        "UPDATE staff SET staff_fn='%s', staff_mn='%s', staff_ln='%s', staff_email='%s', staff_contno='%s', staff_add='%s', staff_pos='%s', staff_img='%s'
+        "UPDATE staff SET staff_fn='%s', staff_mn='%s', staff_ln='%s', staff_email='%s', staff_contno='%s', staff_add='%s', staff_pos='%s'
     WHERE staff_id = $id",
         $conn->real_escape_string($first_name),
         $conn->real_escape_string($middle_name),
@@ -86,10 +83,8 @@ if (isset($_POST['add'])) {
         $conn->real_escape_string($contno),
         $conn->real_escape_string($address),
         $conn->real_escape_string($position),
-        $conn->real_escape_string($filename)
     );
     mysqli_query($conn, $sql);
-    move_uploaded_file($tempname, $folder);
 
     // Log
     $sql = sprintf(
@@ -101,4 +96,22 @@ if (isset($_POST['add'])) {
     // Log
 
     header("location: ../admin/admin-staff.php?staff_updated");
-}
+} elseif (isset($_POST['update-pic'])) {
+
+    $id = $_GET['staff_id'];
+    $name = $_POST['fn'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../images/staff/" . $filename;
+
+    $sql = sprintf(
+        "UPDATE staff SET staff_img='%s'
+    WHERE staff_id = $id",
+        $conn->real_escape_string($filename)
+    );
+
+    mysqli_query($conn, $sql);
+    move_uploaded_file($tempname, $folder);
+
+    header("location: ../admin/admin-staff.php?staff_updated");
+} 

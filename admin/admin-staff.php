@@ -41,18 +41,18 @@ require '../db/database.php';
             </a>
         </form>
         <div class="tbl-cont">
-            <table>
+            <table style="width: 80vw;">
                 <tr>
-                    <th></th>
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Contact Number</th>
+                    <th style="width: 3.5vw;"></th>
+                    <th style="width: 6vw;">First Name</th>
+                    <th style="width: 6vw;">Middle Name</th>
+                    <th style="width: 6vw;">Last Name</th>
+                    <th style="width: 10vw;">Position</th>
+                    <th style="width: 10vw;">Email</th>
+                    <th style="width: 8.5vw;">Contact Number</th>
                     <th>Address</th>
-                    <th>Position</th>
-                    <th></th>
-                    <th></th>
+                    <th style="width: 3vw;"</th>
+                    <th style="width: 3vw;"></th>
                 </tr>
 
                 <?php
@@ -74,7 +74,7 @@ require '../db/database.php';
                         } else {
                             $pageno = 1;
                         }
-                        $no_of_records_per_page = 6;
+                        $no_of_records_per_page = 8;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT COUNT(*) FROM staff WHERE staff_status=1";
@@ -98,10 +98,10 @@ require '../db/database.php';
                                 <td><?php echo $row['staff_fn']; ?></td>
                                 <td><?php echo $row['staff_mn']; ?></td>
                                 <td><?php echo $row['staff_ln']; ?></td>
+                                <td><?php echo $row['staff_pos']; ?></td>
                                 <td><?php echo $row['staff_email']; ?></td>
                                 <td><?php echo $row['staff_contno']; ?></td>
                                 <td><?php echo $row['staff_add']; ?></td>
-                                <td><?php echo $row['staff_pos']; ?></td>
                                 <td class="btn">
                                     <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
                                         <button id="update" name="update">
@@ -130,7 +130,7 @@ require '../db/database.php';
                             $pageno = 1;
                         }
 
-                        $no_of_records_per_page = 6;
+                        $no_of_records_per_page = 8;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT COUNT(*) FROM staff WHERE (staff_fn LIKE '%$queried%' OR staff_mn LIKE '%$queried%' OR staff_ln LIKE '%$queried%' OR staff_email LIKE '%$queried%' OR staff_contno LIKE '%$queried%' OR staff_add LIKE '%$queried%' OR staff_pos LIKE '%$queried%')";
@@ -161,10 +161,10 @@ require '../db/database.php';
                                 <td><?php echo $row['staff_fn']; ?></td>
                                 <td><?php echo $row['staff_mn']; ?></td>
                                 <td><?php echo $row['staff_ln']; ?></td>
+                                <td><?php echo $row['staff_pos']; ?></td>
                                 <td><?php echo $row['staff_email']; ?></td>
                                 <td><?php echo $row['staff_contno']; ?></td>
                                 <td><?php echo $row['staff_add']; ?></td>
-                                <td><?php echo $row['staff_pos']; ?></td>
                                 <td class="btn">
                                     <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
                                         <button id="update" name="update">
@@ -192,7 +192,7 @@ require '../db/database.php';
                     } else {
                         $pageno = 1;
                     }
-                    $no_of_records_per_page = 6;
+                    $no_of_records_per_page = 8;
                     $offset = ($pageno - 1) * $no_of_records_per_page;
 
                     $total_pages_sql = "SELECT COUNT(*) FROM staff WHERE staff_status=1";
@@ -216,10 +216,10 @@ require '../db/database.php';
                             <td><?php echo $row['staff_fn']; ?></td>
                             <td><?php echo $row['staff_mn']; ?></td>
                             <td><?php echo $row['staff_ln']; ?></td>
+                            <td><?php echo $row['staff_pos']; ?></td>
                             <td><?php echo $row['staff_email']; ?></td>
                             <td><?php echo $row['staff_contno']; ?></td>
                             <td><?php echo $row['staff_add']; ?></td>
-                            <td><?php echo $row['staff_pos']; ?></td>
                             <td class="btn">
                                 <form action="admin-staff-edit.php?staff_id=<?php echo $row['staff_id']; ?>" method="post">
                                     <button id="update" name="update">

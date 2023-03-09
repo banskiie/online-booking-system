@@ -22,6 +22,12 @@ require '../db/database.php';
         if ($row = $result->fetch_assoc()) { ?>
             <form id="add-form" action="../util/admin_package.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post" enctype="multipart/form-data">
                 <div class="form-item">
+                    <label>Package Image</label>
+                    <input type="file" name="uploadfile" value='<?php echo $row['pkg_img']; ?>' required>
+                    <button id="add-new" name="update-pic">Update</button>
+            </form>
+            <form id="add-form" action="../util/admin_package.php?pkg_id=<?php echo $row['pkg_id']; ?>" method="post" enctype="multipart/form-data">
+                <div class="form-item">
                     <label>Name</label>
                     <input type="text" name="name" value="<?php echo $row['pkg_name']; ?>" maxlength="100" required>
                 </div>
@@ -32,10 +38,6 @@ require '../db/database.php';
                 <div class="form-item">
                     <label>Description</label>
                     <textarea name="desc" maxlength="255"><?php echo $row['pkg_desc']; ?></textarea>
-                </div>
-                <div class="form-item">
-                    <label>Package Image</label>
-                    <input type="file" name="uploadfile" required>
                 </div>
                 <div class="form-btn-grp">
                     <button id="add-new" name="update">Update</button>

@@ -143,6 +143,7 @@ if (isset($_POST['send'])) {
                         session_start();
                         $_SESSION['id'] = $row['admin_id'];
                         $_SESSION['first_name'] = $row['admin_fn'];
+                        $_SESSION['last_name'] = $row['admin_ln'];
                         $_SESSION['loggedIn'] = true;
                         $_SESSION['role'] = 'admin';
                         $sql = sprintf(

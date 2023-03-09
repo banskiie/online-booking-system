@@ -22,8 +22,11 @@ require '../db/database.php';
             <form id="add-form" action="../util/admin_supplier.php?supp_id=<?php echo $row['supp_id']; ?>" method="post" enctype="multipart/form-data">
                 <div class="form-item">
                     <label>Staff Picture</label>
-                    <input type="file" name="uploadfile" value="" required>
+                    <input type="file" name="uploadfile" value='<?php echo $row['supp_img']; ?>'required>
+                    <button id="add-new" name="update-pic">Update</button>
                 </div>
+            </form>
+            <form id="add-form" action="../util/admin_supplier.php?supp_id=<?php echo $row['supp_id']; ?>" method="post" enctype="multipart/form-data">
                 <div class="form-item">
                     <label>Name</label>
                     <input type="text" name="name" value="<?php echo $row['supp_name']; ?>" maxlength="100" required>

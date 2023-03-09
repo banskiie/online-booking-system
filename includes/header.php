@@ -12,6 +12,7 @@ require 'db/database.php';
             <?php if (isset($_SESSION['loggedIn']) == true && ($_SESSION['role']) == "client") { ?>
                 <li><a href="my_profile.php">My Profile</a></li>
                 <li><a href="my_bookings.php">My Booking</a></li>
+                <li><a href="my_inbox.php">My Inbox</a></li>
             <?php } else { ?>
                 <li><a href="contact.php">Contact Us</a></li>
             <?php } ?>

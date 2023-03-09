@@ -14,20 +14,14 @@ require '../db/database.php';
     ?>
     <main class="content">
         <h1>Inquiries</h1>
-        <form id="top-form" action="admin-inq.php" method="GET">
-            <button name="search-submit" id="search"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-            </button>
-            <input name="search" type="text">
-        </form>
         <div class="tbl-cont">
-            <table>
+            <table style="width: 80vw;">
                 <tr>
-                    <th>Time</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th></th>
+                    <th style="width: 12vw;">Time</th>
+                    <th style="width: 10vw;">Name</th>
+                    <th style="width: 15vw;">Email</th>
+                    <th style="width: 35vw;">Text</th>
+                    <th style="width: 3vw;"></th>
                 </tr>
 
                 <?php
@@ -50,7 +44,7 @@ require '../db/database.php';
                         } else {
                             $pageno = 1;
                         }
-                        $no_of_records_per_page = 8;
+                        $no_of_records_per_page = 10;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT COUNT(*) FROM inquiry";
@@ -63,15 +57,32 @@ require '../db/database.php';
                         while ($row = mysqli_fetch_array($res_data)) {
                             if ($row['inq_status'] == 0) { ?>
                                 <tr>
-                                    <td><i><b><?php echo $row['inq_datetime']; ?></b></i></td>
-                                    <td>*<i><b><?php echo $row['inq_name']; ?></b></i></td>
-                                    <td><i><?php echo $row['inq_email']; ?></i></td>
+                                    <td><i><b>
+                                                <?php $date_time = new DateTime($row['inq_datetime']);
+                                                $formated_date = $date_time->format('jS F Y h:i:s A');
+                                                echo $formated_date;
+                                                ?>
+                                            </b></i></td>
+                                    <td>*<i><b>
+                                                <?php echo $row['inq_name']; ?>
+                                            </b></i></td>
+                                    <td><i>
+                                            <?php echo $row['inq_email']; ?>
+                                        </i></td>
+                                    <td>
+                                        <?php echo substr($row['inq_remark'], 0, 50); ?>
+                                    </td>
+
                                     <td class="btn">
-                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post" enctype="multipart/form-data">
+                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post"
+                                            enctype="multipart/form-data">
                                             <button id="view" name="view">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
 
                                             </button>
@@ -80,15 +91,31 @@ require '../db/database.php';
                                 </tr>
                             <?php } else { ?>
                                 <tr>
-                                    <td><?php echo $row['inq_datetime']; ?></td>
-                                    <td><?php echo $row['inq_name']; ?></td>
-                                    <td><?php echo $row['inq_email']; ?></td>
+                                    <td>
+                                        <?php $date_time = new DateTime($row['inq_datetime']);
+                                        $formated_date = $date_time->format('jS F Y h:i:s A');
+                                        echo $formated_date;
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['inq_name']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['inq_email']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo substr($row['inq_remark'], 0, 50); ?>
+                                    </td>
                                     <td class="btn">
-                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post" enctype="multipart/form-data">
+                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post"
+                                            enctype="multipart/form-data">
                                             <button id="view" name="view">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
 
                                             </button>
@@ -104,7 +131,7 @@ require '../db/database.php';
                         } else {
                             $pageno = 1;
                         }
-                        $no_of_records_per_page = 8;
+                        $no_of_records_per_page = 10;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT COUNT(*) FROM inquiry WHERE (inq_name LIKE '%$queried%' OR inq_email LIKE '%$queried%')";
@@ -124,15 +151,31 @@ require '../db/database.php';
                         while ($row = mysqli_fetch_array($res_data)) {
                             if ($row['inq_status'] == 0) { ?>
                                 <tr>
-                                    <td><i><b><?php echo $row['inq_datetime']; ?></b></i></td>
-                                    <td>*<i><b><?php echo $row['inq_name']; ?></b></i></td>
-                                    <td><i><?php echo $row['inq_email']; ?></i></td>
+                                    <td><i><b>
+                                                <?php $date_time = new DateTime($row['inq_datetime']);
+                                                $formated_date = $date_time->format('D h:i:s A [d M y]');
+                                                echo $formated_date;
+                                                ?>
+                                            </b></i></td>
+                                    <td>*<i><b>
+                                                <?php echo $row['inq_name']; ?>
+                                            </b></i></td>
+                                    <td><i>
+                                            <?php echo $row['inq_email']; ?>
+                                        </i></td>
+                                    <td>
+                                        <?php echo substr($row['inq_remark'], 0, 50); ?>
+                                    </td>
                                     <td class="btn">
-                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post" enctype="multipart/form-data">
+                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post"
+                                            enctype="multipart/form-data">
                                             <button id="view" name="view">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
 
                                             </button>
@@ -141,15 +184,31 @@ require '../db/database.php';
                                 </tr>
                             <?php } else { ?>
                                 <tr>
-                                    <td><?php echo $row['inq_datetime']; ?></td>
-                                    <td><?php echo $row['inq_name']; ?></td>
-                                    <td><?php echo $row['inq_email']; ?></td>
+                                    <td>
+                                        <?php $date_time = new DateTime($row['inq_datetime']);
+                                        $formated_date = $date_time->format('D h:i:s A [d M y]');
+                                        echo $formated_date;
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['inq_name']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['inq_email']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo substr($row['inq_remark'], 0, 50); ?>
+                                    </td>
                                     <td class="btn">
-                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post" enctype="multipart/form-data">
+                                        <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post"
+                                            enctype="multipart/form-data">
                                             <button id="view" name="view">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
 
                                             </button>
@@ -158,14 +217,15 @@ require '../db/database.php';
                                 </tr>
                             <?php }
                         }
-                    };
+                    }
+                    ;
                 } else {
                     if (isset($_GET['pageno'])) {
                         $pageno = $_GET['pageno'];
                     } else {
                         $pageno = 1;
                     }
-                    $no_of_records_per_page = 8;
+                    $no_of_records_per_page = 10;
                     $offset = ($pageno - 1) * $no_of_records_per_page;
 
                     $total_pages_sql = "SELECT COUNT(*) FROM inquiry ORDER BY inq_datetime DESC";
@@ -178,15 +238,31 @@ require '../db/database.php';
                     while ($row = mysqli_fetch_array($res_data)) {
                         if ($row['inq_status'] == 0) { ?>
                             <tr>
-                                <td><i><b><?php echo $row['inq_datetime']; ?></b></i></td>
-                                <td>*<i><b><?php echo $row['inq_name']; ?></b></i></td>
-                                <td><i><?php echo $row['inq_email']; ?></i></td>
+                                <td><i><b>
+                                            <?php $date_time = new DateTime($row['inq_datetime']);
+                                            $formated_date = $date_time->format('D h:i:s A [d M y]');
+                                            echo $formated_date;
+                                            ?>
+                                        </b></i></td>
+                                <td>*<i><b>
+                                            <?php echo $row['inq_name']; ?>
+                                        </b></i></td>
+                                <td><i>
+                                        <?php echo $row['inq_email']; ?>
+                                    </i></td>
+                                <td>
+                                    <?php echo substr($row['inq_remark'], 0, 50); ?>
+                                </td>
                                 <td class="btn">
-                                    <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post" enctype="multipart/form-data">
+                                    <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post"
+                                        enctype="multipart/form-data">
                                         <button id="view" name="view">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </button>
                                     </form>
@@ -194,22 +270,39 @@ require '../db/database.php';
                             </tr>
                         <?php } else { ?>
                             <tr>
-                                <td><?php echo $row['inq_datetime']; ?></td>
-                                <td><?php echo $row['inq_name']; ?></td>
-                                <td><?php echo $row['inq_email']; ?></td>
+                                <td>
+                                    <?php $date_time = new DateTime($row['inq_datetime']);
+                                    $formated_date = $date_time->format('D h:i:s A [d M y]');
+                                    echo $formated_date;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['inq_name']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['inq_email']; ?>
+                                </td>
+                                <td>
+                                    <?php echo substr($row['inq_remark'], 0, 50); ?>
+                                </td>
                                 <td class="btn">
-                                    <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post" enctype="multipart/form-data">
+                                    <form action="admin-inq-view.php?inq_id=<?php echo $row['inq_id']; ?>" method="post"
+                                        enctype="multipart/form-data">
                                         <button id="view" name="view">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </button>
                                     </form>
                                 </td>
                             </tr>
 
-                <?php };
+                        <?php }
+                        ;
                     }
                 }
                 ?>
@@ -222,41 +315,48 @@ require '../db/database.php';
                 <ul>
                     <li>
                         <a href="<?php echo "?search=" . ($_COOKIE['search']) . "&search-submit=&pageno=1" ?> ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
                             </svg>
                         </a>
                     </li>
                     <li class="<?php if ($pageno <= 1) {
-                                    echo 'disabled';
-                                } ?>">
+                        echo 'disabled';
+                    } ?>">
                         <a href="<?php if ($pageno <= 1) {
-                                        echo '#';
-                                    } else {
-                                        echo "?search=" . ($_COOKIE['search']) . "&search-submit=&pageno=" . ($pageno - 1);
-                                    } ?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            echo '#';
+                        } else {
+                            echo "?search=" . ($_COOKIE['search']) . "&search-submit=&pageno=" . ($pageno - 1);
+                        } ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                             </svg>
                         </a>
                     </li>
                     <li class="<?php if ($pageno >= $total_pages) {
-                                    echo 'disabled';
-                                } ?>">
+                        echo 'disabled';
+                    } ?>">
                         <a href="<?php if ($pageno >= $total_pages) {
-                                        echo '#';
-                                    } else {
-                                        echo "?search=" . ($_COOKIE['search']) . "&search-submit=&pageno=" . ($pageno + 1);
-                                    } ?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            echo '#';
+                        } else {
+                            echo "?search=" . ($_COOKIE['search']) . "&search-submit=&pageno=" . ($pageno + 1);
+                        } ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
                         </a>
                     </li>
 
-                    <li><a href="<?php echo "?search=" . ($_COOKIE['search']) . "&search-submit=&pageno=" . $total_pages ?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                    <li><a
+                            href="<?php echo "?search=" . ($_COOKIE['search']) . "&search-submit=&pageno=" . $total_pages ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
                             </svg>
                         </a></li>
                 </ul>
@@ -265,38 +365,44 @@ require '../db/database.php';
             <div class="pagination">
                 <ul>
                     <li><a href="?pageno=1">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
                             </svg>
                         </a></li>
                     <li class="<?php if ($pageno <= 1) {
-                                    echo 'disabled';
-                                } ?>">
+                        echo 'disabled';
+                    } ?>">
                         <a href="<?php if ($pageno <= 1) {
-                                        echo '#';
-                                    } else {
-                                        echo "?pageno=" . ($pageno - 1);
-                                    } ?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            echo '#';
+                        } else {
+                            echo "?pageno=" . ($pageno - 1);
+                        } ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                             </svg>
                         </a>
                     </li>
                     <li class="<?php if ($pageno >= $total_pages) {
-                                    echo 'disabled';
-                                } ?>">
+                        echo 'disabled';
+                    } ?>">
                         <a href="<?php if ($pageno >= $total_pages) {
-                                        echo '#';
-                                    } else {
-                                        echo "?pageno=" . ($pageno + 1);
-                                    } ?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            echo '#';
+                        } else {
+                            echo "?pageno=" . ($pageno + 1);
+                        } ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
                         </a>
                     </li>
-                    <li><a href="?pageno=<?php echo $total_pages; ?>"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                    <li><a href="?pageno=<?php echo $total_pages; ?>"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
                             </svg>
                         </a></li>
                 </ul>

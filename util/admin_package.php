@@ -57,31 +57,64 @@ if (isset($_POST['add'])) {
     $name = $_POST['name'];
     $price = $_POST['price'];
     $desc = $_POST['desc'];
+
+    $sql = "SELECT * FROM package WHERE pkg_id = $id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if ($price != $row['pkg_price']) {
+                $sql = sprintf(
+                    "UPDATE package SET pkg_name='%s', pkg_price='%s', pkg_desc='%s'
+                WHERE pkg_id = $id",
+                    $conn->real_escape_string($name),
+                    $conn->real_escape_string($price),
+                    $conn->real_escape_string($desc),
+                );   
+                mysqli_query($conn, $sql);
+                // Log
+                $sql = sprintf(
+                    "INSERT INTO user_log (ulog_act)
+                VALUES ('Updated %s Package Info Where Price is ₱%s');",
+                    $conn->real_escape_string($name),
+                    $conn->real_escape_string(number_format($price, 2, '.', ','))
+                );
+                mysqli_query($conn, $sql);
+            } else {
+                $sql = sprintf(
+                    "UPDATE package SET pkg_name='%s', pkg_price='%s', pkg_desc='%s'
+                WHERE pkg_id = $id",
+                    $conn->real_escape_string($name),
+                    $conn->real_escape_string($price),
+                    $conn->real_escape_string($desc),
+                );   
+                mysqli_query($conn, $sql);
+                // Log
+                $sql = sprintf(
+                    "INSERT INTO user_log (ulog_act)
+                VALUES ('Updated %s Package Info');",
+                    $conn->real_escape_string($name),
+                );
+                mysqli_query($conn, $sql);
+            }
+        }
+    }
+    header("location: ../admin/admin-packages.php?package_updated");
+} elseif (isset($_POST['update-pic'])) {
+
+    $id = $_GET['pkg_id'];
     $filename = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
     $folder = "../images/package/" . $filename;
 
     $sql = sprintf(
-        "UPDATE package SET pkg_name='%s', pkg_price='%s', pkg_desc='%s', pkg_img='%s'
+        "UPDATE package SET pkg_img='%s'
     WHERE pkg_id = $id",
-        $conn->real_escape_string($name),
-        $conn->real_escape_string($price),
-        $conn->real_escape_string($desc),
+
         $conn->real_escape_string($filename)
     );
 
     mysqli_query($conn, $sql);
     move_uploaded_file($tempname, $folder);
-
-    // Log
-    $sql = sprintf(
-        "INSERT INTO user_log (ulog_act)
-    VALUES ('Updated %s Package Info Where Price is ₱%s');",
-        $conn->real_escape_string($name),
-        $conn->real_escape_string($price)
-    );
-    mysqli_query($conn, $sql);
-    // Log
 
     header("location: ../admin/admin-packages.php?package_updated");
 }

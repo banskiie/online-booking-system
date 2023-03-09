@@ -51,6 +51,11 @@ require 'db/database.php';
             <form action="util/client_actions.php" method="post" enctype="multipart/form-data">
                 <label>Profile Picture</label>
                 <input type="file" name="uploadfile" required>
+                <div>
+                    <button class="btn1" name="update-client">Update Picture</button>
+                </div>
+            </form>
+            <form action="util/client_actions.php" method="post" enctype="multipart/form-data">
                 <label>First Name</label>
                 <input name="first_name" type="text" value="<?php echo $_SESSION['first_name']; ?>" maxlength="50" required>
                 <label>Middle Name</label>

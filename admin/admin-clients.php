@@ -22,13 +22,15 @@ require '../db/database.php';
             <input name="search" type="text">
         </form>
         <div class="tbl-cont">
-            <table>
+            <table style="width: 80vw;">
                 <tr>
-                    <th></th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-                    <th>Email</th>
-                    <th></th>
+                    <th style="width: 3vw;"></th>
+                    <th style="width: 6vw;">Last Name</th>
+                    <th style="width: 6vw;">First Name</th>
+                    <th style="width: 6vw;">Middle Name</th>
+                    <th style="width: 16vw;">Email</th>
+                    <th>Contact Number</th>
+                    <th style="width: 3vw;"></th>
                 </tr>
                 <?php
                 if (isset($_GET['search-submit'])) {
@@ -49,7 +51,7 @@ require '../db/database.php';
                         } else {
                             $pageno = 1;
                         }
-                        $no_of_records_per_page = 8;
+                        $no_of_records_per_page = 9;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT COUNT(*) FROM client ORDER BY clnt_fn ASC";
@@ -72,7 +74,9 @@ require '../db/database.php';
                                 </td>
                                 <td><?php echo $row['clnt_ln']; ?></td>
                                 <td><?php echo $row['clnt_fn']; ?></td>
+                                <td><?php echo $row['clnt_mn']; ?></td>
                                 <td><?php echo $row['clnt_email']; ?></td>
+                                <td><?php echo $row['clnt_contno']; ?></td>
                                 <td class="btn">
                                     <form action="admin-clients-view.php?clnt_id=<?php echo $row['clnt_id']; ?>" method="post">
                                         <button name="view" id="view">
@@ -92,7 +96,7 @@ require '../db/database.php';
                         } else {
                             $pageno = 1;
                         }
-                        $no_of_records_per_page = 8;
+                        $no_of_records_per_page = 9;
                         $offset = ($pageno - 1) * $no_of_records_per_page;
 
                         $total_pages_sql = "SELECT COUNT(*) FROM client WHERE (clnt_fn LIKE '%$queried%' OR clnt_ln LIKE '%$queried%' OR clnt_email LIKE '%$queried%')";
@@ -122,7 +126,9 @@ require '../db/database.php';
                                 </td>
                                 <td><?php echo $row['clnt_ln']; ?></td>
                                 <td><?php echo $row['clnt_fn']; ?></td>
+                                <td><?php echo $row['clnt_mn']; ?></td>
                                 <td><?php echo $row['clnt_email']; ?></td>
+                                <td><?php echo $row['clnt_contno']; ?></td>
                                 <td class="btn">
                                     <form action="admin-clients-view.php?clnt_id=<?php echo $row['clnt_id']; ?>" method="post">
                                         <button name="view" id="view">
@@ -142,7 +148,7 @@ require '../db/database.php';
                     } else {
                         $pageno = 1;
                     }
-                    $no_of_records_per_page = 8;
+                    $no_of_records_per_page = 9;
                     $offset = ($pageno - 1) * $no_of_records_per_page;
 
                     $total_pages_sql = "SELECT COUNT(*) FROM client ORDER BY clnt_fn ASC";
@@ -165,7 +171,9 @@ require '../db/database.php';
                             </td>
                             <td><?php echo $row['clnt_ln']; ?></td>
                             <td><?php echo $row['clnt_fn']; ?></td>
+                            <td><?php echo $row['clnt_mn']; ?></td>
                             <td><?php echo $row['clnt_email']; ?></td>
+                            <td><?php echo $row['clnt_contno']; ?></td>
                             <td class="btn">
                                 <form action="admin-clients-view.php?clnt_id=<?php echo $row['clnt_id']; ?>" method="post">
                                     <button name="view" id="view">

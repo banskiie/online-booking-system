@@ -1,8 +1,13 @@
 section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
 }
+
+.upper-dash {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 
 svg {
   vertical-align: middle;
@@ -19,16 +24,14 @@ svg {
   transition: 0.2s linear;
 }
 
-.dashboard_card:hover {
-  transform: scale(1.02);
-}
+
 
 .dashboard_card:nth-child(1) {
-  background-color: rgb(255, 128, 128);
+  background-color: rgb(193, 94, 94);
 }
 
 .dashboard_card:nth-child(2) {
-  background-color: rgb(128, 255, 143);
+  background-color: rgb(84, 167, 93);
 }
 
 .dashboard_card:nth-child(3) {
@@ -36,7 +39,7 @@ svg {
 }
 
 .dashboard_card:nth-child(4) {
-  background-color: rgb(255, 242, 128);
+  background-color: rgb(156, 148, 75);
 }
 
 .dashboard_card:nth-child(5) {
@@ -44,10 +47,68 @@ svg {
 }
 
 .dashboard_card:nth-child(6) {
-  background-color: rgb(128, 255, 204);
+  background-color: rgb(30, 82, 61);
 }
 
-p {
+.dashboard_card:nth-child(7) {
+  background-color: rgb(128, 196, 255);
+}
+
+.dashboard_card:nth-child(8) {
+  background-color: rgb(210, 103, 22);
+}
+
+.dashboard_card_bigger:nth-child(1) {
+  background-color: rgb(255, 0, 0);
+}
+
+.dashboard_card_bigger:nth-child(1) {
+  background-color: rgb(255, 0, 0);
+}
+
+.dashboard_card_bigger:nth-child(2) {
+  background-color: rgb(23, 0, 126);
+}
+
+.dashboard_card_bigger:nth-child(3) {
+  background-color: rgb(57, 162, 0);
+}
+
+.dashboard_card p {
+  font-size: 4rem;
+  color: whitesmoke;
+}
+
+.dashboard_card h3 {
+  font-size: 1.5rem;
+  color: whitesmoke;
+}
+
+.dashboard_card_bigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  margin: 1rem 2rem 1rem 0;
+  height: 10rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 5px darkgray;
+  transition: 0.2s linear;
+}
+
+.dashboard_card_bigger h3 {
   font-size: 2rem;
-  color: rgb(30, 30, 30) !important;
+  color: whitesmoke !important;
+}
+
+
+.dashboard_card_bigger p {
+  font-size: 5rem;
+  color: whitesmoke;
+}
+
+.dashboard_card:hover,
+.dashboard_card_bigger:hover {
+  transform: scale(1.02);
 }

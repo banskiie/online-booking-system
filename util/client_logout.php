@@ -15,3 +15,4 @@ if (isset($_SESSION["role"]) == "client") {
 }
 session_destroy();
 header('Location: ../index.php');
+?>
